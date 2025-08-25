@@ -1781,59 +1781,217 @@ body {
     td {
       background: rgba(255,255,255,0.1);
     }
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      background: #111;
-      font-family: 'Segoe UI', sans-serif;
-    }
+.btn {
+  background: linear-gradient(135deg, #0066ff, #004aad);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 15px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
 
-    .maintenance-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, #111, #1a1a1a);
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
+#reportForm {
+  display: none;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  background: #45204d;
+  border-top: 6px solid #004aad;
+  transition: all 0.5s ease;
+}
 
-    .countdown {
-      position: absolute;
-      top: 30px;
-      font-size: 48px;
-      font-weight: bold;
-      color: #00f0ff;
-      text-shadow: 0 0 10px #00f0ff;
-    }
+#reportForm h3 {
+  text-align: center;
+  color: #004aad;
+  margin-bottom: 25px;
+  font-size: 1.6em;
+}
 
-    .message-box {
-      border: 3px solid #ff4444;
-      padding: 40px;
-      background-color: #1c1c1c;
-      border-radius: 15px;
-      box-shadow: 0 0 30px #ff4444;
-      text-align: center;
-      max-width: 700px;
-    }
+#reportForm label {
+  font-weight: bold;
+  color: #f7e8e8;
+  margin-bottom: 6px;
+  display: block;
+  font-size: 1em;
+}
 
-    .message-box h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-      color: #ff4444;
-    }
+#reportForm input,
+#reportForm select,
+#reportForm textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
 
-    .message-box p {
-      font-size: 20px;
-      color: #ccc;
-    }
+#reportForm input:focus,
+#reportForm select:focus,
+#reportForm textarea:focus {
+  border-color: #004aad;
+  box-shadow: 0 0 12px rgba(0, 74, 173, 0.4);
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.submit {
+  background: linear-gradient(135deg, #0066ff, #004aad);
+  flex: 1;
+}
+.close {
+  background: #ff4d4d;
+  flex: 1;
+}
+.close:hover {
+  background: #e60000;
+}
+
+#successMessage {
+  display: none;
+  text-align: center;
+  color: #28a745;
+  font-weight: bold;
+  margin-top: 18px;
+  font-size: 1.1em;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
+@media(max-width:650px) {
+  .buttons { flex-direction: column; }
+}
+ .report-section {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.report-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f5efef;
+}
+
+#reportForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#reportForm label {
+  font-weight: 600;
+  color: #444;
+}
+
+#reportForm input,
+#reportForm select,
+#reportForm textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+#reportForm input:focus,
+#reportForm select:focus,
+#reportForm textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 6px rgba(79,70,229,0.4);
+}
+
+.report-btn {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.report-btn:hover {
+  background: linear-gradient(135deg, #4338ca, #0891b2);
+  transform: translateY(-2px);
+}
+.phone-list {
+  padding: 20px;
+  background: #111827;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  color: #facc15;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.phone-list h3 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fbbf24;
+}
+
+.agent-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #1f2937;
+  padding: 8px 12px;
+  border-radius: 19px;
+  transition: 0.9s;
+}
+
+.agent-card:hover {
+  background: #374151;
+  transform: translateX(2px);
+}
+
+.agent-card img {
+  width: 32px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fbbf24;
+}
+
+.agent-card span {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fef3c7;
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -1841,18 +1999,7 @@ body {
 
 <!-- SIDEBAR -->
 
-<div class="maintenance-overlay">
-    <div class="countdown" id="countdown">Loading...</div>
 
-    <div class="message-box">
-      <h1>🚧 Website Under Maintenance</h1>
-      <p>
-        Maintenance underway<br />
-    Hello and welcome, we would like to announce that maintenance will take place between months. Please note the countdown at the top of the page every day. We also announce a major update that will take place in the coming month, which is usually in September. This update is in the same month every year.
-      </p>
-      <p>Thank you for your understanding</p>
-    </div>
-  </div>
 
 <!-- News Ticker -->
 <div class="news-ticker">
@@ -1877,10 +2024,7 @@ body {
 </div>
 <div id="sidebar" role="navigation" aria-label="Sidebar Navigation">
  
-   <!-- زر الإعدادات فوق -->
-  <div id="settings-container">
-    <button id="btnSettings" aria-label="Settings Section">Settings</button>
-  </div>
+  
  
   <button id="btnProjects" aria-label="Projects Section"> Projects</button>
   <button id="btnReports" aria-label="Reports Section"> Reports</button>
@@ -1892,7 +2036,7 @@ body {
   <button id="btnTasks" aria-label="Tasks Section"> Tasks</button>
   <button id="btnSupport" class="support-button"> Support</button>
   <button id="btninvite" class="invite-button">invite</button>
-
+  <button id="btnReport" class="Report-button">Report the company</button>
 </div>
 
 <!-- HEADER -->
@@ -1907,7 +2051,7 @@ body {
     <button id="btnDefinition" aria-label="Definition Section"> Workplace</button>
     <button id="btnCustomerService" aria-label="Customer Service Section"> Customer Service</button>
     <button id="btnService" aria-label="Service Section"> Service</button>
-    <button id="btnControl" aria-label="Control section">desktop</button>
+    <button id="btndashboard" aria-label="dashboard section">report</button>
   </nav>
     <!-- جرس الإشعارات مع عدد التنبيهات -->
   <div style="position: relative; margin-left: 20px;">
@@ -2022,7 +2166,45 @@ body {
 </div>
 <div class="panel" id="panel-N">
   <h2>Phone number for each customer service agent</h2>
- 
+ <div class="agent-card">
+    <img src="agent1.png" alt="Agent 1">
+    <span>+1 234 567 8901</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="agent2.png" alt="Agent 2">
+    <span>+1 234 567 8902</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="agent3.png" alt="Agent 3">
+    <span>+1 234 567 8903</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="agent4.png" alt="Agent 4">
+    <span>+1 234 567 8904</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="agent5.png" alt="Agent 5">
+    <span>+1 234 567 8905</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="agent6.png" alt="Agent 6">
+    <span>+1 234 567 8906</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="agent7.png" alt="Agent 7">
+    <span>+1 234 567 8907</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="agent8.png" alt="Agent 8">
+    <span>+1 234 567 8908</span>
+  </div>
 </div>
 <div class="panel" id="panel-account">
   <h2>Account</h2>
@@ -2101,29 +2283,21 @@ body {
     </label>
   </div>
 
-  <!-- قسم اللغة -->
-  <div class="settings-section">
-    <h4>🌐 Language</h4>
-    <select id="langSelect">
-      <option value="en" selected>English</option>
-      <option value="ar">العربية</option>
-    </select>
-  </div>
 
-  <!-- قسم المحتوى -->
-  <div class="settings-section">
-    <h4>📢 Content</h4>
-    <label>
-      <span>📰 Show News Bar</span>
-      <input type="checkbox" id="newsToggle" checked>
-    </label>
-  </div>
+
+<button id="toggleMusic">🎵 Play / Pause</button>
+<input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.3">
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+  
 
   <!-- قسم التحكم -->
   <div class="settings-section">
     <h4>⚡ Actions</h4>
     <button id="resetSettings" class="btn-accent">🔄 Reset Settings</button>
   </div>
+
 
   <p class="about">ℹ️ Version: v.01.00.0</p>
 </div>
@@ -2144,6 +2318,7 @@ body {
       <li>formspree@gmail.com</li>
       <li>imeneha125@gmail.com</li>
       <li>badrboukana@gmail.com</li>
+      <li>yassineoutabiht00@gmail.com</li>
     </ul>
   </div>
   <p>Blocked Email: 0 Email</p>
@@ -2180,7 +2355,9 @@ body {
     </ul>
   </div>
 </div>
-
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
   <section id="sectionAbout" tabindex="0" aria-label="About Section">
     <h2>About Us</h2>
     <p>We deliver futuristic web solutions with neon aesthetics.
@@ -2332,61 +2509,47 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
 
 
   </section>
-<section id="sectionControl" tabindex="0" aria-label="Control Section">
-  <h2>desktop</h2>
-    <p>We apologize for the extra inconvenience we have because we have some glitches here in the desktop section and we hope that the programmers will solve the problem and we announce that this section will be a program like other devices which are: Windows, Linux and Mac and this is a favor from the company and in the program there is extra security and we do not want to disturb you to go out to the original desktop and therefore the company decided to make the desktop on the site and thank you for your understanding and thank you</p>
-<!-- Desktop Icons -->
-<div class="icon" onclick="openWindow('filesWindow')">
-  <img src="https://cdn-icons-png.flaticon.com/512/715/715780.png" alt="Files">
-  <span>Files</span>
-</div>
+<section id="sectiondashboard" tabindex="0" aria-label="dashboard Section">
 
-<div class="icon" onclick="openWindow('recycleWindow')">
-  <img src="https://cdn-icons-png.flaticon.com/512/3096/3096673.png" alt="Recycle Bin">
-  <span>Recycle Bin</span>
-</div>
+  <h2>🚨 Report a User</h2>
+  <form id="reportForm" action="https://formspree.io/f/mrblrqgp" method="POST">
+    <label>Email of Reported User</label>
+    <input type="email" name="reported_email" placeholder="Enter email..." required>
 
-<div class="icon" onclick="openWindow('adminWindow')">
-  <img src="https://cdn-icons-png.flaticon.com/512/1828/1828941.png" alt="Admin">
-  <span>Admin</span>
-</div>
+    <label>Reason</label>
+    <select name="reason" id="reason">
+    <option value="spam">Spam</option>
+    <option value="harassment">Harassment</option>
+    <option value="other">Other</option>
+       <option value="Inappropriate behaviour">Inappropriate behaviour</option>
+    <option value="Using hacking">Using hacking</option>
+    <option value="Breakthroughs">Breakthroughs</option>
+       <option value="Annoying employees">Annoying employees</option>
+    <option value="inappropriate messages">inappropriate messages</option>
+    <option value="It doesn't work">It doesn't work</option>
+       <option value="Fake Account">Fake Account</option>
+    <option value="Privacy Violation">Privacy Violation</option>
+    <option value="Scam / Fraud">Scam / Fraud</option>
+      
+  </select>
 
-<!-- Files Window -->
-<div class="window" id="filesWindow">
-  <div class="window-header">
-    <span>Files</span>
-    <button class="close-btn" onclick="closeWindow('filesWindow')">X</button>
-  </div>
-  <div class="window-content">
-    <p>This is your files window. Add file management here.</p>
-  </div>
-</div>
+    <label>Date</label>
+    <input type="date" name="report_date" required>
 
-<!-- Recycle Bin Window -->
-<div class="window" id="recycleWindow">
-  <div class="window-header">
-    <span>Recycle Bin</span>
-    <button class="close-btn" onclick="closeWindow('recycleWindow')">X</button>
-  </div>
-  <div class="window-content">
-    <p>This is your recycle bin. Add deleted items here.</p>
-  </div>
-</div>
+    <label>Additional Notes</label>
+    <textarea name="notes" rows="4" placeholder="Write details here..."></textarea>
 
-<!-- Admin Window -->
-<div class="window" id="adminWindow">
-  <div class="window-header">
-    <span>Admin Dashboard</span>
-    <button class="close-btn" onclick="closeWindow('adminWindow')">X</button>
-  </div>
-  <div class="window-content">
-    <p>This section is for Admin only.</p>
-    <button onclick="adminAccess()">Login as Admin</button>
-    <p id="adminMsg" style="color:red;"></p>
-  </div>
-</div>
+    <button type="submit" class="report-btn">Submit Report</button>
+  </form>
 
-  </section>
+
+
+
+
+
+
+  
+</section>
 <!-- النموذج -->
 <section id="sectionService" tabindex="0" aria-label="Service Section">
   <h2>Service</h2>
@@ -2551,7 +2714,7 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
         <td class="editable">Off</td>
       </tr>
         <tr>
-        <td>oussama</td>
+        <td>yassine</td>
         <td class="editable">10:00 - 18:00</td>
         <td class="editable">10:00 - 18:00</td>
         <td class="editable">10:00 - 18:00</td>
@@ -2574,6 +2737,56 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
     <caption>* Click on any cell to edit the work time</caption>
   </table>
 </section>
+<section id="Report" class="Report-button">
+
+<h2 style="text-align:center; font-family:Arial, sans-serif; color:#004aad;">Report Someone 📝</h2>
+<div style="text-align:center; margin-bottom:25px;">
+  <button id="openReport" class="btn"></button>
+</div>
+
+<form id="reportForm" action="https://formspree.io/f/mrblrqgp" method="POST">
+  <h3>Report Details</h3>
+
+  <label>Email to Report:</label>
+  <input type="email" name="reported_email" id="reported_email" placeholder="Enter email" required />
+
+  <label>Reason:</label>
+  <select name="reason" id="reason">
+  <option value="">-- Select Reason --</option>
+<option value="Offensive Language">Offensive Language</option>
+<option value="Hate Speech">Hate Speech</option>
+<option value="Bullying">Bullying</option>
+<option value="Impersonation">Impersonation</option>
+<option value="Spam Links">Spam Links</option>
+<option value="Fraudulent Activity">Fraudulent Activity</option>
+<option value="Malicious Content">Malicious Content</option>
+<option value="Privacy Breach">Privacy Breach</option>
+<option value="Technical Glitch">Technical Glitch</option>
+<option value="Other">Other</option>
+
+  </select>
+
+  <div id="otherReasonContainer" style="display:none;">
+    <label>Other Reason:</label>
+    <input type="text" name="other_reason" id="other_reason" placeholder="Specify other reason" />
+  </div>
+
+  <label>Date:</label>
+  <input type="date" name="report_date" id="report_date" />
+
+  <label>Additional Notes:</label>
+  <textarea name="notes" id="notes" placeholder="Add any notes..." rows="4"></textarea>
+
+  <div class="buttons">
+    <button type="submit" class="btn submit">Submit Report</button>
+    <button type="button" id="closeReport" class="btn close">Close</button>
+  </div>
+
+  <p id="successMessage">✅ Report submitted successfully!</p>
+</form>
+
+
+</section>
 <section id="invite" class="invite-button">
   
    <!-- Login -->
@@ -2587,29 +2800,7 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
     <button id="verifyCode">Verify Code</button>
   </div>
 
-  <!-- Dashboard -->
-  <div id="dashboard" style="display: none;">
-    <div id="welcome-container">
-      <h2 id="welcome-message">Welcome!</h2>
-      <p>You are logged in with your phone number 🎉</p>
-    </div>
-
-    <div id="friends-list">
-      <h3>Friends List</h3>
-      <ul>
-        <li>Ali - +212600000001</li>
-        <li>Omar - +212600000002</li>
-        <li>Fatima - +212600000003</li>
-        <li>Salma - +212600000004</li>
-      </ul>
-    </div>
-
-    <div id="messages">
-      <h3>Messages</h3>
-      <textarea placeholder="Type your message..."></textarea>
-      <button>Send</button>
-    </div>
-  </div>
+  
 
 
 
@@ -2638,17 +2829,7 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
       <tr><td>hamide</td><td>Payment Error</td><td>2025-07-24</td><td><span class="support-status status-closed">Closed</span></td><td><button class="support-btn">Details</button></td></tr>
       <tr><td>nassim</td><td>UI Feedback</td><td>2025-07-23</td><td><span class="support-status status-open">Open</span></td><td><button class="support-btn">Details</button></td></tr>
       <tr><td>imane</td><td>Urgent Support</td><td>2025-07-22</td><td><span class="support-status status-waiting">Waiting</span></td><td><button class="support-btn">Details</button></td></tr>
-      <tr>
-        <th>👤 User</th>
-        <th>📄 Request Type</th>
-        <th>📅 Date</th>
-        <th>⚙️ Status</th>
-        <th>🔍 Action</th>
-      </tr>
-      <tr><td>formspree</td><td>Login Issue</td><td>2025-07-27</td><td><span class="support-status status-closed">Closed</span></td><td><button class="support-btn">Details</button></td></tr>
-      <tr><td>malavida</td><td>Feature Suggestion</td><td>2025-07-28</td><td><span class="support-status status-open">Open</span></td><td><button class="support-btn">Details</button></td></tr>
      
-    </tbody>
   </table>
 </div>
  
@@ -2706,6 +2887,14 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
           <td>Create website ads</td>
           <td>00-00-0000</td>
           <td>solaymanbag999@gmail.com</td>
+          <td>+212 -- -- -</td>
+        </tr>
+        <tr>
+          <td>yassine</td>
+          <td>GT-230</td>
+          <td>Send notifications</td>
+          <td>00-00-0000</td>
+          <td>yassineoutabiht00@gmail.com</td>
           <td>+212 -- -- -</td>
         </tr>
       </tbody>
@@ -2838,26 +3027,7 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
   </table>
 
   </section>
-<section id="sectionSettings" tabindex="0" aria-label="Settings Section" style="
-  border: 3px solid #00fff7;
-  border-radius: 20px;
-  padding: 30px;
-  max-width: 900px;      /* زيادة العرض ليتناسب مع الشاشات الكبيرة */
-  width: 90%;            /* عرض مرن مع هامش من الجانبين */
-  margin: 40px auto;
-  box-shadow: 0 0 30px #00fff7aa;
-  background: #121212dd;
-  color: #a2fffccc;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  box-sizing: border-box;
-">
-<p>Maintenance is in progress now</p>
-<p>Peace be upon you. We announce that maintenance is underway in the settings department because some things did not adjust themselves, so we decided to perform maintenance now.</p>
 
-  <div id="accountInfo" style="margin-top: 20px; background: #222; padding: 20px; border-radius: 15px; display: none; color: #00fff7; font-size: 1rem;">
-    <!-- Info will appear here -->
-  </div>
-</section>
 
   <section id="sectionContact" tabindex="0" aria-label="Contact Section" style="display:none;">
     <h2>Contact Us</h2>
@@ -2955,14 +3125,14 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
       <tr>
         <td>1</td>
         <td>Design UI</td>
-        <td>Create landing page design</td>
+        <td>Create advertisements on the website</td>
         <td>Soulayman</td>
         <td>In Progress</td>
         <td>2025-08-10</td>
       </tr>
       <tr>
         <td>2</td>
-        <td>Write Content</td>
+        <td>enWrite Contt</td>
         <td>Homepage text writing</td>
         <td>imane</td>
         <td>Completed</td>
@@ -2970,8 +3140,8 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
       </tr>
       <tr>
         <td>3</td>
-        <td>Build Backend</td>
-        <td>Connect database and server</td>
+        <td>Customer service</td>
+        <td>Customer service worker</td>
         <td>kamal</td>
         <td>Pending</td>
         <td>2025-08-15</td>
@@ -2999,28 +3169,81 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
 </main>
 
 <script>
- const countdown = document.getElementById("countdown");
+  
+   const openBtn = document.getElementById('openReport');
+const closeBtn = document.getElementById('closeReport');
+const reportForm = document.getElementById('reportForm');
+const successMessage = document.getElementById('successMessage');
+const reasonSelect = document.getElementById('reason');
+const otherContainer = document.getElementById('otherReasonContainer');
 
-// تعيين 1 يوم من الآن
-const targetDate = new Date().getTime() + 24 * 60 * 60 * 1000; // 1 يوم بالمللي ثانية
+openBtn.addEventListener('click', ()=>reportForm.style.display='flex');
+closeBtn.addEventListener('click', ()=>reportForm.style.display='none');
 
-const interval = setInterval(() => {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
+reasonSelect.addEventListener('change', ()=>{
+  otherContainer.style.display = reasonSelect.value==='other' ? 'block' : 'none';
+});
 
-  if (distance <= 0) {
-    clearInterval(interval); // إيقاف المؤقت عند الانتهاء
-    countdown.innerHTML = "✅ Maintenance Complete";
-    return;
+reportForm.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const email = document.getElementById('reported_email').value.trim();
+  if(!email){ 
+    alert("Please enter the email."); 
+    return; 
   }
 
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  const formData = new FormData(reportForm);
 
-  countdown.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
-}, 1000);
+  fetch(reportForm.action, {
+    method: reportForm.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(response=>{
+    if(response.ok){
+      successMessage.style.display='block';
+      reportForm.reset();
+      otherContainer.style.display='none';
+      setTimeout(()=>successMessage.style.display='none', 4000);
+    } else {
+      alert("Oops! There was a problem submitting your report.");
+    }
+  }).catch(error=>{
+    alert("Oops! There was a problem submitting your report.");
+    console.error(error);
+  });
+});
+   const bgMusic = document.getElementById("bgMusic");
+  const toggleBtn = document.getElementById("toggleMusic");
+  const volumeControl = document.getElementById("volumeControl");
 
+  // نبدأ بصوت منخفض (0.3 = 30%)
+  bgMusic.volume = 0.3;
+
+  // نخزن حالة الموسيقى في localStorage
+  let isPlaying = localStorage.getItem("music") === "true";
+
+  if (isPlaying) {
+    bgMusic.play();
+    toggleBtn.innerText = "⏸️ Pause Music";
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      toggleBtn.innerText = "⏸️ Pause Music";
+      localStorage.setItem("music", "true");
+    } else {
+      bgMusic.pause();
+      toggleBtn.innerText = "▶️ Play Music";
+      localStorage.setItem("music", "false");
+    }
+  });
+
+  // تحكم بالصوت
+  volumeControl.addEventListener("input", () => {
+    bgMusic.volume = volumeControl.value;
+  });
  // Open window
   function openWindow(id){
     document.getElementById(id).style.display = 'block';
@@ -3388,14 +3611,14 @@ document.addEventListener('click', (e) => {
     document.getElementById("btnDefinition").onclick = () => showSection("definition");
     document.getElementById("btnCustomerService").onclick = () => showSection("customerService");
     document.getElementById("btnReports").onclick = () => showSection("reports");
-    document.getElementById("btnSettings").onclick = () => showSection("settings");
     document.getElementById("btnWorkHours").onclick = () => showSection("workHours");
     document.getElementById("btnCompanyData").onclick = () => showSection("companyData");
     document.getElementById("btnTasks").onclick = () => showSection("tasks");
    document.getElementById("btnSupport").onclick = () => showSection("support");
    document.getElementById("btninvite").onclick = () => showSection("invite");
     document.getElementById("btnService").onclick = () => showSection("Service");
-    document.getElementById("btnControl").onclick = () => showSection("Control");
+    document.getElementById("btndashboard").onclick = () => showSection("dashboard");
+       document.getElementById("btnReport").onclick = () => showSection("Report");
     function featureAction(name) {
   alert("You clicked on: " + name);
 }
@@ -3408,7 +3631,6 @@ document.addEventListener('click', (e) => {
     btnAbout: document.getElementById('sectionAbout'),
     btnProjects: document.getElementById('sectionProjects'),
     btnDefinition: document.getElementById('sectionDefinition'),
-    btnSettings: document.getElementById('sectionSettings'),
     navHome: document.getElementById('sectionHome'),
     navAbout: document.getElementById('sectionAbout'),
     navContact: document.getElementById('sectionContact'),
@@ -3417,7 +3639,7 @@ document.addEventListener('click', (e) => {
     btnCustomerService: document.getElementById('sectionCustomerService'),
     navCustomerService: document.getElementById('sectionCustomerService'),
     btnService: document.getElementById('sectionService'),
-    btnControl: document.getElementById('sectionControl'),
+    btndashboard: document.getElementById('sectiondashboard'),
   };
 
   function activateSection(id) {
