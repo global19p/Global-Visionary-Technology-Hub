@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html> 
 <html lang="en">
 <head>
@@ -31,7 +30,7 @@
     position: fixed;
     top: 62px;; left: 0;
     width: 270px; height: 500vh;
-    background: linear-gradient(180deg, #003544, #001d22);
+    background: linear-gradient(180deg, #21205c);
     padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -50,7 +49,7 @@
   #sidebar button {
     background: transparent;
     border: none;
-    color: #00fff7cc;
+    color: #fcfbfbcc;
     font-size: 1.2rem;
     font-weight: 600;
     padding: 0.8rem 1.2rem;
@@ -1096,9 +1095,9 @@ body {
 
 :root {
   --ticker-height: 40px;
-  --bg-dark: rgb(7, 23, 44);
+  --bg-dark: rgb(18, 46, 82);
   --accent: #fdfcff;
-  --text-color:#b9a8d3;
+  --text-color:#f9f7fc;
 }
 
 body {
@@ -1806,8 +1805,8 @@ body {
   margin: 0 auto 50px auto;
   padding: 35px;
   border-radius: 25px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-  background: #45204d;
+  box-shadow: 0 20px 60px rgba(243, 242, 242, 0.863);
+  background: #161416;
   border-top: 6px solid #004aad;
   transition: all 0.5s ease;
 }
@@ -1992,6 +1991,186 @@ body {
   color: #fef3c7;
 }
 
+ /* Fullscreen loader */
+  #loader {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
+    overflow: hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    font-family: 'Arial', sans-serif;
+    flex-direction: column;
+    color: #fff;
+  }
+
+  /* Animated particles background */
+  #loader::before {
+    content:'';
+    position:absolute;
+    width:200%;
+    height:200%;
+    background: radial-gradient(#ff00ff 1px, transparent 1px);
+    background-size: 10px 10px;
+    animation: moveParticles 10s linear infinite;
+    top:-50%;
+    left:-50%;
+    opacity: 0.5;
+    z-index:0;
+  }
+
+  @keyframes moveParticles {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-50%, -50%); }
+  }
+
+  .loader-wrapper {
+    position: relative;
+    z-index:1;
+    text-align:center;
+  }
+
+  .loader-wrapper h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff;
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff00ff; }
+    100% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ff00ff; }
+  }
+
+  .loader-bar {
+    width: 400px;
+    height: 25px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
+  }
+
+  .loader-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+    border-radius: 20px;
+    animation: loadProgress 5s forwards;
+  }
+
+  #loader-text {
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #fff;
+  }
+
+  @keyframes loadProgress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  /* اللوحة الجانبية للجوائز */
+  #coupon {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #585b5e, #506a85); /* 🎨 الألوان اللي طلبتها */
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* ظل أقوى ليبان فخم */
+  max-width: 500px;
+  margin: 40px auto;
+  font-family: "Segoe UI", sans-serif;
+  color: #f1f1f1; /* النص باللون الفاتح عشان يبان على الخلفية الغامقة */
+}
+
+.reward-panel {
+  position: fixed;
+  top: 0;
+  right: -100%; /* تبدأ مخفية */
+  width: 620px;
+  height: 100%;
+  background: #5e5050;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+  transition: right 0.5s ease;
+  z-index: 9999;
+}
+
+.reward-content {
+  padding: 20px;
+  text-align: center;
+}
+
+#rewardList {
+  margin-top: 20px;
+}
+
+.reward-card {
+  background: linear-gradient(135deg, #2b2c2c, #161616);
+  border: 1px solid #0d0d0e;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+/* الإطار الكبير (حاوية المشاريع) */
+.projects-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto; /* تمرير عمودي */
+}
+
+/* البطاقة الخاصة بكل مشروع */
+.project-card {
+  background: #1c2b3a;
+  border: 2px solid cyan;
+  border-radius: 15px;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.project-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,255,255,0.3);
+}
+
+/* شريط التمرير (scrollbar) أنيق */
+.projects-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+.projects-wrapper::-webkit-scrollbar-track {
+  background: #0d1b2a;
+  border-radius: 10px;
+}
+.projects-wrapper::-webkit-scrollbar-thumb {
+  background: cyan;
+  border-radius: 10px;
+}
+.projects-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #00ffffa8;
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -2014,7 +2193,6 @@ body {
 💳 Each worker or employee will have an internet balance every week.
 🛒In the update, there will be a special store for the site, and only those who work on this site can enter it. We will sell everything related to work and other things.
 📂Each worker or employee will have a folder containing his/her own saved information.
-🪙This site will operate on only one currency, which is Bitcoin.
 📉For every worker or employee who has declined in his work or neglected it, this will be a warning from the agency that established him, and therefore you will be monitored.
 🎬It is necessary that there will be meetings approximately every month to develop the work, and this is necessary for the company.
 📄Registration for the service will be when the update is complete. Do you understand?
@@ -2035,15 +2213,35 @@ body {
   <button id="btnCompanyData" aria-label="Company Data Section"> Company Data</button>
   <button id="btnTasks" aria-label="Tasks Section"> Tasks</button>
   <button id="btnSupport" class="support-button"> Support</button>
-  <button id="btninvite" class="invite-button">invite</button>
-  <button id="btnReport" class="Report-button">Report the company</button>
+  <button id="btncoupon" class="coupon-button">coupon</button>
+   <button id="btnView projects" class="View projects-button" 
+        style="position: relative; padding: 12px 24px; font-size: 16px;">
+  View projects
+  <span style="
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+  ">1</span>
+</button>
+
 </div>
 
 <!-- HEADER -->
-<header role="banner" aria-label="Page Header">
-  <h1> Wonderful parmese agency</h1>
-  <!-- أيقونة الجرس -->
+<header role="banner" aria-label="Page Header" style="display: flex; align-items: center; justify-content: space-between;">
+  
+  <!-- الشعار + العنوان -->
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <img src="Adobe Express - file.png" alt="Logo" style="height: 76px; width: auto; border-radius: 50%;">
+    <h1 style="color: cyan; margin: 0;">Wonderful parmese agency</h1>
+  </div>
 
+  <!-- شريط التنقل -->
   <nav class="topnav" role="navigation" aria-label="Top Navigation">
     <button id="btnHome" class="active" aria-label="Home Section">🏠Home</button>
     <button id="btnAbout" aria-label="About Section"> About</button>
@@ -2053,11 +2251,12 @@ body {
     <button id="btnService" aria-label="Service Section"> Service</button>
     <button id="btndashboard" aria-label="dashboard section">report</button>
   </nav>
-    <!-- جرس الإشعارات مع عدد التنبيهات -->
+
+  <!-- جرس الإشعارات -->
   <div style="position: relative; margin-left: 20px;">
-    <div id="notifBell" aria-label="Notifications" role="button" tabindex="0">🔔
-      
-    </div>
+    <div id="notifBell" aria-label="Notifications" role="button" tabindex="0">🔔</div>
+  </div>
+
 </header>
 
 
@@ -2167,42 +2366,42 @@ body {
 <div class="panel" id="panel-N">
   <h2>Phone number for each customer service agent</h2>
  <div class="agent-card">
-    <img src="agent1.png" alt="Agent 1">
-    <span>+1 234 567 8901</span>
+    <img src="WhatsApp Image 2025-09-06 at 22.43.07_81017a2d.jpg" alt="Agent 1">
+    <span>+212 629-441951</span>
   </div>
 
   <div class="agent-card">
-    <img src="agent2.png" alt="Agent 2">
+    <img src="images.jpg" alt="Agent 2">
     <span>+1 234 567 8902</span>
   </div>
 
   <div class="agent-card">
-    <img src="agent3.png" alt="Agent 3">
+    <img src="images.jpg" alt="Agent 3">
     <span>+1 234 567 8903</span>
   </div>
 
   <div class="agent-card">
-    <img src="agent4.png" alt="Agent 4">
+    <img src="images.jpg" alt="Agent 4">
     <span>+1 234 567 8904</span>
   </div>
 
   <div class="agent-card">
-    <img src="agent5.png" alt="Agent 5">
+    <img src="images.jpg" alt="Agent 5">
     <span>+1 234 567 8905</span>
   </div>
 
   <div class="agent-card">
-    <img src="agent6.png" alt="Agent 6">
+    <img src="images.jpg" alt="Agent 6">
     <span>+1 234 567 8906</span>
   </div>
 
   <div class="agent-card">
-    <img src="agent7.png" alt="Agent 7">
+    <img src="images.jpg" alt="Agent 7">
     <span>+1 234 567 8907</span>
   </div>
 
   <div class="agent-card">
-    <img src="agent8.png" alt="Agent 8">
+    <img src="images.jpg" alt="Agent 8">
     <span>+1 234 567 8908</span>
   </div>
 </div>
@@ -2298,6 +2497,7 @@ body {
     <button id="resetSettings" class="btn-accent">🔄 Reset Settings</button>
   </div>
 
+  
 
   <p class="about">ℹ️ Version: v.01.00.0</p>
 </div>
@@ -2356,8 +2556,18 @@ body {
   </div>
 </div>
 <audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  <source src="https://mdundo.com/song/1240049" type="audio/mpeg">
 </audio>
+<!-- Ultra-Fantasy Loading Screen -->
+<div id="loader">
+  <div class="loader-wrapper">
+    <h2>Preparing your magical journey...</h2>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+    <p id="loader-text">0%</p>
+  </div>
+</div>
   <section id="sectionAbout" tabindex="0" aria-label="About Section">
     <h2>About Us</h2>
     <p>We deliver futuristic web solutions with neon aesthetics.
@@ -2806,6 +3016,40 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
 
 
 </section>
+
+<section id="coupon" class="section">
+  <h2>🎟️ Coupons Center</h2>
+ <p>Warning⚠️: The code cannot work twice. It only works once, and sometimes the code is valid for everyone.</p>
+  <!-- صفحة إدخال القسيمة -->
+  <div id="enterPage" class="coupon-box">
+    <input type="text" id="couponInput" placeholder="Enter your coupon code">
+    <button id="submitCoupon" class="btn-green">Submit</button>
+    <p id="couponMessage"></p>
+    <button id="viewUsed" class="btn-orange">View Used Coupons</button>
+  </div>
+
+  <!-- صفحة القسائم المستعملة -->
+  <div id="usedPage" class="coupon-box" style="display:none;">
+    <h3>📜 All Used Coupons</h3>
+    
+    <div id="usedList"></div>
+    <button id="backBtn" class="btn-back">← Back</button>
+  </div>
+  
+</section>
+
+<!-- لوحة الجوائز -->
+<div id="rewardPanel" class="reward-panel">
+  <div class="reward-content">
+    <h2>🏆 Your Rewards</h2>
+
+      <P>Agency store:<a href="https://manager.line.biz/GT-38493" target="_blank">GT-38493</a></P>
+    <div id="rewardList"></div>
+    <li><strong>Receiving the gift:</strong><a href="https://manager.line.biz/Receive your gift here" target="_blank">Receive your gift here</a></li>
+    <button id="closeReward" class="btn-back">← Back</button>
+  </div>
+</div>
+
 <section id="support" class="section">
  
   
@@ -2836,15 +3080,33 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
 </section>
 
 
+
+<section id="View projects" class="section">
+<div class="projects-wrapper">
+  <!-- مشروع 1 -->
+  <div class="project-card" onclick="window.open('https://manager.line.biz')">
+    <img src="Screenshot 2025-09-07 000736.png" alt="Project">
+    <h3>Project: Global Visionary Technology Hub</h3>
+    <p><strong>ID Business:</strong> GT-38493</p>
+    <p><strong>Created:</strong> 2025-09-08</p>
+
+  </div>
+
+
+
+  <!-- كرر نفس الشيء حتى Project 10 -->
+</div>
+
+</section>
+
+
 <section id="companyData" class="section">
   <h1>💾 Company Data</h1>
- 
-  <!-- يمكنك إضافة تفاصيل وجداول هنا -->
      <div class="company-info">
     <h3>Company Information</h3>
     <ul>
       <li><strong>Company Name:</strong>Global Visionary Technology Hub </li>
-      <li><strong>Business ID:</strong> GT-38493</li>
+      <li><strong>Business ID:</strong><a href="https://manager.line.biz/GT-38493" target="_blank">GT-38493</a></li>
       <li><strong>Activity:</strong> Web Development</li>
       <li><strong>Address:</strong>paris, maroc</li>
       <li><strong>Founded:</strong> 2025-07-31</li>
@@ -3060,7 +3322,7 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
     
   </div>
   </section>
-  <div class="version-box">v.01.00.0</div>
+  
 
 
 
@@ -3169,7 +3431,113 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
 </main>
 
 <script>
-  
+    const submitCoupon = document.getElementById("submitCoupon");
+const couponInput = document.getElementById("couponInput");
+const message = document.getElementById("couponMessage");
+const viewUsed = document.getElementById("viewUsed");
+const backBtn = document.getElementById("backBtn");
+const enterPage = document.getElementById("enterPage");
+const usedPage = document.getElementById("usedPage");
+const usedList = document.getElementById("usedList");
+const rewardPanel = document.getElementById("rewardPanel");
+const rewardList = document.getElementById("rewardList");
+const closeReward = document.getElementById("closeReward");
+
+// القسائم الصحيحة
+const coupons = {
+  "GIFT50": "10 dirham internet voucher",
+  "FREEDEL": "Voucher worth 200 dirhams",
+  "BONUS10": "1GB internet credit voucher",
+  "FFGKL50":"Voucher up to 100 dirhams online",
+  "GYJKE36":"A coupon of up to 400 points in the Visionary store",
+  "JHTFV22":"Voucher up to 5 dirhams for the Internet",
+  "lokuf48": "No luck, try again.",
+  "GTYUV47": "No luck, try again.",
+  "GFYTU78": "No luck, try again."
+};
+
+// القسائم المستعملة
+let usedCoupons = [];
+// الجوائز المكتسبة
+let rewards = [];
+
+// تحقق من القسيمة
+submitCoupon.onclick = () => {
+  const code = couponInput.value.trim().toUpperCase();
+
+  if(code === ""){
+    message.style.color = "blue";
+    message.innerHTML = "⚠️ Please enter a coupon first!";
+    return;
+  }
+
+  if(coupons[code]){
+    if(!usedCoupons.includes(code)){
+      usedCoupons.push(code);
+      rewards.push(coupons[code]); // إضافة الجائزة للقائمة
+
+      // مسح الحقول والرسائل
+      couponInput.value = "";
+      message.innerHTML = "";
+
+      // فتح لوحة الجوائز
+      showRewards();
+    } else {
+      message.style.color = "orange";
+      message.innerHTML = "⚠️ This coupon is already used!";
+    }
+  } else {
+    message.style.color = "red";
+    message.innerHTML = "❌ Coupon not found!";
+  }
+};
+
+// عرض القسائم المستعملة
+viewUsed.onclick = () => {
+  enterPage.style.display = "none";
+  usedPage.style.display = "block";
+  usedList.innerHTML = "";
+  if(usedCoupons.length === 0){
+    usedList.innerHTML = "<div>No coupons used yet</div>";
+  } else {
+    usedCoupons.forEach(c => {
+      usedList.innerHTML += `<div class="coupon-card">${c} : ${coupons[c]}</div>`;
+    });
+  }
+};
+
+// زر الرجوع
+backBtn.onclick = () => {
+  usedPage.style.display = "none";
+  enterPage.style.display = "block";
+  message.innerHTML = "";
+};
+
+// فتح لوحة الجوائز
+function showRewards(){
+  rewardList.innerHTML = "";
+  rewards.forEach(r => {
+    rewardList.innerHTML += `<div class="reward-card">${r}</div>`;
+  });
+  rewardPanel.style.right = "0"; // يظهر من الجانب
+}
+
+// إغلاق اللوحة
+closeReward.onclick = () => {
+  rewardPanel.style.right = "-100%";
+};
+      let loaderText = document.getElementById("loader-text");
+  let progress = 0;
+  let interval = setInterval(() => {
+    if(progress < 100){
+      progress++;
+      loaderText.textContent = progress + "%";
+    } else {
+      clearInterval(interval);
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    }
+  }, 40); // Speed of loading
    const openBtn = document.getElementById('openReport');
 const closeBtn = document.getElementById('closeReport');
 const reportForm = document.getElementById('reportForm');
@@ -3614,11 +3982,11 @@ document.addEventListener('click', (e) => {
     document.getElementById("btnWorkHours").onclick = () => showSection("workHours");
     document.getElementById("btnCompanyData").onclick = () => showSection("companyData");
     document.getElementById("btnTasks").onclick = () => showSection("tasks");
-   document.getElementById("btnSupport").onclick = () => showSection("support");
-   document.getElementById("btninvite").onclick = () => showSection("invite");
+    document.getElementById("btnSupport").onclick = () => showSection("support");
+    document.getElementById("btncoupon").onclick = () => showSection("coupon");
+       document.getElementById("btnView projects").onclick = () => showSection("View projects");
     document.getElementById("btnService").onclick = () => showSection("Service");
     document.getElementById("btndashboard").onclick = () => showSection("dashboard");
-       document.getElementById("btnReport").onclick = () => showSection("Report");
     function featureAction(name) {
   alert("You clicked on: " + name);
 }
@@ -3895,11 +4263,16 @@ myChart.update();
 </script>
 <script>
   // إعداد Firebase الخاص بك (احصل على القيم من Firebase Console > Project settings)
-  const firebaseConfig = {
-    apiKey: "AIzaSyAGq9x3zOZXfqEZ3tMFRuUUTHnuHKNTRgI",
-    authDomain: "pixelbuilder2-auth.firebaseapp.com",
-    // باقي الإعدادات
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyAGq9x3zOZXfqEZ3tMFRuUUTHnuHKNTRgI",
+  authDomain: "pixelbuilder2-auth.firebaseapp.com",
+  databaseURL: "https://pixelbuilder2-auth-default-rtdb.firebaseio.com",
+  projectId: "pixelbuilder2-auth",
+  storageBucket: "pixelbuilder2-auth.firebasestorage.app",
+  messagingSenderId: "296299154171",
+  appId: "1:296299154171:web:a4a68db29625b2d902fe5e",
+  measurementId: "G-GGPBBJ2FYP"
+};
 
   // تهيئة Firebase
   firebase.initializeApp(firebaseConfig);
