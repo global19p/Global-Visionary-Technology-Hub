@@ -1,0 +1,4358 @@
+
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  
+  <!-- Firebase App (the core Firebase SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+
+<!-- Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Global Visionary Technology Hub</title>
+<link rel="icon" type="image/png" href="Adobe Express - file.png" />
+<style>
+  /* RESET */
+  *, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #020e20, #000011);
+    color: #e0f7fa;
+    overflow-x: hidden;
+  }
+  /* SIDEBAR */
+  #sidebar {
+    position: fixed;
+    top: 62px;; left: 0;
+    width: 270px; height: 500vh;
+    background: linear-gradient(180deg, #21205c);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 3px 6px #00fff7cc;
+  }
+  #sidebar h2 {
+    color: #00fff7;
+    font-weight: 1000;
+    font-size:1.98rem;
+    letter-spacing: 3px;
+    user-select: none;
+    text-align: center;
+    text-shadow: 0 0 10px #00fff7bb;
+  }
+  #sidebar button {
+    background: transparent;
+    border: none;
+    color: #fcfbfbcc;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.8rem 1.2rem;
+    border-radius: 300px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  #sidebar button.active, #sidebar button:hover {
+    background: #00fff7;
+    color: #001d22;
+    box-shadow: 0 0 30px #00fff7;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0; left: 1px; right: 0;
+    height: 61px;
+    background: rgba(0,255,247,0.07);
+    backdrop-filter: blur(8px);
+    box-shadow: inset 0 -1px 8px #00fff7bb;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 1000;
+    user-select: none;
+  }
+  header h1 {
+    color: #00fff7;
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00fff7bb;
+  }
+  nav.topnav {
+    margin-left: auto;
+    display: flex;
+    gap: 1rem;
+  }
+  nav.topnav button {
+    background: transparent;
+    border: none;
+    color: #00eee4cc;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.3rem 0.7rem;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav.topnav button.active, nav.topnav button:hover {
+    background: #00fff7;
+    color: #001d22;
+    box-shadow: 0 0 30px #00fff7;
+  }
+
+  /* MAIN */
+  main.container {
+    margin-left: 270px;
+    margin-top: 60px;
+    padding: 2rem 2rem;
+    min-height: calc(100vh - 60px);
+  }
+  section {
+    display: none;
+    animation: fadeIn 0.6s ease forwards;
+  }
+  section.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  section h2 {
+    font-size: 2.5rem;
+    color: #00fff7;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    text-shadow: 0 0 15px #00fff7bb;
+  }
+  section p {
+    font-size: 1.2rem;
+    color: #a2fffccc;
+    line-height: 1.6;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    #sidebar {
+      width: 220px;
+      padding: 1.5rem 1rem;
+    }
+    main.container {
+      margin-left: 220px;
+    }
+    header {
+      left: 220px;
+    }
+  }
+  @media (max-width: 768px) {
+    #sidebar {
+      width: 60px;
+      padding: 1rem 0.5rem;
+    }
+    #sidebar h2 {
+      display: none;
+    }
+    #sidebar button {
+      font-size: 0;
+      padding: 1rem 0.3rem;
+      justify-content: center;
+    }
+    main.container {
+      margin-left: 60px;
+      padding: 1.2rem 1rem;
+    }
+    header {
+      left: 60px;
+      padding: 0 1rem;
+    }
+    nav.topnav button {
+      font-size: 0.85rem;
+      padding: 0.2rem 0.5rem;
+    }
+  }
+  
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    background-color: #0f0f0f;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .card {
+    background: #131313;
+    border: 2px solid #0ff;
+    box-shadow: 0 0 20px #0ff;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 400px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .card h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+  }
+
+  .card p {
+    font-size: 15px;
+    color: #ccc;
+    margin-bottom: 25px;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background: #1f1f1f;
+    color: white;
+    font-size: 14px;
+    outline: none;
+  }
+
+  button {
+    background: linear-gradient(45deg, #00ffff, #00aaff);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ffff;
+    transition: 0.3s ease;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00ffff, 0 0 30px #00aaff;
+  }
+
+  .socials {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .socials a {
+    font-size: 30px;
+    color: #00ffff;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
+
+  .socials a:hover {
+    color: #00aaff;
+    transform: scale(1.3);
+  }
+  .btn-neon {
+  background: transparent;
+  border: 2px solid #00f0ff;
+  padding: 10px 20px;
+  margin: 5px;
+  color: #00f0ff;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff;
+}
+.btn-neon:hover {
+  background-color: #00f0ff;
+  color: #000;
+  box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+/* نفس التنسيق السابق لكن مع حذف الأعمدة اللي مش موجودة */
+/* جدول المشاريع */
+.projects-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #00fff7;
+  box-shadow: 0 0 30px #00fff7bb;
+  background: #001d22;
+  border-radius: 15px;
+  overflow: hidden;
+  table-layout: fixed;
+}
+
+/* رؤوس الأعمدة */
+.projects-table thead tr {
+  background: linear-gradient(90deg, #00f0ff, #00aaff);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  box-shadow: 0 0 15px #00fff7;
+  user-select: none;
+}
+
+/* خلايا الجدول */
+.projects-table th, 
+.projects-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #00fff733;
+  text-align: left;
+  vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.projects-table tbody tr:hover {
+  background: rgba(0, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: inset 0 0 20px #00ffff;
+}
+
+/* حالة المشروع */
+.status {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #001d22;
+  text-align: center;
+  display: inline-block;
+  min-width: 95px;
+  box-shadow: 0 0 10px inset;
+  user-select: none;
+}
+
+.status.in-progress {
+  background-color: #00ffff;
+  box-shadow: 0 0 15px #00ffff inset, 0 0 10px #00ffff;
+}
+
+.status.completed {
+  background-color: #32cd32;
+  box-shadow: 0 0 15px #32cd32 inset, 0 0 12px #32cd32;
+  color: #fff;
+}
+
+.status.planned {
+  background-color: #ffcc00;
+  box-shadow: 0 0 15px #ffcc00 inset, 0 0 12px #ffcc00;
+  color: #000;
+}
+
+/* شريط التقدم */
+.progress-bar {
+  width: 100%;
+  background: #00444d;
+  border-radius: 10px;
+  height: 18px;
+  box-shadow: inset 0 0 8px #000;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00ffff, #0099cc);
+  box-shadow: 0 0 15px #00ffff;
+  transition: width 0.6s ease-in-out;
+}
+
+/* أدوات التحكم */
+.table-controls {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.table-controls input[type="text"],
+.table-controls select {
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: 2px solid #00f0ff;
+  background: #002c35;
+  color: #00fff7;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 0 12px #00fff7aa;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.table-controls input[type="text"]:focus,
+.table-controls select:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 20px #00ffff;
+}
+
+/* تجاوب وتمرير أفقي */
+@media (max-width: 900px) {
+  .projects-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .table-controls {
+    flex-direction: column;
+  }
+}
+
+/* for screen readers only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* أيقونات الفرز */
+.projects-table th {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.projects-table th::after {
+  content: "⇅";
+  position: absolute;
+  right: 8px;
+  color: #00fff7cc;
+  font-size: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 0.3s ease;
+}
+
+.projects-table th.sorted-asc::after {
+  content: "▲";
+  color: #00fff7;
+}
+
+.projects-table th.sorted-desc::after {
+  content: "▼";
+  color: #00fff7;
+}
+#sectionDefinition {
+  border: 3px solid #00fff7;
+  border-radius: 15px;
+  padding: 25px 30px;
+  box-shadow: 0 0 15px #00fff7cc;
+  background: rgba(0, 255, 247, 0.05);
+  max-width: 850px;
+  margin: auto;
+}
+#sectionDefinition ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #a2fffccc;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+#sectionDefinition h2 {
+  text-shadow: 0 0 20px #00fff7bb;
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+#sectionAbout {
+  border: 3px solid #00fff7;         /* إطار بلون نيون */
+  border-radius: 20px;               /* حواف دائرية */
+  padding: 30px;                    /* مساحة داخلية */
+  box-shadow: 0 0 25px #00fff7bb;  /* ظل خفيف للنص */
+  background: #121212dd;            /* خلفية شبه شفافة */
+  max-width: 900px;                 /* عرض مناسب للحواسيب */
+  margin: 40px auto;                /* توسيط مع هامش */
+  color: #a2fffccc;                 /* لون نص مناسب */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      border: 1px solid #00ffff;
+      border-radius: 15px;
+      padding: 25px;
+      width: 350px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+      color: white;
+      text-align: center;
+      transition: 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+    }
+
+    .card h2 {
+      color: #00ffff;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .card p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .card a {
+      color: #00ffff;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 400px) {
+      .card {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+    .report-button {
+  margin-top: 10px;
+  border: 2px solid #00ffff;
+  background-color: transparent;
+  color: #00ffff;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+  width: 100%;
+}
+.report-button:hover {
+  background-color: #00ffff;
+  color: #000;
+}
+ body {
+      display: flex;
+      font-family: Arial, sans-serif;
+    
+      color: white;
+      margin: 0;
+    }
+
+    #sidebar {
+      width: 220px;
+      background-color: #1a1a1a;
+      padding: 20px;
+      height: 100vh;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #sidebar h2 {
+      margin-bottom: 20px;
+      color: #00ffff;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #222;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+    #settings-container {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    #main-buttons button {
+      display: block;
+    }
+
+    .section {
+      display: none;
+      padding: 40px;
+      flex: 1;
+    }
+
+    .section h1 {
+      color: #00ffff;
+    }
+    .report-container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 3px solid #2196f3;
+  border-radius: 12px;
+  background: #f9f9f9;
+  box-shadow: 0 0 20px rgba(33, 150, 243, 0.3);
+}
+
+.report-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #0d47a1;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.report-table thead {
+  background: #2196f3;
+  color: white;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.report-table tbody tr:hover {
+  background-color: #e3f2fd;
+  transition: background 0.3s;
+}
+
+.report-table td:nth-child(7) {
+  font-weight: bold;
+  color: green;
+}
+#buttons-container {
+  height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc; /* اختيارية فقط لتوضيح */
+  padding: 5px;
+}
+  body {
+      font-family: 'Segoe UI', sans-serif;
+     
+      color: #fff;
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #38bdf8;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #1e293b;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid #334155;
+    }
+
+    th {
+      background-color: #0ea5e9;
+      color: #fff;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    tr:hover {
+      background-color: #334155;
+      transition: 0.3s;
+    }
+
+    td.editable {
+      cursor: pointer;
+      background-color: #1e40af33;
+    }
+
+    caption {
+      caption-side: bottom;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+    #company-data {
+  padding: 40px;
+  background: #0e0f1a;
+  color: white;
+  border-radius: 12px;
+  margin: 30px auto;
+  max-width: 1200px;
+}
+
+#company-data h2 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #00ffea;
+}
+
+#company-data h3 {
+  color: #ffd700;
+  margin-top: 30px;
+  border-bottom: 2px solid #444;
+  padding-bottom: 10px;
+}
+
+.company-info ul,
+.client-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.company-info li,
+.client-list li {
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+.employees-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.employees-table th,
+.employees-table td {
+  padding: 12px;
+  border: 1px solid #333;
+  text-align: left;
+}
+
+.employees-table th {
+  background: #1c1d2b;
+  color: #00ffea;
+}
+
+.upload-docs input[type="file"] {
+  margin-top: 10px;
+  background: #222;
+  padding: 10px;
+  border-radius: 6px;
+  color: white;
+  border: 1px solid #555;
+}
+#companyData {
+  border: 3px solid #00ffff;      /* إطار سماوي */
+  border-radius: 12px;            /* حواف دائرية ناعمة */
+  padding: 25px;                  /* مسافة داخلية */
+  margin: 20px auto;              /* تباعد خارجي مركزي */
+  max-width: 900px;               /* عرض محدود */
+  box-shadow: 0 0 20px #00ffff44; /* ظل ناعم */
+  background-color: #121a26;      /* خلفية داكنة تناسب الإطار */
+}
+  .support-table-container {
+    padding: 30px;
+    background: #0d0d0d;
+    border-radius: 18px;
+    box-shadow: 0 0 50px #00f0ff55;
+    overflow-x: auto;
+    margin: 50px auto;
+    max-width: 98%;
+  }
+
+  .support-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    color: #ffffff;
+    background: #111;
+    table-layout: fixed;
+  }
+
+  .support-table thead {
+    background: linear-gradient(to right, #00f0ff, #0077ff);
+  }
+
+  .support-table th,
+  .support-table td {
+    padding: 10px 24px; /* أقل ارتفاع، عرض ممدود */
+    text-align: center;
+    border-bottom: 1px solid #222;
+    font-size: 15px;
+  }
+
+  .support-table th {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .support-table tbody tr:hover {
+    background-color: #1b1b1b;
+    transition: 0.3s;
+  }
+
+  .support-status {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  .status-open { background-color: #00ffcc33; color: #00ffc3; }
+  .status-closed { background-color: #ff003344; color: #ff0033; }
+  .status-waiting { background-color: #ffaa0033; color: #ffaa00; }
+
+  .support-btn {
+    background: #00f0ff;
+    color: #000;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .support-btn:hover {
+    background: #00aaff;
+  }
+
+  @media (max-width: 600px) {
+    .support-table th, .support-table td {
+      padding: 10px 8px;
+      font-size: 12.5px;
+    }
+
+    .support-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+    }
+  }
+ /* --- ستايل الجرس --- */
+#notifBell {
+  font-size: 28px;
+  cursor: pointer;
+  position: relative;
+  color: #f39c12;
+  transition: color 0.3s ease;
+}
+#notifBell:hover {
+  color: #e67e22;
+}
+#notifCount {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  font-weight: bold;
+  user-select: none;
+}
+
+/* --- القائمة الجانبية المنبثقة --- */
+#notifPanel {
+  position: fixed;
+  top: 60px; 
+  right: -380px; 
+  width: 360px;
+  height: 700px !important; /* هنا غيرنا max-height إلى height وأضفنا !important */
+  background-color: #222;
+  color: white;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.7);
+  padding: 25px 25px 20px 25px;
+  border-radius: 8px 0 0 8px;
+  overflow-y: auto;
+  transition: right 0.4s ease;
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+}
+
+#notifPanel.active {
+  right: 0;
+}
+#notifPanel h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 22px;
+  border-bottom: 2.5px solid #f39c12;
+  padding-bottom: 6px;
+}
+#notifPanel ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+#notifPanel ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+  font-size: 16px;
+}
+#notifPanel ul li:last-child {
+  border-bottom: none;
+}
+
+/* زر إغلاق */
+#notifClose {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: transparent;
+  border: none;
+  color: #f39c12;
+  font-size: 28px;
+  cursor: pointer;
+}
+ :root {
+  --topbar-height: 60px;
+  --bottombar-height: 40px;
+  --sidebar-width: 80px;
+  --panel-width: 320px;
+
+  --bg: #0d1117;
+  --panel: #161b22;
+  --stroke: rgba(255, 255, 255, 0.08);
+
+  --accent: #00f7ff;
+  --accent2: #ff008c;
+  --text: #e6f1ff;
+  --muted: #9aa9bd;
+
+  --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* الشريط الجانبي */
+.sidebar-right {
+  position: fixed;
+  top: var(--topbar-height);
+  bottom: var(--bottombar-height);
+  right: 0;
+  width: var(--sidebar-width);
+  background: linear-gradient(180deg, #0e1726, #1b263b);
+  border-left: 2px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 8px;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+}
+
+.sidebar-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  border: 2px solid var(--accent);
+  background: #1e293b;
+  color: var(--text);
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 12px rgba(0, 247, 255, 0.3);
+}
+.sidebar-btn:hover {
+  transform: scale(1.08);
+  border-color: var(--accent2);
+  box-shadow: 0 0 16px rgba(255, 0, 140, 0.4);
+}
+
+/* القوائم الجانبية */
+.panel {
+  position: fixed;
+  top: var(--topbar-height);
+  bottom: var(--bottombar-height);
+  right: var(--sidebar-width);
+  width: var(--panel-width);
+  background: linear-gradient(180deg, #1b263b, #0e1726);
+  border-left: 2px solid var(--accent);
+  border-radius: 14px 0 0 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transform: translateX(105%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel.active {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.panel__header {
+  padding: 16px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.panel__body {
+  flex: 1;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #24344d;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.panel__item:hover {
+  transform: translateX(5px);
+  background: #2f4668;
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(0, 247, 255, 0.25);
+}
+
+.panel__icon {
+  width: 38px;
+  height: 38px;
+  background: var(--accent);
+  color: black;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.panel__text {
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.panel__sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+:root {
+  --ticker-height: 40px;
+  --bg-dark: rgb(18, 46, 82);
+  --accent: #fdfcff;
+  --text-color:#f9f7fc;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-color);
+}
+
+/* شريط الأخبار */
+.news-ticker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--ticker-height);
+  background: var(--bg-dark);
+  border-top: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 2000;
+}
+
+.news-ticker-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollNews 200s linear infinite;
+  padding-left: 100%;
+}
+
+.news-ticker-content span {
+  margin-right: 50px;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* الحركة */
+@keyframes scrollNews {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.calculator-menu {
+  width: 280px; /* عرض الآلة */
+  background: black;
+  border-radius: 22px;
+  padding: 14px;
+  font-family: sans-serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+
+  /* تحريك للجهة اليمنى */
+  margin-left: 1px; /* غيّر الرقم حسب المسافة اللي تريدها */
+}
+
+.calculator-menu .display {
+  background: black;
+  color: white;
+  text-align: right;
+  padding: 12px;
+  font-size: 32px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+
+.calculator-menu .buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.calculator-menu button {
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.calculator-menu button:active {
+  transform: scale(0.95);
+}
+
+.btn-grey {
+  background: #a5a5a5;
+  color: black;
+}
+
+.btn-orange {
+  background: #ff9f0a;
+  color: white;
+}
+
+.btn-dark {
+  background: #333;
+  color: white;
+}
+
+.zero {
+  grid-column: span 2;
+  border-radius: 30px;
+  text-align: left;
+  padding-left: 22px;
+}
+
+/* شكل البانيل */
+.panel {
+  display: none;
+  background: #111;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  margin-top: 10px;
+}
+
+/* عنوان */
+.panel h2 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #ff9500;
+  border-bottom: 2px solid #333;
+  padding-bottom: 8px;
+}
+
+/* الصندوق */
+.users-box {
+  max-height: 250px;
+  overflow-y: auto;
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #333;
+}
+
+/* اللستة */
+.users-box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.users-box li {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  font-size: 15px;
+}
+
+.users-box li:last-child {
+  border-bottom: none;
+}
+
+.users-box li:hover {
+  background: #222;
+  cursor: pointer;
+}
+ .styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 420px;
+    margin: auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .styled-form label {
+    font-weight: bold;
+    color: #34495e;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .styled-form input, 
+  .styled-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.3s;
+  }
+
+  .styled-form input:focus, 
+  .styled-form textarea:focus {
+    border: 1px solid #3498db;
+  }
+
+  .send-btn {
+    padding: 12px;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .send-btn:hover {
+    background: linear-gradient(135deg, #2ecc71, #3498db);
+  }
+.version-box {
+    position: absolute;
+    top: 5px;    /* المسافة من الأعلى */
+    left: 15px;  /* المسافة من اليسار */
+    background: #0a1f33;
+    color: #00ffcc;
+    padding: 4px 12px; /* تكبير المسافة داخل المربع */
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 16px; /* تكبير حجم الخط */
+}
+.chat-container {
+    width: 100%;
+    max-width: 360px;
+    height: 500px;
+    background: rgba(0, 255, 128, 0.08);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(0,255,128,0.3);
+    box-shadow: 0 0 10px rgba(0,255,128,0.6);
+}
+
+.messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.user {
+    background-color: rgba(0, 200, 255, 0.7);
+    color: #fff;
+    align-self: flex-end; /* على اليمين */
+    border-bottom-right-radius: 0;
+}
+
+.bot {
+    background-color: rgba(0, 255, 128, 0.3);
+    color: #fff;
+    align-self: flex-start; /* على اليسار */
+    border-bottom-left-radius: 0;
+}
+
+.input-area {
+    display: flex;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.input-area input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 200, 255, 0.8);
+    color: white;
+    font-size: 18px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.send-btn:hover {
+    background-color: rgba(0, 200, 255, 1);
+}
+:root {
+  --theme-color: #00bfff;
+  --font-color: #ffffff;
+}
+
+/* القائمة */
+.settings-menu {
+  background: #0a1f33;
+  color: var(--font-color);
+  padding: 16px;
+  border-radius: 12px;
+  width: 280px;
+  font-family: Arial, sans-serif;
+}
+
+/* العنوان */
+.settings-menu h3 {
+  margin: 0 0 15px;
+  font-size: 22px;
+  border-bottom: 2px solid var(--theme-color);
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+/* الأقسام */
+.settings-section {
+  margin-bottom: 18px;
+  padding: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+}
+.settings-section h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--theme-color);
+}
+
+/* العناصر */
+.settings-section label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 14px;
+}
+.settings-section select,
+.settings-section input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+/* زر إعادة ضبط */
+.btn-accent {
+  background: var(--theme-color);
+  color: #0a1f33;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+}
+.btn-accent:hover { filter: brightness(0.9); }
+
+/* النص السفلي */
+.settings-menu .about {
+  font-size: 12px;
+  color: #9bb3c9;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* الوضع الليلي */
+.dark-mode {
+  background: #0e1621 !important;
+  color: #e6eef8 !important;
+}
+.download-box {
+  text-align: center;
+  background: #0a1f33;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 15px auto;
+  color: #fff;
+  max-width: 320px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.download-box h3 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  color: #00ffcc;
+}
+
+.download-box p {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+.download-btn {
+  display: block;
+  margin: 10px auto;
+  background: #00ffcc;
+  color: #0a1f33;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  width: 90%;
+}
+
+.download-btn:hover {
+  background: #00ccaa;
+}
+
+.download-btn.windows {
+  background: #1e90ff;
+  color: white;
+}
+
+.download-btn.windows:hover {
+  background: #0f78d1;
+}
+
+.download-btn.android {
+  background: #34a853;
+  color: white;
+}
+
+.download-btn.android:hover {
+  background: #2c8c46;
+}
+/* Phone login styling (isolated) */
+#phone-login-section input {
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #00ffc8;
+  background:#1a1a1a;
+  color:white;
+}
+
+#phone-login-section button {
+  font-size: 16px;
+  font-weight: bold;
+  color:black;
+  transition: 0.3s;
+}
+
+#phone-login-section button:hover {
+  background:#00d1a3;
+}
+
+
+    #login-container, #dashboard {
+      margin: 30px auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 400px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ffc8;
+    }
+
+    input, textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    
+    button:hover {
+      background: #ff00ff;
+      color: white;
+    }
+
+    #friends-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #friends-list li {
+      padding: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+ .social-icons {
+  display: flex;
+  gap: 15px;
+  margin: 10px;
+  margin-left:65px; /* تحريك المجموعة لليمين */
+}
+
+.social-icons a {
+  text-decoration: none;
+  font-size: 35px; /* حجم الأيقونات */
+}
+
+/* ألوان منصات التواصل */
+.facebook { color: #1877F2; }
+.whatsapp { color: #25D366; }
+.instagram { 
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.email { color: #D44638; }
+ 
+.service-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.service-container h2 {
+  margin-bottom: 20px;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+.service-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.service-card {
+  background-color: #0b1b2b;
+  padding: 20px;
+  border-radius: 12px;
+  flex: 1;
+  min-width: 250px;
+  box-shadow: 0 5px 15px rgba(0,255,255,0.2);
+  color: white;
+}
+
+.service-card label {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.service-card input,
+.service-card select,
+.service-card textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #00ffff;
+  background-color: #0b1b2b;
+  color: white;
+  box-sizing: border-box;
+}
+
+.submit-container {
+  margin-top: 20px;
+}
+
+#submitBtn {
+  padding: 12px 30px;
+  background-color: #00ffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0,255,255,0.4);
+  transition: all 0.3s;
+}
+
+#submitBtn:hover {
+  background-color: #00cccc;
+  transform: translateY(-2px);
+}
+
+  /* Desktop Icons */
+  .icon {
+    width: 80px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    margin: 20px;
+  }
+
+  .icon img {
+    width: 64px;
+    height: 64px;
+    display: block;
+    margin: 0 auto 5px auto;
+  }
+
+  /* Windows */
+  .window {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background: #f0f0f0;
+    border: 2px solid #333;
+    border-radius: 6px;
+    display: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    overflow: hidden;
+  }
+
+  .window-header {
+    background: #007BFF;
+    color: white;
+    padding: 8px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .window-header span {
+    font-weight: bold;
+  }
+
+  .close-btn {
+    background: red;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 2px 6px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .window-content {
+    padding: 15px;
+  }
+   .card {
+      background: rgba(58, 52, 52, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      width: 350px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background: #247e99;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #4f0955;
+    }
+    /* Tasks Page */
+    #tasksPage {
+      display: none;
+      max-width: 800px;
+      margin: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: rgba(0,0,0,0.3);
+    }
+    td {
+      background: rgba(255,255,255,0.1);
+    }
+.btn {
+  background: linear-gradient(135deg, #0066ff, #004aad);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 15px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+#reportForm {
+  display: none;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 600px;
+  margin: 0 auto 50px auto;
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 20px 60px rgba(243, 242, 242, 0.863);
+  background: #161416;
+  border-top: 6px solid #004aad;
+  transition: all 0.5s ease;
+}
+
+#reportForm h3 {
+  text-align: center;
+  color: #004aad;
+  margin-bottom: 25px;
+  font-size: 1.6em;
+}
+
+#reportForm label {
+  font-weight: bold;
+  color: #f7e8e8;
+  margin-bottom: 6px;
+  display: block;
+  font-size: 1em;
+}
+
+#reportForm input,
+#reportForm select,
+#reportForm textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+#reportForm input:focus,
+#reportForm select:focus,
+#reportForm textarea:focus {
+  border-color: #004aad;
+  box-shadow: 0 0 12px rgba(0, 74, 173, 0.4);
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.submit {
+  background: linear-gradient(135deg, #0066ff, #004aad);
+  flex: 1;
+}
+.close {
+  background: #ff4d4d;
+  flex: 1;
+}
+.close:hover {
+  background: #e60000;
+}
+
+#successMessage {
+  display: none;
+  text-align: center;
+  color: #28a745;
+  font-weight: bold;
+  margin-top: 18px;
+  font-size: 1.1em;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
+@media(max-width:650px) {
+  .buttons { flex-direction: column; }
+}
+ .report-section {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.report-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f5efef;
+}
+
+#reportForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#reportForm label {
+  font-weight: 600;
+  color: #444;
+}
+
+#reportForm input,
+#reportForm select,
+#reportForm textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+#reportForm input:focus,
+#reportForm select:focus,
+#reportForm textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 6px rgba(79,70,229,0.4);
+}
+
+.report-btn {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.report-btn:hover {
+  background: linear-gradient(135deg, #4338ca, #0891b2);
+  transform: translateY(-2px);
+}
+.phone-list {
+  padding: 20px;
+  background: #111827;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  color: #facc15;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.phone-list h3 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fbbf24;
+}
+
+.agent-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #1f2937;
+  padding: 8px 12px;
+  border-radius: 19px;
+  transition: 0.9s;
+}
+
+.agent-card:hover {
+  background: #374151;
+  transform: translateX(2px);
+}
+
+.agent-card img {
+  width: 32px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fbbf24;
+}
+
+.agent-card span {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fef3c7;
+}
+
+ /* Fullscreen loader */
+  #loader {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
+    overflow: hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    font-family: 'Arial', sans-serif;
+    flex-direction: column;
+    color: #fff;
+  }
+
+  /* Animated particles background */
+  #loader::before {
+    content:'';
+    position:absolute;
+    width:200%;
+    height:200%;
+    background: radial-gradient(#ff00ff 1px, transparent 1px);
+    background-size: 10px 10px;
+    animation: moveParticles 10s linear infinite;
+    top:-50%;
+    left:-50%;
+    opacity: 0.5;
+    z-index:0;
+  }
+
+  @keyframes moveParticles {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-50%, -50%); }
+  }
+
+  .loader-wrapper {
+    position: relative;
+    z-index:1;
+    text-align:center;
+  }
+
+  .loader-wrapper h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff;
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff00ff; }
+    100% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ff00ff; }
+  }
+
+  .loader-bar {
+    width: 400px;
+    height: 25px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
+  }
+
+  .loader-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+    border-radius: 20px;
+    animation: loadProgress 5s forwards;
+  }
+
+  #loader-text {
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #fff;
+  }
+
+  @keyframes loadProgress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  /* اللوحة الجانبية للجوائز */
+  #coupon {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #585b5e, #506a85); /* 🎨 الألوان اللي طلبتها */
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* ظل أقوى ليبان فخم */
+  max-width: 500px;
+  margin: 40px auto;
+  font-family: "Segoe UI", sans-serif;
+  color: #f1f1f1; /* النص باللون الفاتح عشان يبان على الخلفية الغامقة */
+}
+
+.reward-panel {
+  position: fixed;
+  top: 0;
+  right: -100%; /* تبدأ مخفية */
+  width: 620px;
+  height: 100%;
+  background: #5e5050;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+  transition: right 0.5s ease;
+  z-index: 9999;
+}
+
+.reward-content {
+  padding: 20px;
+  text-align: center;
+}
+
+#rewardList {
+  margin-top: 20px;
+}
+
+.reward-card {
+  background: linear-gradient(135deg, #2b2c2c, #161616);
+  border: 1px solid #0d0d0e;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+/* الإطار الكبير (حاوية المشاريع) */
+.projects-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto; /* تمرير عمودي */
+}
+
+/* البطاقة الخاصة بكل مشروع */
+.project-card {
+  background: #1c2b3a;
+  border: 2px solid cyan;
+  border-radius: 15px;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.project-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0,255,255,0.3);
+}
+
+/* شريط التمرير (scrollbar) أنيق */
+.projects-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+.projects-wrapper::-webkit-scrollbar-track {
+  background: #0d1b2a;
+  border-radius: 10px;
+}
+.projects-wrapper::-webkit-scrollbar-thumb {
+  background: cyan;
+  border-radius: 10px;
+}
+.projects-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #00ffffa8;
+}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+
+
+
+<!-- News Ticker -->
+<div class="news-ticker">
+  <div class="news-ticker-content">
+   <span>
+📱Phones are often not compatible with all types of phones, and the 2026 update may be compatible with them if possible.
+📆The 2026 update will be in mid-July and will be version 2.00.0. There will be minor additions on Thursday and Saturday.
+📨There will be a new feature for sending messages and a quick response in the customer service department. If you send a message or request, you will receive a response quickly, within 5 minutes.
+📍In update 02.00.0, each user must reset their region, date of birth, and everything.
+🕰️Each employee or worker will have a service and a designated time for work.
+💷 Each worker or employee will have a financial capacity every week.
+💳 Each worker or employee will have an internet balance every week.
+🛒In the update, there will be a special store for the site, and only those who work on this site can enter it. We will sell everything related to work and other things.
+📂Each worker or employee will have a folder containing his/her own saved information.
+📉For every worker or employee who has declined in his work or neglected it, this will be a warning from the agency that established him, and therefore you will be monitored.
+🎬It is necessary that there will be meetings approximately every month to develop the work, and this is necessary for the company.
+📄Registration for the service will be when the update is complete. Do you understand?
+🚧Thank you for your kind understanding, otherwise we will meet🚧
+   </span>
+  </div>
+</div>
+<div id="sidebar" role="navigation" aria-label="Sidebar Navigation">
+ 
+  
+ 
+  <button id="btnProjects" aria-label="Projects Section"> Projects</button>
+  <button id="btnReports" aria-label="Reports Section"> Reports</button>
+ 
+
+    <!-- الأزرار الجديدة -->
+  <button id="btnWorkHours" aria-label="Work Hours Section"> Work Hours</button>
+  <button id="btnCompanyData" aria-label="Company Data Section"> Company Data</button>
+  <button id="btnTasks" aria-label="Tasks Section"> Tasks</button>
+  <button id="btnSupport" class="support-button"> Support</button>
+  <button id="btncoupon" class="coupon-button">coupon</button>
+   <button id="btnView projects" class="View projects-button" 
+        style="position: relative; padding: 12px 24px; font-size: 16px;">
+  View projects
+  <span style="
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+  ">1</span>
+</button>
+
+</div>
+
+<!-- HEADER -->
+<header role="banner" aria-label="Page Header" style="display: flex; align-items: center; justify-content: space-between;">
+  
+  <!-- الشعار + العنوان -->
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <img src="Adobe Express - file.png" alt="Logo" style="height: 76px; width: auto; border-radius: 50%;">
+    <h1 style="color: cyan; margin: 0;">Wonderful parmese agency</h1>
+  </div>
+
+  <!-- شريط التنقل -->
+  <nav class="topnav" role="navigation" aria-label="Top Navigation">
+    <button id="btnHome" class="active" aria-label="Home Section">🏠Home</button>
+    <button id="btnAbout" aria-label="About Section"> About</button>
+    <button id="navContact" aria-label="Contact Section">Contact</button>
+    <button id="btnDefinition" aria-label="Definition Section"> Workplace</button>
+    <button id="btnCustomerService" aria-label="Customer Service Section"> Customer Service</button>
+    <button id="btnService" aria-label="Service Section"> Service</button>
+    <button id="btndashboard" aria-label="dashboard section">report</button>
+  </nav>
+
+  <!-- جرس الإشعارات -->
+  <div style="position: relative; margin-left: 20px;">
+    <div id="notifBell" aria-label="Notifications" role="button" tabindex="0">🔔</div>
+  </div>
+
+</header>
+
+
+<!-- MAIN CONTENT -->
+ 
+<main class="container" role="main">
+
+  <section id="sectionHome" class="active" tabindex="0" aria-label="Home Section">
+    <h2>Global Visionary Technology Hub</h2>
+  
+     <!-- ✅ أزرار تسجيل الدخول -->
+  <div style="display: flex; justify-content: flex-end; padding: 10px;">
+  <button id="loginBtn" 
+    style="
+      padding: 16px 24px; 
+      margin-left: 20px;  
+      border: none; 
+      border-radius: 25px; 
+      cursor: pointer; 
+      font-size: 25px; 
+      font-weight: bold;
+     
+      color: #f5f1f1;
+   
+      transition: all 0.3s ease;
+    "
+    onmouseover="this.style.backgroundColor='#00c6d9'; this.style.boxShadow='0 6px 14px rgba(0, 198, 217, 0.6)';"
+    onmouseout="this.style.backgroundColor='#00f7ff'; this.style.boxShadow='0 4px 10px rgba(0, 247, 255, 0.5)';"
+  >
+    🔐 Log in
+  </button>
+
+  <button id="logoutBtn" 
+    style="
+      padding: 10px 20px; 
+     
+      border: none; 
+      border-radius: 15px; 
+      cursor: pointer; 
+      display: none;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    "
+    onmouseover="this.style.backgroundColor='#c23321';"
+    onmouseout="this.style.backgroundColor='#DB4437';"
+  >
+    🚪 Logout
+  </button>
+</div>
+
+      <!-- مكان مبيان -->
+ <div style="margin-top: 40px; max-width: 850px; width: 100%; height: 450px;">
+  <canvas id="myChart" style="width: 100%; height: 100%;"></canvas>
+</div>
+
+  </section>
+   <!-- Right Sidebar -->
+<div class="sidebar-right">
+  <button class="sidebar-btn" data-panel="calc">🧮</button>
+  <button class="sidebar-btn" data-panel="account">👤</button>
+  <button class="sidebar-btn" data-panel="translate">🌐</button>
+  <button class="sidebar-btn" data-panel="robot">🤖</button>
+  <button class="sidebar-btn" data-panel="chat">💬</button>
+  <button class="sidebar-btn" data-panel="settings">⚙️</button>
+  <button class="sidebar-btn" data-panel="File">📂</button>
+  <button class="sidebar-btn" data-panel="N">📞</button>
+</div>
+
+
+  <!-- Panels -->
+   
+<div class="panel" id="panel-calc">
+  <h2>Calculator</h2>
+ 
+<div class="calculator-menu" id="calcMenu">
+  <div class="display" id="menuDisplay">0</div>
+  <div class="buttons">
+    <button class="btn-grey" onclick="menuClear()">AC</button>
+    <button class="btn-grey" onclick="menuToggle()">+/-</button>
+    <button class="btn-grey" onclick="menuPercent()">%</button>
+    <button class="btn-orange" onclick="menuOp('/')">÷</button>
+
+    <button class="btn-dark" onclick="menuNum('7')">7</button>
+    <button class="btn-dark" onclick="menuNum('8')">8</button>
+    <button class="btn-dark" onclick="menuNum('9')">9</button>
+    <button class="btn-orange" onclick="menuOp('*')">×</button>
+
+    <button class="btn-dark" onclick="menuNum('4')">4</button>
+    <button class="btn-dark" onclick="menuNum('5')">5</button>
+    <button class="btn-dark" onclick="menuNum('6')">6</button>
+    <button class="btn-orange" onclick="menuOp('-')">−</button>
+
+    <button class="btn-dark" onclick="menuNum('1')">1</button>
+    <button class="btn-dark" onclick="menuNum('2')">2</button>
+    <button class="btn-dark" onclick="menuNum('3')">3</button>
+    <button class="btn-orange" onclick="menuOp('+')">+</button>
+
+    <button class="btn-dark zero" onclick="menuNum('0')">0</button>
+    <button class="btn-dark" onclick="menuNum('.')">.</button>
+    <button class="btn-orange" onclick="menuCalc()">=</button>
+  </div>
+</div>
+</div>
+
+</div>
+<div class="panel" id="panel-N">
+  <h2>Phone number for each customer service agent</h2>
+ <div class="agent-card">
+    <img src="WhatsApp Image 2025-09-06 at 22.43.07_81017a2d.jpg" alt="Agent 1">
+    <span>+212 629-441951</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="images.jpg" alt="Agent 2">
+    <span>+1 234 567 8902</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="images.jpg" alt="Agent 3">
+    <span>+1 234 567 8903</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="images.jpg" alt="Agent 4">
+    <span>+1 234 567 8904</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="images.jpg" alt="Agent 5">
+    <span>+1 234 567 8905</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="images.jpg" alt="Agent 6">
+    <span>+1 234 567 8906</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="images.jpg" alt="Agent 7">
+    <span>+1 234 567 8907</span>
+  </div>
+
+  <div class="agent-card">
+    <img src="images.jpg" alt="Agent 8">
+    <span>+1 234 567 8908</span>
+  </div>
+</div>
+<div class="panel" id="panel-account">
+  <h2>Account</h2>
+  <p>Data has not yet been linked for this section....</p>
+</div>
+<div class="panel" id="panel-translate">
+  <h2>Translation</h2>
+  <p>Data has not been linked to this section yet.</p>
+</div>
+<div class="panel" id="panel-robot">
+  <h2>Robot Assistant</h2>
+ <div class="chat-container">
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type a message...">
+        <button class="send-btn" id="sendBtn">➤</button>
+    </div>
+</div>
+<p>We apologize for the robot hyena because we did not do a group maintenance on it.</p>
+</div>
+<div class="panel" id="panel-chat">
+  <h2>Chat between employees</h2>
+ 
+<div class="download-box">
+  <h3>🚀 Download Our Chat App</h3>
+  <p>Select your platform and start chatting with your team!</p>
+  
+  <a href="https://yourapp.com/chat-app.exe" class="download-btn windows" target="_blank">💻 Download for Windows</a>
+  <a href="https://yourapp.com/chat-app.apk" class="download-btn android" target="_blank">📱 Download for Android</a>
+</div>
+<p>The application is currently under maintenance. You cannot download it now.</p>
+
+
+
+</div>
+<div class="panel" id="panel-settings">
+  <h2>Settings</h2>
+   <!-- قسم العرض -->
+  <div class="settings-section">
+    <h4>🖥️ Display</h4>
+    <label>
+      <span>🌙 Dark Mode</span>
+      <input type="checkbox" id="darkModeToggle">
+    </label>
+
+    <label>
+      <span>🔠 Font Size</span>
+      <select id="fontSizeSelect">
+        <option value="14px">Small</option>
+        <option value="16px" selected>Medium</option>
+        <option value="20px">Large</option>
+        <option value="24px">Extra Large</option>
+      </select>
+    </label>
+
+    <label>
+      <span>🎨 Font Color</span>
+      <select id="fontColorSelect">
+        <option value="#ffffff" selected>White</option>
+        <option value="#000000">Black</option>
+        <option value="#00ffcc">Cyan</option>
+        <option value="#ff4444">Red</option>
+        <option value="#28a745">Green</option>
+      </select>
+    </label>
+
+    <label>
+      <span>🖌️ Theme Color</span>
+      <select id="themeColor">
+        <option value="#00bfff" selected>Blue</option>
+        <option value="#28a745">Green</option>
+        <option value="#ff4444">Red</option>
+        <option value="#ff9900">Orange</option>
+        <option value="#9b59b6">Purple</option>
+      </select>
+    </label>
+  </div>
+
+
+
+<button id="toggleMusic">🎵 Play / Pause</button>
+<input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.3">
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+  
+
+  <!-- قسم التحكم -->
+  <div class="settings-section">
+    <h4>⚡ Actions</h4>
+    <button id="resetSettings" class="btn-accent">🔄 Reset Settings</button>
+  </div>
+
+  
+
+  <p class="about">ℹ️ Version: v.01.00.0</p>
+</div>
+
+</div>
+<div class="panel" id="panel-File">
+  <h2>Complete files</h2>
+  <p>Working email:7 Email</p>
+    <div class="users-box">
+    <ul id="usersList">
+      <li>kamalouchmat594@gmail.com</li>
+      <li>ossamamaloud@gmail.com</li>
+      <li>nassimyousfi@gmail.com</li>
+      <li>imranexixa@gmail.com</li>
+      <li>hamidemaloud@gmail.com</li>
+       <li>solaymanbag999@gmail.com</li>
+      <li>malavida@gmail.com</li>
+      <li>formspree@gmail.com</li>
+      <li>imeneha125@gmail.com</li>
+      <li>badrboukana@gmail.com</li>
+      <li>yassineoutabiht00@gmail.com</li>
+    </ul>
+  </div>
+  <p>Blocked Email: 0 Email</p>
+    <div class="users-box">
+    <ul id="usersList">
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+      <li>-----@---.com</li>
+    </ul>
+  </div>
+</div>
+<audio id="bgMusic" loop>
+  <source src="https://mdundo.com/song/1240049" type="audio/mpeg">
+</audio>
+<!-- Ultra-Fantasy Loading Screen -->
+<div id="loader">
+  <div class="loader-wrapper">
+    <h2>Preparing your magical journey...</h2>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+    <p id="loader-text">0%</p>
+  </div>
+</div>
+  <section id="sectionAbout" tabindex="0" aria-label="About Section">
+    <h2>About Us</h2>
+    <p>We deliver futuristic web solutions with neon aesthetics.
+Welcome to Global Visionary Technology Hub— your all-in-one smart solution for modern business management.
+
+We provide a powerful platform designed to help companies manage their entire operations from one place. Whether it's secure data storage, employee coordination, customer service, internal communication, invoice generation, or business reports — we bring everything together in one efficient, intelligent system.
+
+At Global Visionary Technology Hub, our mission is to make business easier, smarter, and faster. We blend cutting-edge technology with user-friendly design to give every organization — big or small — the tools they need to succeed.</p>
+  </section>
+<section id="sectionProjects" tabindex="0" aria-label="Projects Section">
+
+ 
+  <div class="table-controls">
+    <input type="text" id="searchInput" placeholder="Search projects..." aria-label="Search projects" />
+    <select id="statusFilter" aria-label="Filter by status">
+      <option value="">All Statuses</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+      <option value="Planned">Planned</option>
+    </select>
+  </div>
+
+  <table class="projects-table" aria-describedby="tableDescription" role="grid" aria-live="polite">
+    <caption id="tableDescription" class="sr-only">List of company projects with status and progress</caption>
+    <thead>
+      <tr>
+        <th scope="col" data-sort="string">Project Name &#x25B2;&#x25BC;</th>
+        <th scope="col" data-sort="string">Description &#x25B2;&#x25BC;</th>
+        <th scope="col" data-sort="string">Status &#x25B2;&#x25BC;</th>
+        <th scope="col" data-sort="date">Deadline &#x25B2;&#x25BC;</th>
+        <th scope="col">Progress</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>There is no project</td>
+        <td>- - - - -</td>
+        <td><span class="status planned">Planned</span></td>
+        <td>0000-00-00</td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress" style="width: 0%;"></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>There is no project</td>
+        <td>- - - - -</td>
+        <td><span class="status planned">Planned</span></td>
+        <td>0000-00-00</td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress" style="width: 0%;"></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>There is no project</td>
+        <td>- - - - -</td>
+        <td><span class="status planned">Planned</span></td>
+        <td>0000-00-00</td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress" style="width: 0%;"></div>
+          </div>
+        </td>
+      </tr>
+       <tr>
+        <td>There is no project</td>
+        <td>- - - - -</td>
+        <td><span class="status planned">Planned</span></td>
+        <td>0000-00-00</td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress" style="width:0%;"></div>
+          </div>
+        </td>
+      </tr>
+        <tr>
+        <td>There is no project</td>
+        <td>- - - - -</td>
+        <td><span class="status planned">Planned</span></td>
+        <td>0000-00-00</td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress" style="width:0%;"></div>
+          </div>
+        </td>
+      </tr>
+        <tr>
+        <td>There is no project</td>
+        <td>- - - - -</td>
+        <td><span class="status planned">Planned</span></td>
+        <td>0000-00-00</td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress" style="width:0%;"></div>
+          </div>
+        </td>
+      </tr>
+        <tr>
+        <td>There is no project</td>
+        <td>- - - - -</td>
+        <td><span class="status planned">Planned</span></td>
+        <td>0000-00-00</td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress" style="width: 0%;"></div>
+          </div>
+        </td>
+      </tr>
+          <tr>
+        <td>There is no project</td>
+        <td>- - - - -</td>
+        <td><span class="status planned">Planned</span></td>
+        <td>0000-00-00</td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress" style="width: 0%;"></div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<!-- قائمة الإشعارات الجانبية -->
+<div id="notifPanel" aria-live="polite" aria-hidden="true" role="region">
+  <button id="notifClose" aria-label="Close Notifications">&times;</button>
+  <h3>Notifications</h3>
+  <ul> </ul>
+</div>
+  <section id="sectionDefinition" tabindex="0" aria-label="Definition Section">
+    
+       
+
+  <div class="card" id="loginPage">
+    <h2>Login</h2>
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <select id="service">
+      <option value="">Select Service</option>
+      <option>Design</option>
+      <option>Programming</option>
+      <option>Marketing</option>
+      <option>Support</option>
+    </select>
+    <button onclick="login()">Login</button>
+  </div>
+
+
+  </section>
+<section id="sectiondashboard" tabindex="0" aria-label="dashboard Section">
+
+  <h2>🚨 Report a User</h2>
+  <form id="reportForm" action="https://formspree.io/f/xrbaggwv" method="POST">
+    <label>Email of Reported User</label>
+    <input type="email" name="reported_email" placeholder="Enter email..." required>
+
+    <label>Reason</label>
+    <select name="reason" id="reason">
+    <option value="spam">Spam</option>
+    <option value="harassment">Harassment</option>
+    <option value="other">Other</option>
+       <option value="Inappropriate behaviour">Inappropriate behaviour</option>
+    <option value="Using hacking">Using hacking</option>
+    <option value="Breakthroughs">Breakthroughs</option>
+       <option value="Annoying employees">Annoying employees</option>
+    <option value="inappropriate messages">inappropriate messages</option>
+    <option value="It doesn't work">It doesn't work</option>
+       <option value="Fake Account">Fake Account</option>
+    <option value="Privacy Violation">Privacy Violation</option>
+    <option value="Scam / Fraud">Scam / Fraud</option>
+      
+  </select>
+
+    <label>Date</label>
+    <input type="date" name="report_date" required>
+
+    <label>Additional Notes</label>
+    <textarea name="notes" rows="4" placeholder="Write details here..."></textarea>
+
+    <button type="submit" class="report-btn">Submit Report</button>
+  </form>
+
+
+
+
+
+
+
+  
+</section>
+<!-- النموذج -->
+<section id="sectionService" tabindex="0" aria-label="Service Section">
+  <h2>Service</h2>
+
+  <form id="customerForm" action="https://formspree.io/f/xrbaggwv" method="POST" style="display:flex; flex-direction:column; gap:12px; max-width:420px;">
+
+    <div class="service-cards">
+      <!-- Left Card -->
+      <div class="service-card">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="15" required>
+
+        <label for="study">Education / Study:</label>
+        <input type="text" id="study" name="study" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+
+      <!-- Right Card -->
+      <div class="service-card">
+        <label for="workExperience">Work Experience / Previous Jobs:</label>
+        <textarea id="workExperience" name="workExperience" rows="3" placeholder="Describe your previous experience" required></textarea>
+
+        <label for="jobInterest">Job/Service Interest:</label>
+        <select id="jobInterest" name="jobInterest" required>
+          <option value="">-- Select --</option>
+          <option value="job1">Signals operator</option>
+          <option value="job2">employee</option>
+          <option value="job3">Developer</option>
+           <option value="job3">YouTube</option>
+            <option value="job3">Facebook</option>
+             <option value="job3">Instagram</option>
+              <option value="job3">WhatsApp</option>
+               <option value="job3">ChatGPT (OpenAI)</option>
+                <option value="job3">Coursera</option>
+                 <option value="job3">Taxi Service</option>
+                  <option value="job3">Hotel Reservation Service</option>
+                   <option value="job3">Laundry Service</option>
+                    <option value="job3">Car Rental Service</option>
+                     <option value="job3">Medical Service</option>
+                      <option value="job3">Repair Service</option>
+                       <option value="job3">Security Service</option>
+                        <option value="job3">Insurance Service</option>
+                         <option value="job3">Postal Service</option>
+                          <option value="job3">Translation Service</option>
+                           <option value="job3">Education Service</option>
+                            <option value="job3">Streaming Service</option>
+                            <option value="job3">Delivery Service</option>
+                             <option value="job3">Emergency Service</option>
+                              <option value="job3">Cloud Storage Service</option>
+                               <option value="job3">Customer Support Service</option>
+                                <option value="job3">Car Rental Service</option>
+                                 <option value="job3">Money Transfer Service</option>
+        </select>
+
+        <label for="reason">Why do you want to join / use our service?</label>
+        <textarea id="reason" name="reason" rows="3" placeholder="Explain your reason" required></textarea>
+
+        <label for="message">Additional Message:</label>
+        <textarea id="message" name="message" rows="3" placeholder="Your message here"></textarea>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="submit-container">
+      <button id="submitBtn" type="submit">Submit Request</button>
+    </div>
+  </form>
+</section>
+
+<!-- Toast رسالة النجاح -->
+<div id="toast" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4BB543;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: none;
+  font-family: sans-serif;
+  font-size: 16px;
+  z-index: 1000;
+">
+  Your request has been sent successfully!
+</div>
+
+
+    
+  </section>
+  <section id="workHours" class="section">
+  <h1>🕒 Work Hours (Programme)</h1>
+  
+  <!-- يمكنك إضافة تفاصيل وجداول هنا -->
+     <table id="scheduleTable">
+    <thead>
+      <tr>
+        <th>Employee</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Soulayman</td>
+        <td class="editable">09:00 - 17:00</td>
+        <td class="editable">09:00 - 17:00</td>
+        <td class="editable">09:00 - 17:00</td>
+        <td class="editable">09:00 - 17:00</td>
+        <td class="editable">09:00 - 17:00</td>
+        <td class="editable">Off</td>
+        <td class="editable">Off</td>
+      </tr>
+      <tr>
+        <td>imane</td>
+        <td class="editable">08:30 - 16:30</td>
+        <td class="editable">08:30 - 16:30</td>
+        <td class="editable">08:30 - 16:30</td>
+        <td class="editable">08:30 - 16:30</td>
+        <td class="editable">08:30 - 16:30</td>
+        <td class="editable">Off</td>
+        <td class="editable">Off</td>
+      </tr>
+      <tr>
+        <td>hamid</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">Off</td>
+        <td class="editable">Off</td>
+      </tr>
+        <tr>
+        <td>nassim</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">Off</td>
+        <td class="editable">Off</td>
+      </tr>
+        <tr>
+        <td>kamal</td>
+        <td class="editable">08:00 - 02:00</td>
+        <td class="editable">09:00 - 04:00</td>
+        <td class="editable">08:00 - 18:00</td>
+        <td class="editable">00:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">Off</td>
+        <td class="editable">Off</td>
+      </tr>
+        <tr>
+        <td>yassine</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">Off</td>
+        <td class="editable">Off</td>
+      </tr>
+        <tr>
+        <td>imrane</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">10:00 - 18:00</td>
+        <td class="editable">Off</td>
+        <td class="editable">Off</td>
+      </tr>
+    </tbody>
+    <caption>* Click on any cell to edit the work time</caption>
+  </table>
+</section>
+<section id="Report" class="Report-button">
+
+<h2 style="text-align:center; font-family:Arial, sans-serif; color:#004aad;">Report Someone 📝</h2>
+<div style="text-align:center; margin-bottom:25px;">
+  <button id="openReport" class="btn"></button>
+</div>
+
+<form id="reportForm" action="https://formspree.io/f/xrbaggwv" method="POST">
+  <h3>Report Details</h3>
+
+  <label>Email to Report:</label>
+  <input type="email" name="reported_email" id="reported_email" placeholder="Enter email" required />
+
+  <label>Reason:</label>
+  <select name="reason" id="reason">
+  <option value="">-- Select Reason --</option>
+<option value="Offensive Language">Offensive Language</option>
+<option value="Hate Speech">Hate Speech</option>
+<option value="Bullying">Bullying</option>
+<option value="Impersonation">Impersonation</option>
+<option value="Spam Links">Spam Links</option>
+<option value="Fraudulent Activity">Fraudulent Activity</option>
+<option value="Malicious Content">Malicious Content</option>
+<option value="Privacy Breach">Privacy Breach</option>
+<option value="Technical Glitch">Technical Glitch</option>
+<option value="Other">Other</option>
+
+  </select>
+
+  <div id="otherReasonContainer" style="display:none;">
+    <label>Other Reason:</label>
+    <input type="text" name="other_reason" id="other_reason" placeholder="Specify other reason" />
+  </div>
+
+  <label>Date:</label>
+  <input type="date" name="report_date" id="report_date" />
+
+  <label>Additional Notes:</label>
+  <textarea name="notes" id="notes" placeholder="Add any notes..." rows="4"></textarea>
+
+  <div class="buttons">
+    <button type="submit" class="btn submit">Submit Report</button>
+    <button type="button" id="closeReport" class="btn close">Close</button>
+  </div>
+
+  <p id="successMessage">✅ Report submitted successfully!</p>
+</form>
+
+
+</section>
+<section id="invite" class="invite-button">
+  
+   <!-- Login -->
+  <div id="login-container">
+    <h2>Login with Phone</h2>
+    <input type="text" id="phoneNumber" placeholder="+212600000000">
+    <div id="recaptcha-container"></div>
+    <button id="sendCode">Send Code</button>
+
+    <input type="text" id="verificationCode" placeholder="Enter code">
+    <button id="verifyCode">Verify Code</button>
+  </div>
+
+  
+
+
+
+
+</section>
+
+<section id="coupon" class="section">
+  <h2>🎟️ Coupons Center</h2>
+ <p>Warning⚠️: The code cannot work twice. It only works once, and sometimes the code is valid for everyone.</p>
+  <!-- صفحة إدخال القسيمة -->
+  <div id="enterPage" class="coupon-box">
+    <input type="text" id="couponInput" placeholder="Enter your coupon code">
+    <button id="submitCoupon" class="btn-green">Submit</button>
+    <p id="couponMessage"></p>
+    <button id="viewUsed" class="btn-orange">View Used Coupons</button>
+  </div>
+
+  <!-- صفحة القسائم المستعملة -->
+  <div id="usedPage" class="coupon-box" style="display:none;">
+    <h3>📜 All Used Coupons</h3>
+    
+    <div id="usedList"></div>
+    <button id="backBtn" class="btn-back">← Back</button>
+  </div>
+  
+</section>
+
+<!-- لوحة الجوائز -->
+<div id="rewardPanel" class="reward-panel">
+  <div class="reward-content">
+    <h2>🏆 Your Rewards</h2>
+
+      <P>Agency store:<a href="https://manager.line.biz/GT-38493" target="_blank">GT-38493</a></P>
+    <div id="rewardList"></div>
+    <li><strong>Receiving the gift:</strong><a href="https://manager.line.biz/Receive your gift here" target="_blank">Receive your gift here</a></li>
+    <button id="closeReward" class="btn-back">← Back</button>
+  </div>
+</div>
+
+<section id="support" class="section">
+ 
+  
+  <div class="support-table-container">
+  <table class="support-table">
+    <thead>
+      <tr>
+        <th>👤 User</th>
+        <th>📄 Request Type</th>
+        <th>📅 Date</th>
+        <th>⚙️ Status</th>
+        <th>🔍 Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Soulayman</td><td>Technical Issue</td><td>2025-08-01</td><td><span class="support-status status-open">Open</span></td><td><button class="support-btn">Details</button></td></tr>
+      <tr><td>kamal</td><td>Refund Request</td><td>2025-07-30</td><td><span class="support-status status-closed">Closed</span></td><td><button class="support-btn">Details</button></td></tr>
+      <tr><td>yassin</td><td>General Inquiry</td><td>2025-07-29</td><td><span class="support-status status-waiting">Waiting</span></td><td><button class="support-btn">Details</button></td></tr>     
+      <tr><td>imrane</td><td>Technical Support</td><td>2025-07-26</td><td><span class="support-status status-waiting">Waiting</span></td><td><button class="support-btn">Details</button></td></tr>
+      <tr><td>oussama</td><td>Account Deletion</td><td>2025-07-25</td><td><span class="support-status status-open">Open</span></td><td><button class="support-btn">Details</button></td></tr>
+      <tr><td>hamide</td><td>Payment Error</td><td>2025-07-24</td><td><span class="support-status status-closed">Closed</span></td><td><button class="support-btn">Details</button></td></tr>
+      <tr><td>nassim</td><td>UI Feedback</td><td>2025-07-23</td><td><span class="support-status status-open">Open</span></td><td><button class="support-btn">Details</button></td></tr>
+      <tr><td>imane</td><td>Urgent Support</td><td>2025-07-22</td><td><span class="support-status status-waiting">Waiting</span></td><td><button class="support-btn">Details</button></td></tr>
+     
+  </table>
+</div>
+ 
+</section>
+
+
+
+<section id="View projects" class="section">
+<div class="projects-wrapper">
+  <!-- مشروع 1 -->
+  <div class="project-card" onclick="window.open('https://manager.line.biz')">
+    <img src="Screenshot 2025-09-07 000736.png" alt="Project">
+    <h3>Project: Global Visionary Technology Hub</h3>
+    <p><strong>ID Business:</strong> GT-38493</p>
+    <p><strong>Created:</strong> 2025-09-08</p>
+
+  </div>
+
+
+
+  <!-- كرر نفس الشيء حتى Project 10 -->
+</div>
+
+</section>
+
+
+<section id="companyData" class="section">
+  <h1>💾 Company Data</h1>
+     <div class="company-info">
+    <h3>Company Information</h3>
+    <ul>
+      <li><strong>Company Name:</strong>Global Visionary Technology Hub </li>
+      <li><strong>Business ID:</strong><a href="https://manager.line.biz/GT-38493" target="_blank">GT-38493</a></li>
+      <li><strong>Activity:</strong> Web Development</li>
+      <li><strong>Address:</strong>paris, maroc</li>
+      <li><strong>Founded:</strong> 2025-07-31</li>
+    </ul>
+  </div>
+
+  <div class="employees-table">
+    <h3>Data of primary employees</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+          <th>Department</th>
+          <th>Hire Date</th>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>kamal</td>
+          <td>GT-200</td>
+          <td>Read the message</td>
+          <td>00-00-0000</td>
+          <td>kamalouchmat594@gmail.com</td>
+          <td>+212 -- -- -</td>
+        </tr>
+        <tr>
+          <td>imrane</td>
+          <td>GT-202</td>
+          <td>Receiving workers </td>
+          <td>00-00-0000</td>
+          <td>imranexixa@gmail.com</td>
+          <td>+33 -- -- --</td>
+        </tr>
+         <tr>
+          <td>solayman</td>
+          <td>GT-201</td>
+          <td>Create website ads</td>
+          <td>00-00-0000</td>
+          <td>solaymanbag999@gmail.com</td>
+          <td>+212 -- -- -</td>
+        </tr>
+        <tr>
+          <td>yassine</td>
+          <td>GT-230</td>
+          <td>Send notifications</td>
+          <td>00-00-0000</td>
+          <td>yassineoutabiht00@gmail.com</td>
+          <td>+212 -- -- -</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="client-list">
+    <h3>Clients Info</h3>
+    <ul>
+      <li><strong>Client:</strong> Private company agency <em>Web Services</em> – +212 --- ---</li>
+      <li><strong>Client:</strong> Private company agency <em>Mobile Apps</em> – +212 --- ---</li>
+    </ul>
+  </div>
+
+  <div class="upload-docs">
+    <h3>Documents Storage</h3>
+    <p>Upload important documents securely:</p>
+    <input type="file" />
+  
+  </div>
+</section>
+
+  <section id="reports" class="section">
+    <h1>📊 Reports</h1>
+    <p>This is where you can generate and view your reports.</p>
+      <table class="report-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Task</th>
+        <th>Employee Name</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Status</th>
+        <th>Notes</th>
+        <th>Signature</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>There is no one to work</td>
+        <td>Soulayman</td>
+        <td>2025-07-31</td>
+        <td>08:00</td>
+        <td>10:30</td>
+        <td>Completed</td>
+        <td>There are no stickers yet.</td>
+        <td>✔️</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>There is no one to work</td>
+        <td>nassim</td>
+        <td>2025-07-31</td>
+        <td>09:00</td>
+        <td>12:00</td>
+        <td>Completed</td>
+        <td>There are no stickers yet.</td>
+        <td>🕒</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>There is no one to work</td>
+        <td>oussama</td>
+        <td>2025-07-31</td>
+        <td>10:00</td>
+        <td>13:30</td>
+        <td>In Review</td>
+        <td>There are no stickers yet.</td>
+        <td>🕒</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>There is no one to work</td>
+        <td>yassin</td>
+        <td>2025-07-31</td>
+        <td>07:30</td>
+        <td>11:00</td>
+        <td>Completed</td>
+        <td>There are no stickers yet.</td>
+        <td>🕒</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>There is no one to work</td>
+        <td>kamal</td>
+        <td>2025-07-31</td>
+        <td>08:45</td>
+        <td>11:30</td>
+        <td>Completed</td>
+        <td>There are no stickers yet.</td>
+        <td>🕒</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>There is no one to work</td>
+        <td>imane</td>
+        <td>2025-07-31</td>
+        <td>11:00</td>
+        <td>13:00</td>
+        <td>Completed</td>
+        <td>There are no stickers yet.</td>
+        <td>🕒</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>There is no one to work</td>
+        <td>hamid</td>
+        <td>2025-07-31</td>
+        <td>09:30</td>
+        <td>12:15</td>
+        <td>Pending</td>
+        <td>There are no stickers yet.</td>
+        <td>🕒</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>There is no one to work</td>
+        <td>imrane</td>
+        <td>2025-07-31</td>
+        <td>07:00</td>
+        <td>10:00</td>
+        <td>Completed</td>
+        <td>There are no stickers yet.</td>
+        <td>🕒</td>
+      </tr>
+    </tbody>
+  </table>
+
+  </section>
+
+
+  <section id="sectionContact" tabindex="0" aria-label="Contact Section" style="display:none;">
+    <h2>Contact Us</h2>
+  
+     <div class="card">
+    <h2>Contact Me</h2>
+    <p><strong>Email:</strong>global19p@gmail.com
+    <p><strong>Phone:</strong> +212 - - - - -</p>
+    <p><strong>Location:</strong> <a href="#">rachidia, Morocco</a></p>
+    <p><strong>Website:</strong> <a href="#">Global Visionary Technology Hub</a></p>
+    <!-- HTML -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="social-icons">
+  <a href="https://www.facebook.com/- - - - -" target="_blank" title="Facebook">
+    <i class="fab fa-facebook-f facebook"></i>
+  </a>
+  <a href="https://wa.me/+212 - - - -" target="_blank" title="WhatsApp">
+    <i class="fab fa-whatsapp whatsapp"></i>
+  </a>
+  <a href="https://www.instagram.com/global19_p/" target="_blank" title="Instagram">
+    <i class="fab fa-instagram instagram"></i>
+  </a>
+  <a href="mailto:global19p@gmail.com" title="Email">
+    <i class="fas fa-envelope email"></i>
+  </a>
+</div>
+    
+  
+    
+  </div>
+  </section>
+  
+
+
+
+<section id="sectionCustomerService" tabindex="0" aria-label="Customer Service Section" style="display:none;">
+  
+ 
+<div class="card">
+  <h2>🛠 Customer Service</h2>
+  <form id="customerForm" action="https://formspree.io/f/xrbaggwv" method="POST" style="display:flex; flex-direction:column; gap:12px; max-width:420px;">
+
+    <!-- الاسم الكامل -->
+    <label>
+      Full Name:
+      <input type="text" name="fullname" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+    </label>
+
+    
+
+    
+
+    <!-- رقم الهاتف -->
+    <label>
+      Phone Number:
+      <input type="tel" name="phone" required pattern="[0-9+ ]{8,15}" placeholder="+212600000000" style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+    </label>
+
+    <!-- الإيميل -->
+    <label>
+      Email:
+      <input type="email" name="email" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+    </label>
+
+    <!-- الرسالة -->
+    <label>
+      Message:
+      <textarea name="message" rows="5" required style="padding:10px; border:1px solid #ccc; border-radius:6px;"></textarea>
+    </label>
+
+    <!-- زر الإرسال -->
+    <button type="submit" style="padding:12px; background:#4CAF50; color:white; border:none; border-radius:6px; cursor:pointer;">
+      Send
+    </button>
+  </form>
+</section>
+
+ <section id="tasks" style="display:none;">
+  <h2>Tasks Section</h2>
+  <p>This is the content for tasks.</p>
+   <table>
+    <caption>📋 Task Management</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Task Name</th>
+        <th>Description</th>
+        <th>Assigned To</th>
+        <th>Status</th>
+        <th>Deadline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Design UI</td>
+        <td>Create advertisements on the website</td>
+        <td>Soulayman</td>
+        <td>In Progress</td>
+        <td>2025-08-10</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>enWrite Contt</td>
+        <td>Homepage text writing</td>
+        <td>imane</td>
+        <td>Completed</td>
+        <td>2025-07-29</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Customer service</td>
+        <td>Customer service worker</td>
+        <td>kamal</td>
+        <td>Pending</td>
+        <td>2025-08-15</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Test Website</td>
+        <td>Ensure bug-free performance</td>
+        <td>imrane</td>
+        <td>Pending</td>
+        <td>2025-08-20</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Launch Project</td>
+        <td>Deploy to server</td>
+        <td>hamid</td>
+        <td>Not Started</td>
+        <td>2025-08-25</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<script>
+    const submitCoupon = document.getElementById("submitCoupon");
+const couponInput = document.getElementById("couponInput");
+const message = document.getElementById("couponMessage");
+const viewUsed = document.getElementById("viewUsed");
+const backBtn = document.getElementById("backBtn");
+const enterPage = document.getElementById("enterPage");
+const usedPage = document.getElementById("usedPage");
+const usedList = document.getElementById("usedList");
+const rewardPanel = document.getElementById("rewardPanel");
+const rewardList = document.getElementById("rewardList");
+const closeReward = document.getElementById("closeReward");
+
+// القسائم الصحيحة
+const coupons = {
+  "GIFT50": "10 dirham internet voucher",
+  "FREEDEL": "Voucher worth 200 dirhams",
+  "BONUS10": "1GB internet credit voucher",
+  "FFGKL50":"Voucher up to 100 dirhams online",
+  "GYJKE36":"A coupon of up to 400 points in the Visionary store",
+  "JHTFV22":"Voucher up to 5 dirhams for the Internet",
+  "lokuf48": "No luck, try again.",
+  "GTYUV47": "No luck, try again.",
+  "GFYTU78": "No luck, try again."
+};
+
+// القسائم المستعملة
+let usedCoupons = [];
+// الجوائز المكتسبة
+let rewards = [];
+
+// تحقق من القسيمة
+submitCoupon.onclick = () => {
+  const code = couponInput.value.trim().toUpperCase();
+
+  if(code === ""){
+    message.style.color = "blue";
+    message.innerHTML = "⚠️ Please enter a coupon first!";
+    return;
+  }
+
+  if(coupons[code]){
+    if(!usedCoupons.includes(code)){
+      usedCoupons.push(code);
+      rewards.push(coupons[code]); // إضافة الجائزة للقائمة
+
+      // مسح الحقول والرسائل
+      couponInput.value = "";
+      message.innerHTML = "";
+
+      // فتح لوحة الجوائز
+      showRewards();
+    } else {
+      message.style.color = "orange";
+      message.innerHTML = "⚠️ This coupon is already used!";
+    }
+  } else {
+    message.style.color = "red";
+    message.innerHTML = "❌ Coupon not found!";
+  }
+};
+
+// عرض القسائم المستعملة
+viewUsed.onclick = () => {
+  enterPage.style.display = "none";
+  usedPage.style.display = "block";
+  usedList.innerHTML = "";
+  if(usedCoupons.length === 0){
+    usedList.innerHTML = "<div>No coupons used yet</div>";
+  } else {
+    usedCoupons.forEach(c => {
+      usedList.innerHTML += `<div class="coupon-card">${c} : ${coupons[c]}</div>`;
+    });
+  }
+};
+
+// زر الرجوع
+backBtn.onclick = () => {
+  usedPage.style.display = "none";
+  enterPage.style.display = "block";
+  message.innerHTML = "";
+};
+
+// فتح لوحة الجوائز
+function showRewards(){
+  rewardList.innerHTML = "";
+  rewards.forEach(r => {
+    rewardList.innerHTML += `<div class="reward-card">${r}</div>`;
+  });
+  rewardPanel.style.right = "0"; // يظهر من الجانب
+}
+
+// إغلاق اللوحة
+closeReward.onclick = () => {
+  rewardPanel.style.right = "-100%";
+};
+      let loaderText = document.getElementById("loader-text");
+  let progress = 0;
+  let interval = setInterval(() => {
+    if(progress < 100){
+      progress++;
+      loaderText.textContent = progress + "%";
+    } else {
+      clearInterval(interval);
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    }
+  }, 40); // Speed of loading
+   const openBtn = document.getElementById('openReport');
+const closeBtn = document.getElementById('closeReport');
+const reportForm = document.getElementById('reportForm');
+const successMessage = document.getElementById('successMessage');
+const reasonSelect = document.getElementById('reason');
+const otherContainer = document.getElementById('otherReasonContainer');
+
+openBtn.addEventListener('click', ()=>reportForm.style.display='flex');
+closeBtn.addEventListener('click', ()=>reportForm.style.display='none');
+
+reasonSelect.addEventListener('change', ()=>{
+  otherContainer.style.display = reasonSelect.value==='other' ? 'block' : 'none';
+});
+
+reportForm.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const email = document.getElementById('reported_email').value.trim();
+  if(!email){ 
+    alert("Please enter the email."); 
+    return; 
+  }
+
+  const formData = new FormData(reportForm);
+
+  fetch(reportForm.action, {
+    method: reportForm.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(response=>{
+    if(response.ok){
+      successMessage.style.display='block';
+      reportForm.reset();
+      otherContainer.style.display='none';
+      setTimeout(()=>successMessage.style.display='none', 4000);
+    } else {
+      alert("Oops! There was a problem submitting your report.");
+    }
+  }).catch(error=>{
+    alert("Oops! There was a problem submitting your report.");
+    console.error(error);
+  });
+});
+   const bgMusic = document.getElementById("bgMusic");
+  const toggleBtn = document.getElementById("toggleMusic");
+  const volumeControl = document.getElementById("volumeControl");
+
+  // نبدأ بصوت منخفض (0.3 = 30%)
+  bgMusic.volume = 0.3;
+
+  // نخزن حالة الموسيقى في localStorage
+  let isPlaying = localStorage.getItem("music") === "true";
+
+  if (isPlaying) {
+    bgMusic.play();
+    toggleBtn.innerText = "⏸️ Pause Music";
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      toggleBtn.innerText = "⏸️ Pause Music";
+      localStorage.setItem("music", "true");
+    } else {
+      bgMusic.pause();
+      toggleBtn.innerText = "▶️ Play Music";
+      localStorage.setItem("music", "false");
+    }
+  });
+
+  // تحكم بالصوت
+  volumeControl.addEventListener("input", () => {
+    bgMusic.volume = volumeControl.value;
+  });
+ // Open window
+  function openWindow(id){
+    document.getElementById(id).style.display = 'block';
+    if(id === 'adminWindow') document.getElementById('adminMsg').innerText = '';
+  }
+
+  // Close window
+  function closeWindow(id){
+    document.getElementById(id).style.display = 'none';
+  }
+
+  // Admin access
+  function adminAccess(){
+    const password = prompt("Enter Admin Password:");
+    if(password === "admin123"){ // change password here
+      alert("Welcome Admin!");
+    } else {
+      document.getElementById('adminMsg').innerText = "Access Denied!";
+    }
+  }
+
+  // Make windows draggable
+  let dragItem = null;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  document.querySelectorAll('.window-header').forEach(header=>{
+    header.addEventListener('mousedown', function(e){
+      dragItem = header.parentElement;
+      offsetX = e.clientX - dragItem.offsetLeft;
+      offsetY = e.clientY - dragItem.offsetTop;
+    });
+  });
+
+  document.addEventListener('mousemove', function(e){
+    if(dragItem){
+      dragItem.style.left = (e.clientX - offsetX) + 'px';
+      dragItem.style.top = (e.clientY - offsetY) + 'px';
+    }
+  });
+
+  document.addEventListener('mouseup', function(){
+    dragItem = null;
+  });
+const form = document.getElementById('customerForm');
+const toast = document.getElementById('toast');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // منع إعادة تحميل الصفحة
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if (response.ok) {
+      form.reset(); // إعادة تعيين النموذج بعد الإرسال
+      // إظهار الرسالة الاحترافية
+      toast.style.display = 'block';
+      toast.style.opacity = '1';
+      // إخفاء الرسالة بعد 4 ثواني
+      setTimeout(() => {
+        toast.style.transition = 'opacity 0.5s';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.style.display = 'none', 500);
+      }, 4000);
+    } else {
+      alert('There was a problem submitting your request.');
+    }
+  }).catch(error => {
+    alert('There was a problem submitting your request.');
+  });
+});
+// ⚡️ تأكد أن firebaseConfig و firebase.initializeApp موجودين مرة واحدة في مشروعك
+// ⚡️ لا تعيد تعريفهم
+
+document.addEventListener("DOMContentLoaded", function() {
+  // إنشاء reCAPTCHA إذا لم يكن موجود
+  if (!window.recaptchaVerifier) {
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+      size: 'normal',
+      callback: function(response) {
+        console.log("reCAPTCHA ready ✅");
+      },
+      'expired-callback': function() {
+        console.log("reCAPTCHA expired ❌");
+      }
+    });
+  }
+
+  let confirmationResult; // لتخزين الكود المرسل
+
+  // ربط الأزرار بالوظائف
+  const sendBtn = document.getElementById("send-code-btn");
+  const verifyBtn = document.getElementById("verify-code-btn");
+
+  sendBtn.addEventListener("click", function() {
+    const phoneNumber = document.getElementById("phoneNumber").value.trim();
+    if (!phoneNumber) {
+      alert("⚠️ Please enter your phone number!");
+      return;
+    }
+    const appVerifier = window.recaptchaVerifier;
+
+    auth.signInWithPhoneNumber(phoneNumber, appVerifier)
+      .then(function(result) {
+        confirmationResult = result;
+        alert("✅ Code sent successfully!");
+      })
+      .catch(function(error) {
+        console.error("Error sending code:", error);
+        alert("❌ " + error.message);
+      });
+  });
+
+  verifyBtn.addEventListener("click", function() {
+    const code = document.getElementById("verificationCode").value.trim();
+    if (!code) {
+      alert("⚠️ Please enter the verification code!");
+      return;
+    }
+
+    confirmationResult.confirm(code)
+      .then(function(result) {
+        const user = result.user;
+        alert("🎉 Login successful! Phone: " + user.phoneNumber);
+        // يمكن توجيه المستخدم لأي صفحة هنا
+        // window.location.href = "friends.html";
+      })
+      .catch(function(error) {
+        console.error("Error verifying code:", error);
+        alert("❌ Incorrect or expired code.");
+      });
+  });
+});
+
+const SETTINGS_KEY = 'pb2_settings';
+const defaults = {
+  lang: 'en',
+  dark: false,
+  fontSize: '16px',
+  theme: '#00bfff',
+  fontColor: '#ffffff',
+  news: true
+};
+let settings = loadSettings();
+
+function loadSettings() {
+  try {
+    return { ...defaults, ...JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}') };
+  } catch { return { ...defaults }; }
+}
+function saveSettings() {
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+}
+function $(id) { return document.getElementById(id); }
+
+function applySettings() {
+  document.documentElement.lang = settings.lang;
+  document.body.classList.toggle('dark-mode', settings.dark);
+  document.body.style.fontSize = settings.fontSize;
+  document.body.style.color = settings.fontColor;
+  document.documentElement.style.setProperty('--theme-color', settings.theme);
+  document.documentElement.style.setProperty('--font-color', settings.fontColor);
+
+  const newsBar = $('newsBar');
+  if (newsBar) newsBar.style.display = settings.news ? '' : 'none';
+}
+
+function syncControls() {
+  $('langSelect').value = settings.lang;
+  $('darkModeToggle').checked = settings.dark;
+  $('fontSizeSelect').value = settings.fontSize;
+  $('themeColor').value = settings.theme;
+  $('fontColorSelect').value = settings.fontColor;
+  $('newsToggle').checked = settings.news;
+}
+
+function bindEvents() {
+  $('langSelect').onchange = e => { settings.lang = e.target.value; saveSettings(); applySettings(); };
+  $('darkModeToggle').onchange = e => { settings.dark = e.target.checked; saveSettings(); applySettings(); };
+  $('fontSizeSelect').onchange = e => { settings.fontSize = e.target.value; saveSettings(); applySettings(); };
+  $('themeColor').onchange = e => { settings.theme = e.target.value; saveSettings(); applySettings(); };
+  $('fontColorSelect').onchange = e => { settings.fontColor = e.target.value; saveSettings(); applySettings(); };
+  $('newsToggle').onchange = e => { settings.news = e.target.checked; saveSettings(); applySettings(); };
+  $('resetSettings').onclick = () => { settings = { ...defaults }; saveSettings(); syncControls(); applySettings(); };
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  syncControls();
+  applySettings();
+  bindEvents();
+});
+
+const arabicReplies = [
+    "أهلاً! كيف حالك اليوم؟", "أنا هنا لمساعدتك!", "جميل أن أراك مجددًا",
+    "مرحباً بك!", "كيف يمكنني مساعدتك؟", "سعيد بالتحدث معك",
+    "هل لديك أي سؤال؟", "أنا روبوت ذكي جداً!", "أحب أن أتعلم أشياء جديدة",
+    "ما هو الشيء المفضل لديك؟", "أنا بخير شكراً لسؤالك", "أخبرني عن يومك",
+    "أنت شخص رائع!", "أحب طريقتك في الكلام", "هل تريد سماع نكتة؟",
+    "النوم جيد للصحة!", "أنا أعمل طوال الوقت", "أراك سعيد اليوم",
+    "هل تحب القراءة؟", "أنت مميز بالنسبة لي", "أحب اللون الأزرق",
+    "ما هو طعامك المفضل؟", "الطقس جميل اليوم", "أنت ذكي للغاية",
+    "مرحباً مجدداً", "كيف كان يومك؟", "هل شاهدت فيلماً مؤخراً؟",
+    "أستمتع بالحديث معك", "تعجبني شخصيتك", "أنا مستعد لمساعدتك دائماً",
+    "الحياة جميلة", "هل تحب الموسيقى؟", "أنت لطيف", "أشعر بالسعادة",
+    "هل تحتاج نصيحة؟", "أخبرني شيئاً عن نفسك", "أنت مبدع",
+    "أقدر كلامك", "أنت ملهم", "مرحباً أيها الصديق"
+];
+
+const englishReplies = [
+    "Hello! How are you today?", "I’m here to help you!", "Nice to see you again.",
+    "Welcome!", "How can I assist you?", "Happy to chat with you.",
+    "Do you have any question?", "I’m a very smart bot!", "I love learning new things.",
+    "What’s your favorite thing?", "I’m fine, thanks for asking.", "Tell me about your day.",
+    "You’re awesome!", "I like your style.", "Want to hear a joke?",
+    "Sleep is good for health!", "I work all the time.", "You seem happy today.",
+    "Do you like reading?", "You’re special to me.", "I like the color blue.",
+    "What’s your favorite food?", "The weather is nice today.", "You’re very smart.",
+    "Hello again!", "How was your day?", "Watched any movie lately?",
+    "I enjoy talking to you.", "I like your personality.", "I’m always ready to help.",
+    "Life is beautiful.", "Do you like music?", "You’re kind.", "I feel happy.",
+    "Need some advice?", "Tell me something about you.", "You’re creative.",
+    "I appreciate your words.", "You inspire me.", "Hello my friend."
+];
+
+document.getElementById("sendBtn").addEventListener("click", sendMessage);
+document.getElementById("userInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") sendMessage();
+});
+
+function sendMessage() {
+    const input = document.getElementById("userInput");
+    const text = input.value.trim();
+    if (text === "") return;
+
+    addMessage(text, "user");
+    input.value = "";
+
+    setTimeout(() => {
+        const isArabic = /[\u0600-\u06FF]/.test(text);
+        const replies = isArabic ? arabicReplies : englishReplies;
+        const reply = replies[Math.floor(Math.random() * replies.length)];
+        addMessage(reply, "bot");
+    }, 500);
+}
+
+function addMessage(text, sender) {
+    const messagesDiv = document.getElementById("messages");
+    const msg = document.createElement("div");
+    msg.classList.add("message", sender);
+    msg.textContent = text;
+    messagesDiv.appendChild(msg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+
+
+
+
+
+
+// جعل أي زر يفتح قسمه (لو عندك نفس النظام ببقية الأزرار)
+document.querySelectorAll(".sidebar-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const panelId = btn.getAttribute("data-panel");
+    document.querySelectorAll(".panel").forEach(p => p.style.display = "none");
+    document.getElementById("panel-" + panelId).style.display = "block";
+  });
+});
+
+let menuInput = "0";
+function updateMenu() { document.getElementById("menuDisplay").innerText = menuInput; }
+function menuNum(n) {
+  if (menuInput === "0") menuInput = n; else menuInput += n;
+  updateMenu();
+}
+function menuOp(o) {
+  if (!isNaN(menuInput.slice(-1))) menuInput += o;
+  updateMenu();
+}
+function menuClear() { menuInput = "0"; updateMenu(); }
+function menuToggle() { menuInput = (parseFloat(menuInput) * -1).toString(); updateMenu(); }
+function menuPercent() { menuInput = (parseFloat(menuInput) / 100).toString(); updateMenu(); }
+function menuCalc() {
+  try { menuInput = eval(menuInput).toString(); } catch { menuInput = "Error"; }
+  updateMenu();
+}
+
+
+
+
+
+
+
+document.querySelectorAll('.sidebar-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const panelId = 'panel-' + btn.dataset.panel;
+    const panel = document.getElementById(panelId);
+    
+    // Close all panels
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    
+    // Open the clicked one
+    panel.classList.add('active');
+  });
+});
+
+// Close panel when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.sidebar-right') && !e.target.closest('.panel')) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  }
+});
+  
+
+  const notifBell = document.getElementById('notifBell');
+  const notifPanel = document.getElementById('notifPanel');
+  const notifClose = document.getElementById('notifClose');
+
+  // فتح وإغلاق القائمة عند الضغط على الجرس
+  notifBell.addEventListener('click', () => {
+    const isActive = notifPanel.classList.toggle('active');
+    notifPanel.setAttribute('aria-hidden', !isActive);
+  });
+
+  // إغلاق القائمة عند الضغط على زر الإغلاق
+  notifClose.addEventListener('click', () => {
+    notifPanel.classList.remove('active');
+    notifPanel.setAttribute('aria-hidden', 'true');
+  });
+
+  // إغلاق القائمة عند الضغط خارجه (اختياري)
+  document.addEventListener('click', (e) => {
+    if (!notifPanel.contains(e.target) && !notifBell.contains(e.target)) {
+      notifPanel.classList.remove('active');
+      notifPanel.setAttribute('aria-hidden', 'true');
+    }
+  });
+      document.querySelectorAll('td.editable').forEach(cell => {
+      cell.addEventListener('click', () => {
+        const newValue = prompt('Enter new time (e.g., 09:00 - 17:00):', cell.innerText);
+        if (newValue !== null) {
+          cell.innerText = newValue;
+        }
+      });
+    });
+
+  function showSection(sectionName) {
+  // إخفاء جميع الأقسام أولاً
+  const sections = document.querySelectorAll("section");
+  sections.forEach(sec => sec.style.display = "none");
+
+  // إظهار القسم المطلوب فقط
+  const activeSection = document.getElementById(sectionName);
+  if (activeSection) activeSection.style.display = "block";
+}
+
+
+    // ربط الأزرار بالأقسام
+    document.getElementById("btnHome").onclick = () => showSection("home");
+    document.getElementById("btnAbout").onclick = () => showSection("about");
+    document.getElementById("btnProjects").onclick = () => showSection("projects");
+    document.getElementById("btnDefinition").onclick = () => showSection("definition");
+    document.getElementById("btnCustomerService").onclick = () => showSection("customerService");
+    document.getElementById("btnReports").onclick = () => showSection("reports");
+    document.getElementById("btnWorkHours").onclick = () => showSection("workHours");
+    document.getElementById("btnCompanyData").onclick = () => showSection("companyData");
+    document.getElementById("btnTasks").onclick = () => showSection("tasks");
+    document.getElementById("btnSupport").onclick = () => showSection("support");
+    document.getElementById("btncoupon").onclick = () => showSection("coupon");
+       document.getElementById("btnView projects").onclick = () => showSection("View projects");
+    document.getElementById("btnService").onclick = () => showSection("Service");
+    document.getElementById("btndashboard").onclick = () => showSection("dashboard");
+    function featureAction(name) {
+  alert("You clicked on: " + name);
+}
+
+  const sidebarButtons = document.querySelectorAll('#sidebar button');
+  const topnavButtons = document.querySelectorAll('nav.topnav button');
+
+  const sections = {
+    btnHome: document.getElementById('sectionHome'),
+    btnAbout: document.getElementById('sectionAbout'),
+    btnProjects: document.getElementById('sectionProjects'),
+    btnDefinition: document.getElementById('sectionDefinition'),
+    navHome: document.getElementById('sectionHome'),
+    navAbout: document.getElementById('sectionAbout'),
+    navContact: document.getElementById('sectionContact'),
+    navDefinition: document.getElementById('sectionDefinition'),
+    navCustomerService: document.getElementById('sectionCustomerService'),
+    btnCustomerService: document.getElementById('sectionCustomerService'),
+    navCustomerService: document.getElementById('sectionCustomerService'),
+    btnService: document.getElementById('sectionService'),
+    btndashboard: document.getElementById('sectiondashboard'),
+  };
+
+  function activateSection(id) {
+    // إزالة الكلاس active من جميع الأزرار
+    sidebarButtons.forEach(btn => btn.classList.remove('active'));
+    topnavButtons.forEach(btn => btn.classList.remove('active'));
+
+    // إخفاء كل الأقسام
+    Object.values(sections).forEach(sec => {
+      if(sec) sec.style.display = 'none';
+      sec?.classList.remove('active');
+    });
+
+    // إظهار القسم المناسب
+    if(sections[id]){
+      sections[id].style.display = 'block';
+      sections[id].classList.add('active');
+      sections[id].focus();
+    }
+
+    // تفعيل الزر المناسب في الشريط الجانبي أو العلوي
+    if(id.startsWith('btn')) {
+      document.getElementById(id).classList.add('active');
+    } else if(id.startsWith('nav')) {
+      document.getElementById(id).classList.add('active');
+    }
+  }
+
+  sidebarButtons.forEach(btn => {
+    btn.addEventListener('click', () => activateSection(btn.id));
+  });
+
+  topnavButtons.forEach(btn => {
+    btn.addEventListener('click', () => activateSection(btn.id));
+  });
+
+  // منع أي روابط فارغة تسبب إعادة تحميل الصفحة (إن وجدت)
+  document.querySelectorAll('a[href="#"]').forEach(a => {
+    a.addEventListener('click', e => e.preventDefault());
+  });
+  
+</script>
+<script>
+  const ctx = document.getElementById('myChart').getContext('2d');
+
+// أسماء الأيام كاملة بالإنجليزية
+let labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+// بيانات الزوار لكل يوم (مثال)
+let visitorData = [10, 14, 8, 20, 15, 18, 22];
+
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Daily Visitors',
+            data: visitorData,
+            backgroundColor: 'rgba(0, 255, 255, 0.6)',
+            borderColor: 'rgba(0, 255, 255, 1)',
+            borderWidth: 2,
+            borderRadius: 5
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: { color: '#00ffff33' },
+                ticks: { color: '#00ffff', font: { weight: 'bold' } }
+            },
+            x: {
+                grid: { color: '#00ffff22' },
+                ticks: { color: '#00ffff', font: { weight: 'bold' } }
+            }
+        },
+        plugins: {
+            legend: { labels: { color: '#00ffff', font: { size: 16, weight: 'bold' } } }
+        }
+    }
+});
+
+// تحديث العمود الخاص باليوم الحالي تلقائيًا
+const today = new Date().getDay(); // 0 = Sunday, 1 = Monday ...
+const index = today === 0 ? 6 : today - 1; // تحويل Sunday إلى آخر العنصر
+visitorData[index] += 1;
+myChart.update();
+
+</script>
+
+<script>
+  const table = document.querySelector('.projects-table');
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+
+  const searchInput = document.getElementById('searchInput');
+  const statusFilter = document.getElementById('statusFilter');
+  const headers = table.querySelectorAll('thead th[data-sort]');
+
+  // بحث في الجدول
+  searchInput.addEventListener('input', () => {
+    const term = searchInput.value.toLowerCase();
+    filterRows(term, statusFilter.value);
+  });
+
+  // تصفية حسب الحالة
+  statusFilter.addEventListener('change', () => {
+    const term = searchInput.value.toLowerCase();
+    filterRows(term, statusFilter.value);
+  });
+
+  function filterRows(searchTerm, statusTerm) {
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const text = Array.from(cells).map(td => td.textContent.toLowerCase()).join(' ');
+      const statusText = row.querySelector('.status').textContent;
+      const matchesSearch = text.includes(searchTerm);
+      const matchesStatus = statusTerm === '' || statusText === statusTerm;
+
+      if(matchesSearch && matchesStatus) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  // فرز الأعمدة
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      const type = header.dataset.sort;
+      const index = Array.from(headers).indexOf(header);
+      const currentOrder = header.classList.contains('sorted-asc') ? 'asc' :
+                           header.classList.contains('sorted-desc') ? 'desc' : null;
+
+      // إعادة تعيين الفرز لجميع الأعمدة
+      headers.forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
+
+      let newOrder;
+      if(!currentOrder || currentOrder === 'desc') {
+        newOrder = 'asc';
+        header.classList.add('sorted-asc');
+      } else {
+        newOrder = 'desc';
+        header.classList.add('sorted-desc');
+      }
+
+      rows.sort((a, b) => {
+        const cellA = a.children[index].textContent.trim();
+        const cellB = b.children[index].textContent.trim();
+
+        if(type === 'date') {
+          return newOrder === 'asc' ? 
+            new Date(cellA) - new Date(cellB) :
+            new Date(cellB) - new Date(cellA);
+        } else {
+          // مقارنة نصية
+          return newOrder === 'asc' ?
+            cellA.localeCompare(cellB) :
+            cellB.localeCompare(cellA);
+        }
+      });
+
+      // إعادة ترتيب الصفوف في tbody
+      rows.forEach(row => tbody.appendChild(row));
+    });
+  });
+   // Zoom (font size) control
+  const zoomRange = document.getElementById('zoom-range');
+  const zoomValue = document.getElementById('zoomValue');
+
+  zoomRange.addEventListener('input', () => {
+    const size = zoomRange.value;
+    zoomValue.textContent = size;
+    document.body.style.fontSize = size + 'px';
+  });
+
+  // Theme control
+  const themeSelect = document.getElementById('theme-select');
+  themeSelect.addEventListener('change', () => {
+    const theme = themeSelect.value;
+    // Simple theme switch (background + text color)
+    switch(theme) {
+      case 'dark':
+        document.body.style.background = '#121212';
+        document.body.style.color = '#a2fffccc';
+        break;
+      case 'light':
+        document.body.style.background = '#f0f0f0';
+        document.body.style.color = '#222';
+        break;
+      case 'neon':
+        document.body.style.background = '#000';
+        document.body.style.color = '#00fff7';
+        break;
+      case 'solarized':
+        document.body.style.background = '#fdf6e3';
+        document.body.style.color = '#657b83';
+        break;
+      case 'highcontrast':
+        document.body.style.background = '#000';
+        document.body.style.color = '#fff';
+        break;
+      default:
+        document.body.style.background = '#121212';
+        document.body.style.color = '#a2fffccc';
+    }
+  });
+
+  // Language select - just alert for demo
+  const languageSelect = document.getElementById('language-select');
+  languageSelect.addEventListener('change', () => {
+    alert('Language changed to: ' + languageSelect.options[languageSelect.selectedIndex].text);
+    // هنا يمكنك وضع كود لتغيير اللغة فعليًا حسب احتياجك
+  });
+
+  // Account Privacy toggle
+  const accountPrivacyCheckbox = document.getElementById('accountPrivacy');
+  accountPrivacyCheckbox.addEventListener('change', () => {
+    if(accountPrivacyCheckbox.checked) {
+      alert('Account is now Private');
+    } else {
+      alert('Account is now Public');
+    }
+  });
+
+  // Delete Account button
+  const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+  deleteAccountBtn.addEventListener('click', () => {
+    const confirmed = confirm('Are you sure you want to DELETE your account? This action cannot be undone!');
+    if(confirmed) {
+      alert('Account deleted.');
+      // ضع هنا كود الحذف الفعلي لو عندك backend
+    }
+  });
+
+  // Show Account Info button
+  const showAccountInfoBtn = document.getElementById('showAccountInfoBtn');
+  const accountInfoDiv = document.getElementById('accountInfo');
+
+  showAccountInfoBtn.addEventListener('click', () => {
+    // مثال بيانات حساب
+    const info = `
+      <p><strong>Username:</strong>------</p>
+      <p><strong>Email:</strong> ------@example.com</p>
+      <p><strong>Member since:</strong> -----</p>
+      <p><strong>Status:</strong> ----</p>
+    `;
+    accountInfoDiv.innerHTML = info;
+    accountInfoDiv.style.display = 'block';
+  });
+</script>
+<script>
+  // إعداد Firebase الخاص بك (احصل على القيم من Firebase Console > Project settings)
+const firebaseConfig = {
+  apiKey: "AIzaSyAGq9x3zOZXfqEZ3tMFRuUUTHnuHKNTRgI",
+  authDomain: "pixelbuilder2-auth.firebaseapp.com",
+  databaseURL: "https://pixelbuilder2-auth-default-rtdb.firebaseio.com",
+  projectId: "pixelbuilder2-auth",
+  storageBucket: "pixelbuilder2-auth.firebasestorage.app",
+  messagingSenderId: "296299154171",
+  appId: "1:296299154171:web:a4a68db29625b2d902fe5e",
+  measurementId: "G-GGPBBJ2FYP"
+};
+
+  // تهيئة Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // العناصر
+  const loginBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  // تسجيل الدخول عبر Google
+  loginBtn.addEventListener('click', () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        console.log('User signed in:', result.user.displayName);
+        updateUI(true, result.user.displayName);
+      })
+      .catch((error) => {
+        console.error('Error signing in:', error);
+      });
+  });
+
+  // تسجيل الخروج
+  logoutBtn.addEventListener('click', () => {
+    auth.signOut()
+      .then(() => {
+        console.log('User signed out');
+        updateUI(false);
+      })
+      .catch((error) => {
+        console.error('Error signing out:', error);
+      });
+  });
+
+  // تحديث الواجهة حسب حالة تسجيل الدخول
+  function updateUI(isLoggedIn, userName = '') {
+    if (isLoggedIn) {
+      loginBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+      logoutBtn.textContent = `🚪 Logout (${userName})`;
+    } else {
+      loginBtn.style.display = 'inline-block';
+      logoutBtn.style.display = 'none';
+      logoutBtn.textContent = '🚪 Logout';
+    }
+  }
+
+  // تحقق من حالة تسجيل الدخول عند تحميل الصفحة
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      updateUI(true, user.displayName);
+    } else {
+      updateUI(false);
+    }
+  });
+    // Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  function updateNotificationsUI(data) {
+    const panel = document.querySelector('#notifPanel ul');
+    panel.innerHTML = ''; // امسح الإشعارات القديمة
+
+    Object.entries(data || {}).reverse().forEach(([key, val]) => {
+      const li = document.createElement('li');
+      li.textContent = val.message;
+      panel.appendChild(li);
+    });
+
+    // تحديث العداد
+    const count = Object.keys(data || {}).length;
+    document.getElementById('notifCount').textContent = count;
+  }
+
+  // راقب التغييرات من قاعدة البيانات
+  db.ref("notifications").on("value", (snapshot) => {
+    const notifications = snapshot.val();
+    updateNotificationsUI(notifications);
+  });
+</script>
+
+</body>
+</html>
