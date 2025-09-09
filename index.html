@@ -1991,135 +1991,8 @@ body {
   color: #fef3c7;
 }
 
- /* Fullscreen loader */
-  #loader {
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
-    overflow: hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-    font-family: 'Arial', sans-serif;
-    flex-direction: column;
-    color: #fff;
-  }
 
-  /* Animated particles background */
-  #loader::before {
-    content:'';
-    position:absolute;
-    width:200%;
-    height:200%;
-    background: radial-gradient(#ff00ff 1px, transparent 1px);
-    background-size: 10px 10px;
-    animation: moveParticles 10s linear infinite;
-    top:-50%;
-    left:-50%;
-    opacity: 0.5;
-    z-index:0;
-  }
-
-  @keyframes moveParticles {
-    0% { transform: translate(0,0); }
-    100% { transform: translate(-50%, -50%); }
-  }
-
-  .loader-wrapper {
-    position: relative;
-    z-index:1;
-    text-align:center;
-  }
-
-  .loader-wrapper h2 {
-    font-size: 28px;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff;
-    animation: glow 1.5s ease-in-out infinite alternate;
-  }
-
-  @keyframes glow {
-    0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff00ff; }
-    100% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ff00ff; }
-  }
-
-  .loader-bar {
-    width: 400px;
-    height: 25px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
-    margin-bottom: 15px;
-  }
-
-  .loader-progress {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
-    border-radius: 20px;
-    animation: loadProgress 5s forwards;
-  }
-
-  #loader-text {
-    font-size: 22px;
-    font-weight: bold;
-    text-shadow: 0 0 10px #fff;
-  }
-
-  @keyframes loadProgress {
-    0% { width: 0%; }
-    100% { width: 100%; }
-  }
-  /* اللوحة الجانبية للجوائز */
-  #coupon {
-  text-align: center;
-  padding: 40px;
-  background: linear-gradient(135deg, #585b5e, #506a85); /* 🎨 الألوان اللي طلبتها */
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* ظل أقوى ليبان فخم */
-  max-width: 500px;
-  margin: 40px auto;
-  font-family: "Segoe UI", sans-serif;
-  color: #f1f1f1; /* النص باللون الفاتح عشان يبان على الخلفية الغامقة */
-}
-
-.reward-panel {
-  position: fixed;
-  top: 0;
-  right: -100%; /* تبدأ مخفية */
-  width: 620px;
-  height: 100%;
-  background: #5e5050;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.2);
-  transition: right 0.5s ease;
-  z-index: 9999;
-}
-
-.reward-content {
-  padding: 20px;
-  text-align: center;
-}
-
-#rewardList {
-  margin-top: 20px;
-}
-
-.reward-card {
-  background: linear-gradient(135deg, #2b2c2c, #161616);
-  border: 1px solid #0d0d0e;
-  margin: 10px 0;
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+  
 /* الإطار الكبير (حاوية المشاريع) */
 .projects-wrapper {
   width: 100%;
@@ -2265,7 +2138,8 @@ body {
 <main class="container" role="main">
 
   <section id="sectionHome" class="active" tabindex="0" aria-label="Home Section">
-    <h2>Global Visionary Technology Hub</h2>
+                  <h2>Demo site not basic</h2>
+    
   
      <!-- ✅ أزرار تسجيل الدخول -->
   <div style="display: flex; justify-content: flex-end; padding: 10px;">
@@ -2559,15 +2433,7 @@ body {
   <source src="https://mdundo.com/song/1240049" type="audio/mpeg">
 </audio>
 <!-- Ultra-Fantasy Loading Screen -->
-<div id="loader">
-  <div class="loader-wrapper">
-    <h2>Preparing your magical journey...</h2>
-    <div class="loader-bar">
-      <div class="loader-progress"></div>
-    </div>
-    <p id="loader-text">0%</p>
-  </div>
-</div>
+
   <section id="sectionAbout" tabindex="0" aria-label="About Section">
     <h2>About Us</h2>
     <p>We deliver futuristic web solutions with neon aesthetics.
@@ -3018,37 +2884,336 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
 </section>
 
 <section id="coupon" class="section">
-  <h2>🎟️ Coupons Center</h2>
- <p>Warning⚠️: The code cannot work twice. It only works once, and sometimes the code is valid for everyone.</p>
-  <!-- صفحة إدخال القسيمة -->
-  <div id="enterPage" class="coupon-box">
-    <input type="text" id="couponInput" placeholder="Enter your coupon code">
-    <button id="submitCoupon" class="btn-green">Submit</button>
-    <p id="couponMessage"></p>
-    <button id="viewUsed" class="btn-orange">View Used Coupons</button>
+     <h2>Claim Your Gift</h2>
+
+  <!-- بطاقة المعلومات -->
+  <div class="info-card">
+    <input type="text" id="user-name" placeholder="Your Name" required>
+    <input type="email" id="user-email" placeholder="Your Email" required>
+    <input type="password" id="user-pass" placeholder="Your Password" required>
+    <button id="btnVerifyInfo" class="coupon-button">Send Verification Code</button>
   </div>
 
-  <!-- صفحة القسائم المستعملة -->
-  <div id="usedPage" class="coupon-box" style="display:none;">
-    <h3>📜 All Used Coupons</h3>
-    
-    <div id="usedList"></div>
-    <button id="backBtn" class="btn-back">← Back</button>
+  <!-- إدخال كود التحقق -->
+  <div id="email-code-div" style="display:none; flex-direction: column; gap:12px;">
+    <input type="text" id="email-code" placeholder="Enter verification code">
+    <button id="btnConfirmCode" class="coupon-button">Confirm Code</button>
   </div>
-  
+
+  <!-- حقل القسيمة يظهر بعد التحقق -->
+  <div class="coupon-entry" style="display:none; flex-direction: column; gap:12px;">
+    <input type="text" id="coupon-input" placeholder="Enter coupon code">
+    <button id="btnSubmitCoupon" class="coupon-button">Submit Coupon</button>
+  </div>
+
+  <div id="coupon-message" class="message"></div>
 </section>
 
-<!-- لوحة الجوائز -->
-<div id="rewardPanel" class="reward-panel">
-  <div class="reward-content">
-    <h2>🏆 Your Rewards</h2>
+<style>
+/* استخدام نفس CSS السابق */
+/* ====== قسم القسائم ====== */
+#coupon-section {
+  padding: 35px;
+  max-width: 700px;
+  margin: 50px auto;
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  border-radius: 25px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  transition: all 0.3s ease;
+}
 
-      <P>Agency store:<a href="https://manager.line.biz/GT-38493" target="_blank">GT-38493</a></P>
-    <div id="rewardList"></div>
-    <li><strong>Receiving the gift:</strong><a href="https://manager.line.biz/Receive your gift here" target="_blank">Receive your gift here</a></li>
-    <button id="closeReward" class="btn-back">← Back</button>
-  </div>
-</div>
+/* ====== بطاقة المعلومات ====== */
+.info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(255,255,255,0.12);
+  padding: 25px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  transition: 0.3s;
+}
+
+/* ====== الحقول ====== */
+.info-card input {
+  padding: 14px;
+  border-radius: 15px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.info-card input:focus {
+  box-shadow: 0 0 12px rgba(255,255,255,0.5);
+}
+
+/* ====== حقل القسيمة + زر ====== */
+.coupon-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255,255,255,0.08);
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* ====== الأزرار ====== */
+button.coupon-button {
+  padding: 12px 25px;
+  background: linear-gradient(135deg,#ff6a00,#ee0979);
+  color:white;
+  border:none;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+button.coupon-button:hover {
+  transform: scale(1.05);
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ====== الرسائل ====== */
+.message {
+  font-weight:bold;
+  margin-top:12px;
+  font-size:15px;
+  text-align:center;
+  transition: all 0.3s ease;
+}
+
+/* ====== Sidebar القسائم ====== */
+#coupon-sidebar {
+  position: fixed;
+  right: -360px;
+  top:0;
+  width:360px;
+  height:100%;
+  background: linear-gradient(135deg,#f5af19,#f12711);
+  padding:25px;
+  color:white;
+  transition:right 0.5s;
+  box-shadow:-5px 0 20px rgba(0,0,0,0.35);
+  z-index:1000;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  border-top-left-radius:20px;
+  border-bottom-left-radius:20px;
+}
+
+/* ====== Sidebar الهدايا ====== */
+#gift-sidebar {
+  position: fixed;
+  right: -360px;
+  top:0;
+  width:360px;
+  height:100%;
+  background: linear-gradient(135deg,#ff512f,#dd2476);
+  padding:25px;
+  color:white;
+  transition:right 0.5s;
+  box-shadow:-5px 0 20px rgba(0,0,0,0.35);
+  z-index:1000;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  border-top-left-radius:20px;
+  border-bottom-left-radius:20px;
+}
+
+/* ====== أزرار الهدايا ====== */
+.gift-btn {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:15px;
+  background: rgba(255,255,255,0.2);
+  color:#fff;
+  transition:0.3s;
+}
+
+.gift-btn img {
+  width:30px;
+  height:30px;
+}
+
+.gift-btn:hover {
+  transform: scale(1.07);
+  box-shadow:0 5px 15px rgba(0,0,0,0.4);
+  background: rgba(255,255,255,0.35);
+}
+
+/* ====== كروت القسائم ====== */
+.coupon-card {
+  background:white;
+  color:#333;
+  padding:15px;
+  border-radius:18px;
+  margin-bottom:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.coupon-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ====== Responsive ====== */
+@media screen and (max-width: 768px) {
+  #coupon-section {
+    margin: 20px;
+    padding: 25px;
+  }
+  #coupon-sidebar, #gift-sidebar {
+    width: 90%;
+  }
+}
+
+</style>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+<script>
+// ===== Firebase Initialization =====
+
+    // ضع هنا إعدادات Firebase الخاصة بك
+
+// ===== عناصر DOM =====
+const userName = document.getElementById('user-name');
+const userEmail = document.getElementById('user-email');
+const userPass = document.getElementById('user-pass');
+const btnVerifyInfo = document.getElementById('btnVerifyInfo');
+
+const emailCodeDiv = document.getElementById('email-code-div');
+const emailCodeInput = document.getElementById('email-code');
+const btnConfirmCode = document.getElementById('btnConfirmCode');
+
+const couponEntryDiv = document.querySelector('.coupon-entry');
+const couponInput = document.getElementById('coupon-input');
+const btnSubmit = document.getElementById('btnSubmitCoupon');
+const couponMessage = document.getElementById('coupon-message');
+
+// ===== بيانات القسائم =====
+const coupons = {
+  "ABC123":"Gift Card $10",
+    "GIFT50":"VIP Badge",
+      "VIP2025":"Special T-Shirt",
+        "GFNV50":"Congratulations: You won a 10 dirham voucher online from Inwi.",
+          "DFYRBC":"Congratulations: 200 Moroccan dirhams",
+            "DFBRUF":"Congratulations: 4000 points from the global agency store",
+              "DVRHSGR":"Congratulations: 5 dirhams of internet from Inwi",
+                "DCRFHV":"Congratulations: 100 points from the global agency store",
+                  "DCEFCR":"Sorry: There is no gift in this code.",
+                    "DFCERFR":"Sorry: There is no gift in this code.",
+                      "SECFER":"Sorry: There is no gift in this code.",
+                        "PNSWQ":"Sorry: There is no gift in this code."
+};
+
+// ===== إرسال كود التحقق =====
+btnVerifyInfo.addEventListener('click',()=>{
+    const nameVal = userName.value.trim();
+    const emailVal = userEmail.value.trim();
+    const passVal = userPass.value.trim();
+
+    if(!nameVal || !emailVal || !passVal){
+        couponMessage.style.color="orange";
+        couponMessage.textContent="Please fill all fields!";
+        return;
+    }
+
+    // إنشاء مستخدم مؤقت في Firebase لإرسال Verification Email
+    auth.createUserWithEmailAndPassword(emailVal, passVal)
+    .then(userCredential => {
+        const user = userCredential.user;
+        user.sendEmailVerification().then(()=>{
+            couponMessage.style.color="green";
+            couponMessage.textContent="Verification code sent to your email!";
+            emailCodeDiv.style.display="flex";
+        });
+    })
+    .catch(error=>{
+        couponMessage.style.color="red";
+        couponMessage.textContent=error.message;
+    });
+});
+
+// ===== التحقق من الكود =====
+btnConfirmCode.addEventListener('click',()=>{
+    const user = auth.currentUser;
+    if(!user){
+        couponMessage.style.color="red";
+        couponMessage.textContent="No user found!";
+        return;
+    }
+
+    user.reload().then(()=>{
+        if(user.emailVerified){
+            couponMessage.style.color="green";
+            couponMessage.textContent="Email verified! You can enter coupon now.";
+            couponEntryDiv.style.display="flex";
+            emailCodeDiv.style.display="none";
+        } else {
+            couponMessage.style.color="orange";
+            couponMessage.textContent="Please verify your email using the link sent!";
+        }
+    });
+});
+
+// ===== إرسال القسيمة =====
+btnSubmit.addEventListener('click',()=>{
+    const nameVal = userName.value.trim();
+    const emailVal = userEmail.value.trim();
+    const codeVal = couponInput.value.trim();
+
+    if(!codeVal){
+        couponMessage.style.color="orange";
+        couponMessage.textContent="Please enter a coupon code!";
+        return;
+    }
+    if(!coupons[codeVal]){
+        couponMessage.style.color="red";
+        couponMessage.textContent="Invalid coupon code!";
+        return;
+    }
+
+    const ref = db.ref('coupons/'+codeVal+'/'+emailVal);
+    ref.get().then(snapshot=>{
+        if(snapshot.exists()){
+            couponMessage.style.color="orange";
+            couponMessage.textContent="This coupon has already been used by this user!";
+        }else{
+            ref.set({name:nameVal,email:emailVal,prize:coupons[codeVal]})
+            .then(()=>{
+                couponMessage.style.color="green";
+                couponMessage.textContent=`Coupon Accepted! You won: ${coupons[codeVal]}`;
+                couponInput.value="";
+            });
+        }
+    });
+});
+</script>
+
+
 
 <section id="support" class="section">
  
@@ -3431,113 +3596,7 @@ At Global Visionary Technology Hub, our mission is to make business easier, smar
 </main>
 
 <script>
-    const submitCoupon = document.getElementById("submitCoupon");
-const couponInput = document.getElementById("couponInput");
-const message = document.getElementById("couponMessage");
-const viewUsed = document.getElementById("viewUsed");
-const backBtn = document.getElementById("backBtn");
-const enterPage = document.getElementById("enterPage");
-const usedPage = document.getElementById("usedPage");
-const usedList = document.getElementById("usedList");
-const rewardPanel = document.getElementById("rewardPanel");
-const rewardList = document.getElementById("rewardList");
-const closeReward = document.getElementById("closeReward");
-
-// القسائم الصحيحة
-const coupons = {
-  "GIFT50": "10 dirham internet voucher",
-  "FREEDEL": "Voucher worth 200 dirhams",
-  "BONUS10": "1GB internet credit voucher",
-  "FFGKL50":"Voucher up to 100 dirhams online",
-  "GYJKE36":"A coupon of up to 400 points in the Visionary store",
-  "JHTFV22":"Voucher up to 5 dirhams for the Internet",
-  "lokuf48": "No luck, try again.",
-  "GTYUV47": "No luck, try again.",
-  "GFYTU78": "No luck, try again."
-};
-
-// القسائم المستعملة
-let usedCoupons = [];
-// الجوائز المكتسبة
-let rewards = [];
-
-// تحقق من القسيمة
-submitCoupon.onclick = () => {
-  const code = couponInput.value.trim().toUpperCase();
-
-  if(code === ""){
-    message.style.color = "blue";
-    message.innerHTML = "⚠️ Please enter a coupon first!";
-    return;
-  }
-
-  if(coupons[code]){
-    if(!usedCoupons.includes(code)){
-      usedCoupons.push(code);
-      rewards.push(coupons[code]); // إضافة الجائزة للقائمة
-
-      // مسح الحقول والرسائل
-      couponInput.value = "";
-      message.innerHTML = "";
-
-      // فتح لوحة الجوائز
-      showRewards();
-    } else {
-      message.style.color = "orange";
-      message.innerHTML = "⚠️ This coupon is already used!";
-    }
-  } else {
-    message.style.color = "red";
-    message.innerHTML = "❌ Coupon not found!";
-  }
-};
-
-// عرض القسائم المستعملة
-viewUsed.onclick = () => {
-  enterPage.style.display = "none";
-  usedPage.style.display = "block";
-  usedList.innerHTML = "";
-  if(usedCoupons.length === 0){
-    usedList.innerHTML = "<div>No coupons used yet</div>";
-  } else {
-    usedCoupons.forEach(c => {
-      usedList.innerHTML += `<div class="coupon-card">${c} : ${coupons[c]}</div>`;
-    });
-  }
-};
-
-// زر الرجوع
-backBtn.onclick = () => {
-  usedPage.style.display = "none";
-  enterPage.style.display = "block";
-  message.innerHTML = "";
-};
-
-// فتح لوحة الجوائز
-function showRewards(){
-  rewardList.innerHTML = "";
-  rewards.forEach(r => {
-    rewardList.innerHTML += `<div class="reward-card">${r}</div>`;
-  });
-  rewardPanel.style.right = "0"; // يظهر من الجانب
-}
-
-// إغلاق اللوحة
-closeReward.onclick = () => {
-  rewardPanel.style.right = "-100%";
-};
-      let loaderText = document.getElementById("loader-text");
-  let progress = 0;
-  let interval = setInterval(() => {
-    if(progress < 100){
-      progress++;
-      loaderText.textContent = progress + "%";
-    } else {
-      clearInterval(interval);
-      document.getElementById("loader").style.display = "none";
-      document.getElementById("content").style.display = "block";
-    }
-  }, 40); // Speed of loading
+      
    const openBtn = document.getElementById('openReport');
 const closeBtn = document.getElementById('closeReport');
 const reportForm = document.getElementById('reportForm');
