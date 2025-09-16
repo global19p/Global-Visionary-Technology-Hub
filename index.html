@@ -323,6 +323,45 @@
     text-align: center;
   }
 }
+/* زر الثلاث شرطات */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  border-radius: 2px;
+}
+
+/* القائمة المنسدلة في الموبايل */
+nav {
+  display: flex;
+  gap: 20px;
+}
+nav.show {
+  display: block;
+  flex-direction: column;
+  background: #fff;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none; /* نخفي القائمة العادية */
+  }
+  .menu-toggle {
+    display: flex; /* نعرض الزر */
+  }
+}
 
   </style>
 </head>
@@ -337,7 +376,11 @@
     </a>
   </div>
     <!-- زر الموبايل -->
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="menu-toggle" onclick="toggleMenu()">
+  <span></span>
+    <span></span>
+    <span></span>
+  </div>
   <nav>
     <a href="#about">About</a>
     <a href="#services">Services</a>
@@ -528,6 +571,9 @@
   </footer>
 
   <script>
+      function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+  }
     function toggleMenu() {
   document.getElementById("navbar").classList.toggle("show");
 }
