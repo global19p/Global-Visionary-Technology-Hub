@@ -1,635 +1,1320 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-  <!-- Firebase App -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<!-- Firebase Authentication -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Global19p - 3D Printing</title>
+  <title>WorkSpace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="data:image/png;base64,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">
   <style>
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
-      color: #222;
-      direction: ltr;
-    }
-    header {
-      background: #6b4cd3;
-      color: #fff;
-      padding: 15px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header .brand { font-weight:800; font-size:20px; }
-    nav { display:flex; gap:12px; flex-wrap:wrap; }
-    nav a { color:#fff; text-decoration:none; font-weight:600; padding:6px 8px; }
-    nav a:focus, nav a:hover { text-decoration:underline; }
+  /* ===========================
+   WorkSpace — كامل أنماط CSS
+   انسخ هذا مكان الـ <style> القديم
+   =========================== */
 
-    .hero {
-      background: linear-gradient(180deg,#7a5de8,#6b4cd3);
-      color:#fff;
-      display:flex;
-      gap:20px;
-      align-items:center;
-      justify-content:space-between;
-      padding:56px 24px;
-      flex-wrap:wrap;
-    }
-    .hero .text { max-width:560px; }
-    .hero h1 { font-size:40px; margin:6px 0; line-height:1.02; }
-    .hero p { color:rgba(255,255,255,0.92); }
-    .hero img { width:360px; max-width:100%; border-radius:12px; box-shadow: 0 20px 50px rgba(11,9,20,0.35); }
-
-    .section-divider {
-      height:6px;
-      background: linear-gradient(90deg,#6b4cd3,#7a5de8,#6b4cd3);
-      border-radius:3px;
-      margin:48px auto;
-      width:84%;
-    }
-
-    section { padding:48px 24px; }
-    .alt { background:#fafafa; }
-
-    .services { text-align:center; }
-    .cards { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
-    .card {
-      background:#fff; padding:20px; border-radius:12px; width:260px;
-      box-shadow:0 8px 20px rgba(15,15,30,0.06);
-      transition:transform .16s ease;
-    }
-    .card:hover { transform:translateY(-6px); }
-
-    .split { display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
-    .split .image{flex:1; min-width:260px;}
-    .split .content{flex:1; min-width:260px;}
-
-    .news-grid { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
-
-    .contact-form { max-width:620px; margin:0 auto; }
-    .contact-form form { display:flex; flex-direction:column; gap:12px; }
-    input[type="text"], input[type="email"], textarea {
-      padding:12px; border-radius:8px; border:1px solid #ddd; font-size:15px;
-    }
-    button.btn { background:#6b4cd3; color:#fff; border:0; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700; }
-    button.btn:hover { background:#5936b0; }
-
-    .popup {
-      position:fixed; inset:0; display:none; place-items:center;
-      background:rgba(0,0,0,0.55); z-index:2200;
-    }
-    .popup .box {
-      background:#fff; padding:26px; border-radius:12px; text-align:center; max-width:420px;
-      box-shadow:0 12px 40px rgba(0,0,0,0.3);
-    }
-    .popup .box h3 { color:#1663ff; margin:0 0 8px; }
-    .popup .box p { color:#333; margin:0; }
-
-    footer {
-      background:#111; color:#e6e6e6; padding:28px 24px; margin-top:40px;
-    }
-    .footer-grid { display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:18px; align-items:start; max-width:1200px; margin:0 auto; }
-    .footer-grid h4 { color:#fff; margin-top:0; }
-    .footer-grid p, .footer-grid a { color:#cfcfcf; text-decoration:none; font-size:14px; }
-    .footer-bottom { border-top:1px solid rgba(255,255,255,0.04); margin-top:16px; padding-top:14px; text-align:center; color:#9aa0a6; font-size:13px; }
-
-    .socials { display:flex; gap:10px; align-items:center; margin-top:12px; flex-wrap:wrap; }
-    .socials a { width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; box-shadow:0 6px 18px rgba(11,9,20,0.25); text-decoration:none; }
-    .socials svg { width:20px; height:20px; display:block; }
-
-    .social-fb { background:#1877F2; color:#fff; }
-    .social-twitter { background:#1DA1F2; color:#fff; }
-    .social-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color:#fff; }
-    .social-yt { background:#FF0000; color:#fff; }
-    .social-ln { background:#0A66C2; color:#fff; }
-    .social-wa { background:#25D366; color:#fff; }
-
-    @media (max-width: 980px) {
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .hero { padding:36px 18px; }
-      .hero h1 { font-size:30px; }
-    }
-    @media (max-width:640px) {
-      nav { gap:8px; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero { text-align:center; }
-    }
-    /* للشاشات الصغيرة */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero .text {
-    max-width: 100%;
-  }
-
-  .hero-images {
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin-left: 0;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .hero-images img {
-    position: relative;
-    width: 100px; /* تصغر الصور */
-    height: 80px;
-    left: 0;
-    top: 0;
-  }
+:root{
+  --accent1: #5f66ff;
+  --accent2: #7e7cf5;
+  --bg-grad: linear-gradient(180deg,#5f66ff 0%, #8a6dff 60%);
+  --card: #ffffff;
+  --muted: #bfc4d8;
+  --text-dark: #111827;
+  --radius: 18px;
+  --danger: #ff6b6b;
+  --side-w: 64px; /* عرض القائمة الجانبية */
 }
-.hero {
-  background: linear-gradient(180deg,#7a5de8,#6b4cd3);
+
+/* RESET */
+*{box-sizing:border-box}
+html,body{
+  height:100%;
+  margin:0;
+  padding:0;
+  font-family:"Cairo",Tahoma,Arial,sans-serif;
+  background:var(--bg-grad);
   color:#fff;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* الإطار */
+.frame{
+  max-width:420px;
+  margin:14px auto;
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:0 28px 60px rgba(6,8,30,0.45);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+.screen{
+  padding:18px;
+  min-height:820px;
+  position:relative;
+}
+
+/* شاشة المصادقة */
+#authScreen{
+  position:fixed;
+  inset:0;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:56px 24px;
-  flex-wrap:wrap;
+  justify-content:center;
+  background:linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.18));
+  z-index:120;
+}
+.auth-card{
+  width:94%;
+  max-width:380px;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:0 18px 40px rgba(0,0,0,0.25);
+  direction:rtl;
+  color:var(--text-dark);
+}
+.auth-card h3{
+  text-align:center;
+  margin:0 0 12px;
+  font-size:22px;
+  font-weight:800;
+}
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom:12px;
+}
+.field label{ font-weight:700; color:#374151; font-size:14px }
+.field input{
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #eee;
+  font-size:15px;
+  outline:none;
+  background:transparent;
+}
+.field input::placeholder{ color:#bfc4d8 }
+.field input:focus{
+  box-shadow:0 8px 30px rgba(95,102,255,0.12);
+  border-color:var(--accent1);
+}
+.submit-btn{
+  background: linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:white;
+  padding:12px;
+  border-radius:12px;
+  border:0;
+  width:100%;
+  font-weight:800;
+  cursor:pointer;
+  font-size:15px;
+}
+.note{ text-align:center; color:#6b7280; font-size:13px; margin-top:8px }
+.error{
+  background:#fff0f0;
+  color:#b84b4b;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #ffd7d7;
+  margin-bottom:10px;
+  display:none;
 }
 
-.hero .text {
-  max-width:560px;
+/* التطبيق */
+#appRoot{ display:none; color:#fff; }
+
+/* ترويسة */
+.top{ display:flex; align-items:center; justify-content:space-between; gap:10px }
+.brand{ display:flex; align-items:center; gap:10px }
+.logo{
+  width:48px; height:48px; border-radius:12px; background:#fff;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--accent1); font-weight:800; font-size:18px;
+}
+.profile-btn{
+  display:flex; align-items:center; gap:8px;
+  background:transparent; border:0; cursor:pointer; color:#fff
+}
+.profile-btn img{
+  width:44px; height:44px; border-radius:50%;
+  border:3px solid rgba(255,255,255,0.12);
+  object-fit:cover;
 }
 
-/* الصور على اليمين */
-.hero-images {
-  position: relative;
-  width: 700px;
-  height: 280px;
-  margin-left: 20px; /* مسافة بين النص والصور */
+/* الكارد الرئيسي */
+.main-card{
+  margin-top:16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border-radius:20px;
+  padding:20px 20px 20px calc(var(--side-w) + 24px);
+  position:relative;
+  box-shadow:0 12px 30px rgba(10,12,40,0.18);
+  min-height:520px;
+  color:var(--text-dark);
 }
 
-.hero-images img {
-  position: absolute;
-  width: 260px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, z-index 0.3s ease;
+/* القائمة الجانبية */
+.side-nav{
+  position:absolute;
+  left:12px;
+  top:20px;
+  bottom:20px;
+  width:var(--side-w);
+  background: linear-gradient(180deg, rgba(12,14,44,0.98), rgba(12,14,44,0.9));
+  border-radius:18px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:center;
+  padding-top:18px;
+  z-index:90;
+}
+.side-nav button{
+  background:transparent;
+  border:0;
+  padding:8px;
+  cursor:pointer;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  transition:all .18s ease;
+}
+.side-nav button:hover{ transform:translateY(-3px); background:rgba(255,255,255,0.03) }
+.side-nav svg{ width:24px; height:24px; opacity:0.95; display:block }
+.side-nav .active{ background:rgba(255,255,255,0.06) }
+
+/* العناوين */
+.page-title{ text-align:right; margin-bottom:18px }
+.page-title h2{ margin:0; font-size:30px; color:#fff; font-weight:800 }
+.page-title p{ margin:6px 0 0; color:rgba(255,255,255,0.78); font-size:13px }
+
+/* المربعات */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:8px;
+}
+.stat{
+  background:var(--card);
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.05);
+  color:#111;
+}
+.stat h3{ margin:0; font-size:13px; color:#444; font-weight:800 }
+.stat p{ margin:10px 0 0; font-size:22px; font-weight:900; color:#111 }
+
+/* المهام */
+.tasks{ margin-top:14px }
+.task{
+  display:flex; gap:12px; align-items:center;
+  background:var(--card);
+  padding:12px;
+  border-radius:14px;
+  margin-bottom:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.04);
+  color:#111
+}
+.task .icon{
+  min-width:44px; height:44px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:800;
+}
+.task .info{ flex:1 }
+.task .info h4{ margin:0; font-weight:800 }
+.task .info small{ color:#6b7280 }
+
+/* زر إضافة */
+.add-btn{
+  margin-top:6px;
+  display:block;
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:0;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:#fff; font-weight:800; font-size:16px
 }
 
-/* أول صورة */
-.hero-images img:nth-child(1) {
-  top: -20px;
-  left: 0;
-  z-index: 3;
+/* الأقسام */
+.sections{ margin-top:18px }
+.section{ display:none }
+.section.active{ display:block }
+
+/* الحساب */
+.account-inline{
+  background:var(--card);
+  padding:14px;
+  border-radius:12px;
+  color:#111;
+  box-shadow:0 8px 20px rgba(0,0,0,0.04)
+}
+.account-modal{
+  position:fixed; right:0; left:0; top:0; bottom:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.35);
+  z-index:140;
+}
+.account-card{
+  width:92%;
+  max-width:360px;
+  background:var(--card);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 18px 40px rgba(0,0,0,0.25);
+  color:#111;
+  direction:rtl
 }
 
-/* ثاني صورة */
-.hero-images img:nth-child(2) {
-  top: 10px;
-  left: 220px;
-  z-index: 2;
+/* شاشة التحميل */
+.loading-overlay{
+  position:fixed; inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.28);
+  z-index:200;
+}
+.spinner{
+  width:72px; height:72px; border-radius:50%;
+  border:8px solid rgba(255,255,255,0.18);
+  border-top-color:#fff;
+  animation:spin 1s linear infinite;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+@keyframes spin{ to{ transform:rotate(360deg) } }
+
+/* تحذير */
+.file-warning{
+  position:fixed;
+  left:12px; right:12px; bottom:12px;
+  background:#fff8e6;
+  color:#856404;
+  padding:12px;
+  border-radius:10px;
+  display:none;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  font-weight:700;
+  z-index:300;
+  direction:rtl;
 }
 
-/* ثالث صورة */
-.hero-images img:nth-child(3) {
-  top: 40px;
-  left: 440px;
-  z-index: 1;
+/* تجاوب */
+@media (max-width: 520px){
+  :root{ --side-w: 56px; }
+  .main-card{
+    padding:20px 12px 20px calc(var(--side-w) + 18px);
+    min-height:640px
+  }
+  .side-nav{
+    left:8px;
+    width:var(--side-w);
+    top:14px;
+    bottom:14px;
+    padding-top:12px;
+    gap:12px;
+  }
+  .side-nav button{ width:44px; height:44px; padding:6px }
+  .page-title h2{ font-size:26px }
+  .grid{ grid-template-columns:1fr 1fr; } /* المربعات تبقى ثنائية */
 }
 
-.hero-images img:hover {
-  transform: scale(1.1);
-  z-index: 5;
+@media (max-width: 380px){
+  .main-card{ padding:18px 10px 18px calc(var(--side-w) + 14px) }
+  .page-title h2{ font-size:22px }
+  .logo{ width:44px; height:44px; font-size:16px }
+  .grid{ grid-template-columns:1fr; } /* أصغر شاشة نخليها عمود */
 }
 
-/* الزر مخفي على الكمبيوتر */
-.menu-toggle {
-  display: none;
-  font-size: 26px;
-  cursor: pointer;
-  color: white;
+/* لمسات نهائية */
+button{font-family:inherit}
+a{color:inherit;text-decoration:none}
+/* قسم المهام */
+.tasks {
+  margin-top: 14px;
 }
 
-/* نسخة الموبايل */
-@media (max-width: 768px) {
-  nav {
-    display: none;
-    flex-direction: column;
-    background: #6b4cd3;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
-    padding: 10px;
-    border-radius: 8px;
-  }
-  nav a {
-    padding: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-  }
-  .menu-toggle {
-    display: block;
-  }
-  nav.show {
-    display: flex;
-  }
-}
-/* الشاشات المتوسطة (تابلت) */
-@media (max-width: 992px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-images {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    position: static;
-  }
-  .hero-images img {
-    position: static;
-    width: 45%;
-    height: auto;
-  }
-
-  .split {
-    flex-direction: column;
-    text-align: center;
-  }
-  .split img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .cards, .news-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* الشاشات الصغيرة (موبايل) */
-@media (max-width: 576px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-  nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero {
-    padding: 30px 15px;
-  }
-  .hero h1 {
-    font-size: 26px;
-  }
-  .hero-images {
-    flex-direction: column;
-    gap: 12px;
-  }
-  .hero-images img {
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .cards, .news-grid {
-    width: 100%;
-  }
-  .card, .news-card {
-    width: 90%;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-  .footer-grid > div {
-    text-align: center;
-  }
-}
-/* زر الثلاث شرطات */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-.menu-toggle span {
-  width: 25px;
-  height: 3px;
-  background: #333;
-  border-radius: 2px;
-}
-
-/* القائمة المنسدلة في الموبايل */
-nav {
+.task {
   display: flex;
-  gap: 20px;
-}
-nav.show {
-  display: block;
-  flex-direction: column;
-  background: #fff;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  gap: 12px;
+  align-items: center;
+  background: var(--card, #fff);
+  padding: 12px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+  color: #111;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-@media (max-width: 768px) {
-  nav {
-    display: none; /* نخفي القائمة العادية */
-  }
-  .menu-toggle {
-    display: flex; /* نعرض الزر */
-  }
+.task:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+.task .icon {
+  min-width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.task .info {
+  flex: 1;
+}
+
+.task .info h4 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.task .info small {
+  color: #6b7280;
+  font-size: 13px;
+}
+/* الرسالة */
+.message {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--card);
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  color: #111;
+}
+.message .avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #fff;
+  font-size: 18px;
+}
+.message .content h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #222;
+}
+.message .content h4 small {
+  font-weight: 500;
+  color: #6b7280;
+  font-size: 12px;
+}
+.message .content p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+/* زر اضغط للرؤية */
+.see-btn {
+  margin-top: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2));
+  color: #fff;
+  font-weight: 700;
+  border: 0;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+.see-btn:hover { opacity:0.9; transform:translateY(-2px); }
+
+/* المودال */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.modal-content {
+  background: #fff;
+  color: #111;
+  padding: 20px;
+  border-radius: 14px;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+  text-align: right;
+  direction: rtl;
+  animation: pop 0.3s ease;
+}
+.modal-content h3 { 
+  margin-top:0; 
+  color: var(--accent1); 
+  font-size: 18px; 
+}
+.modal-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+.ok-btn {
+  margin-top: 14px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: var(--accent1);
+  color: #fff;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+}
+.ok-btn:hover { opacity: 0.9; }
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+/* Contact form */
+#contactForm .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+#contactForm label {
+  font-weight: 700;
+  font-size: 14px;
+  color: #eee;
+}
+#contactForm input,
+#contactForm textarea {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+}
+#contactForm input:focus,
+#contactForm textarea:focus {
+  border-color: var(--accent1);
+  box-shadow: 0 0 6px rgba(95, 102, 255, 0.25);
+}
+
+/* Popup */
+.success-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.success-popup .paper {
+  background: #fff;
+  color: #111;
+  padding: 20px;
+  border-radius: 12px;
+  width: 280px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  animation: drop 0.35s ease;
+}
+.success-popup h4 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: #28a745;
+}
+.success-popup p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: #333;
+}
+.success-popup button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.success-popup button:hover {
+  background: #0062cc;
+}
+@keyframes drop {
+  from { transform: translateY(-40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.contact-btn {
+  background: #ffffff;    /* أبيض */
+  color: var(--accent1);  /* يخلي الأيقونة بلون الموقع */
+}
+
+.contact-btn:hover {
+  background: #f1f1f1;    /* رمادي فاتح عند المرور */
 }
 
   </style>
 </head>
 <body>
+  <div class="frame" role="application" aria-label="WorkSpace mobile UI">
+    <div class="screen">
 
-  <!-- Header -->
-  <header>
-  <div class="brand">
-    <a href="logo.html" target="_blank" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:white;font-weight:bold;font-size:20px;">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Logo" style="width:32px;height:32px;">
-      Global19p
-    </a>
-  </div>
-    <!-- زر الموبايل -->
-  <div class="menu-toggle" onclick="toggleMenu()">
-  <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#steps">Steps</a>
-    <a href="#news">News</a>
-    <a href="#contacts">Contact</a>
-  </nav>
-</header>
+      <!-- APP (hidden until login) -->
+      <div id="appRoot" aria-hidden="true" style="display:none">
+        <div class="top">
+          <div class="brand">
+            <div class="logo">W</div>
+            <div><h1>WorkSpace</h1></div>
+          </div>
 
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="text">
-      <p>Welcome and let's...</p>
-      <h1>Print the 3D <span style="color:#ffe66d;">Future</span>.</h1>
-      <p>We turn your ideas into reality with professional 3D printing services — from prototyping to high-quality final products.</p>
-    </div>
-    <div class="hero-images">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIVFFdNMnpFxl9Hp-7GoTvHjqkyiUDuvRHyQ&s" alt="3D printer 1">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm6dtISQ1fJOkTvzwM_48OVW_sjM_3RmJCxw&s" alt="3D printer 2">
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDssOz-id91IE0R4MIVBEsZ68daq5Y7py4gw&s" alt="3D printer 3">
-    </div>
-  </section>
-  <div class="section-divider" aria-hidden="true"></div>
-
-  <!-- Services -->
-  <section id="services" class="alt services">
-    <h2 style="text-align:center;margin:6px 0 18px; font-size:50px;"><span style="color:#575653;">Our Services</span></h2>
-    <div class="cards" role="list">
-      <div class="card" role="listitem">
-        <h2>3D Construction</h3>
-        <p>Create videos with Photoshop and create thumbnails.</p>
-      </div>
-      <div class="card" role="listitem">
-        <h2>3D Create logos</h2>
-        <p>We create logos for something futuristic logos with good lighting.</p>
-      </div>
-      <div class="card" role="listitem">
-        <h2>3D Modeling</h2>
-        <p>We create logos, videos, thumbnails and even websites......</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider" aria-hidden="true"></div>
-
-  <!-- About -->
-  <section id="about" class="split">
-    <div class="image">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpwZJMgb7E5iFiZIG0k0uWMMAFSthIPosB6A&s" alt="About us image" style="border-radius:10px;">
-    </div>
-    <div class="content">
-      <h2 style="text-align:center;margin:6px 0 18px; font-size:50px;"><span style="color:#575653;">About Us</span></h2>
-      <h3>We, as a group of programmers and artists, can do anything in exchange for work, for example: logos, videos, thumbnails, websites, these are the things that the group can create..</h3>
-      <p><strong>100+</strong> satisfied clients · <strong>20k+</strong> items printed · <strong>5</strong> years of experience</p>
-    </div>
-  </section>
-
-  <div class="section-divider" aria-hidden="true"></div>
-
-  <!-- Projects -->
-  <section id="projects" class="alt">
-    <h2 style="text-align:center; font-size:50px;"><span style="color:#575653;">Our Projects</span></h2>
-    <h3 style="text-align:center; max-width:900px; margin:8px auto 18px;">A brief look at some of our works — prototypes, industrial parts, artistic pieces.</h3>
-    <img src="data:image/jpeg;base64,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" alt="projects" style="display:block; margin:0 auto; border-radius:12px; max-width:92%;">
-  </section>
-
-  <div class="section-divider" aria-hidden="true"></div>
-
-  <!-- News -->
-  <section id="news">
-    <h2 style="text-align:center; font-size:50px;"><span style="color:#575653;">Latest News</span></h2>
-    <div class="news-grid" style="margin-top:18px;">
-      <article class="news-card" aria-labelledby="n1">
-        <h3 id="n1">Materials we work on</h3>
-        <p>Construction of large websites and creation of advertisements.</p>
-      </article>
-      <article class="news-card" aria-labelledby="n2">
-        <h3 id="n2">Big Collaboration</h3>
-        <p>Partnership with local manufacturers to accelerate prototyping workflows.</p>
-      </article>
-      <article class="news-card" aria-labelledby="n3">
-        <h3 id="n3">Upcoming Workshop</h3>
-        <p>Join our hands-on workshop about designing for additive manufacturing.</p>
-      </article>
-    </div>
-  </section>
-
-  <div class="section-divider" aria-hidden="true"></div>
-
-  <!-- Contact -->
-  <section id="contacts" class="alt">
-    <h2 style="text-align:center; font-size:50px;"><span style="color:#575653;">Contact Us</span></h2>
-    <div class="contact-form" style="margin-top:18px;">
-      <form id="contactForm" action="https://formspree.io/f/xrbaggwv" method="POST">
-        <input type="text" name="name" placeholder="Your name *" required>
-        <input type="email" name="email" placeholder="Your email *" required>
-        <textarea name="message" rows="6" placeholder="Your message *" required></textarea>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px;">
-          <button class="btn" type="submit">Send Message</button>
+          <button id="profileBtn" class="profile-btn" title="الحساب" aria-haspopup="dialog">
+            <div id="profileNameSmall">مرحباً.</div>
+            <img id="profileImg" src="https://i.pravatar.cc/100?img=56" alt="avatar">
+          </button>
         </div>
-      </form>
+
+        <div class="main-card" role="region" aria-label="main content">
+          <div class="side-nav" aria-hidden="true">
+            <button class="nav-btn active" data-target="home" title="الرئيسية" aria-pressed="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 11.5L12 4l9 7.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="nav-btn" data-target="tasks" title="المهام" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="#cfd4f2" stroke-width="1.4"/></svg>
+            </button>
+            <button class="nav-btn" data-target="messages" title="الرسائل" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#cfd4f2" stroke-width="1.2"/></svg>
+            </button>
+            <button class="nav-btn" data-target="account" title="الحساب" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="#cfd4f2" stroke-width="1.2"/><path d="M5 20c1.5-3 4.5-4 7-4s5.5 1 7 4" stroke="#cfd4f2" stroke-width="1.2"/></svg>
+            </button>
+            <!-- زر Contact مع أيقونة -->
+<!-- زر Contact -->
+<button class="nav-btn contact-btn" data-target="contact" title="اتصل بنا">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+    <polyline points="3,5 12,13 21,5"></polyline>
+  </svg>
+</button>
+            <!-- زر الأهداف -->
+<button class="nav-btn" data-target="goals" title="الأهداف">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M12 6V4m0 16v-2m8-8h2M4 12H2m16.95-6.95l1.414-1.414M6.343 17.657l-1.414 1.414M18.364 18.364l1.414 1.414M6.343 6.343L4.929 4.929" />
+  </svg>
+</button>
+   
+          </div>
+
+        
+
+          <div class="sections">
+            <!-- HOME -->
+            <section class="section active" id="home">
+                <div class="page-title">
+            <h2 id="welcomeTitle">مرحبا </h2>
+            <p>الملخصات السريعة</p>
+          </div>
+              <div class="grid">
+                <div class="stat"><h3>المهام</h3><p id="statTasks">50</p></div>
+                <div class="stat"><h3>عامل</h3><p id="statMsgs">2</p></div>
+                <div class="stat"><h3>المشاريع</h3><p id="statProjects">1</p></div>
+                <div class="stat"><h3>الأداء</h3><p id="statPerf">30%</p></div>
+              </div>
+
+              <div class="tasks">
+                <div class="task">
+                  <div class="icon" style="background:#6b6bf5;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                  <div class="info"><h4>مبرمجين</h4><small>الشركة تمتلك عدد هائل من المبرمجين</small></div>
+                </div>
+
+                <div class="task">
+                  <div class="icon" style="background:#2eca8f;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                  <div class="info"><h4>عمال</h4><small>الشركة تحتاج مزيد من عمال</small></div>
+                </div>
+              </div>
+            </section>
+<!-- CONTACT SECTION -->
+<section class="section" id="contact">
+  <h3 style="color:#fff;margin-bottom:14px;">📩 اتصل بنا</h3>
+  <form id="contactForm" action="https://formspree.io/f/xrbaggwv" method="POST">
+    <div class="field">
+      <label>الاسم</label>
+      <input type="text" name="name" required placeholder="اكتب اسمك">
     </div>
-  </section>
-
-  <!-- popup (success) -->
-  <div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-hidden="true">
-    <div class="box" role="document">
-      <h3 id="popupTitle">Message Sent ✔</h3>
-      <p>Thank you — your message has been delivered to our inbox. We will get back to you soon.</p>
-      <div style="margin-top:14px;"><button class="btn" onclick="closePopup()">OK</button></div>
+    <div class="field">
+      <label>رقم الهاتف</label>
+      <input type="tel" name="phone" required placeholder="اكتب رقمك">
     </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-grid">
-      <div>
-        <h4>Curve3D</h4>
-        <p>We are a 3D printing studio turning ideas into reality — prototyping, short-run manufacturing, and finishing.</p>
-
-        <div class="socials" aria-label="social links">
-          <a class="social-fb" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.07C22 6.5 17.52 2 12 2S2 6.5 2 12.07c0 5 3.66 9.13 8.44 9.93v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.87h2.74l-.44 2.9h-2.3V22C18.34 21.2 22 17.07 22 12.07z"/></svg>
-          </a>
-
-          <a class="social-ig" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9a4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM18.5 6a1 1 0 1 1 0 2a1 1 0 0 1 0-2z"/></svg>
-          </a>
-
-          <a class="social-twitter" href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 5.92c-.66.3-1.37.5-2.11.59.76-.45 1.34-1.16 1.62-2.02-.71.42-1.5.72-2.34.88C18.53 4.5 17.4 4 16.17 4c-1.7 0-3.08 1.38-3.08 3.08 0 .24.03.48.08.71C10.01 7.7 6.9 5.98 4.56 3.14c-.27.47-.42 1.02-.42 1.6 0 1.1.56 2.07 1.41 2.64-.52-.02-1.02-.16-1.45-.4v.04c0 1.52 1.08 2.8 2.51 3.09-.26.07-.54.11-.82.11-.2 0-.39-.02-.58-.06.39 1.2 1.52 2.06 2.86 2.08C8.03 15.7 6.7 16.26 5.28 16.26c-.27 0-.54-.02-.8-.05C6.16 17.4 7.98 18 9.95 18c5.93 0 9.18-4.92 9.18-9.18v-.42c.63-.46 1.17-1.03 1.6-1.69-.58.26-1.2.43-1.85.51z"/></svg>
-          </a>
-
-          <a class="social-yt" href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.2-1-3-.2-7.5-.2-7.5-.2h-.1s-4.6 0-7.5.2c-.5.1-1.4.1-2.2 1-.6.7-.8 2.3-.8 2.3S1 8 1 9.9v1.2C1 13.9 1.7 15 1.7 15s.2 1.6.8 2.3c.8.9 1.9.9 2.4 1 1.8.1 7.4.2 7.4.2s4.6 0 7.5-.2c.5-.1 1.4-.1 2.2-1 .6-.7.8-2.3.8-2.3s.7-1.1.7-3.1V9.9c0-2-.7-3.7-.7-3.7zM9.8 15.1V8.9l6 3.1-6 3.1z"/></svg>
-          </a>
-
-          <a class="social-ln" href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.08 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.9h4.56V24H.22V8.9zM8.96 8.9h4.38v2.03h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 6.99V24h-4.56v-7.36c0-1.75-.03-4-2.44-4-2.44 0-2.81 1.9-2.81 3.86V24H8.96V8.9z"/></svg>
-          </a>
-
-          <a class="social-wa" href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.9 11.9 0 0012 .5C6.21.5 1.5 5.21 1.5 11c0 1.94.5 3.76 1.45 5.38L.5 23.5l7.42-2.05A11.86 11.86 0 0012 22.5c5.79 0 10.5-4.71 10.5-10.5 0-2.82-1.1-5.46-3-7.62zM12 20.3c-1.17 0-2.31-.32-3.3-.92l-.24-.14-4.39 1.22 1.18-3.78-.15-.27A8.11 8.11 0 013.9 11c0-4.5 3.66-8.16 8.1-8.16 2.17 0 4.2.86 5.72 2.4A8.02 8.02 0 0120 11c0 4.4-3.6 8.3-8 8.3zM16.3 14.2c-.2-.1-1.2-.6-1.3-.7-.2-.1-.4-.1-.6.1-.2.2-.9.7-1.1.8-.2.1-.4.1-.6-.1-.2-.2-.7-.3-1.2-.6-.4-.3-.7-.6-.9-.9-.2-.3 0-.5.1-.7.1-.2.2-.5.2-.8 0-.3-.3-.6-.4-.8-.1-.2-.6-1-.8-1.4-.2-.4-.4-.3-.6-.3-.2 0-.5 0-.8 0-.3 0-.8.1-1.3.6-.5.5-2 2-2 4.8 0 2.8 2 5.3 2.3 5.7.3.4 4 6.4 9.9 6.4 5.9 0 6.6-3.9 6.6-7.1 0-3.2-3.2-6-5.2-6.6z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <h4>Navigation</h4>
-        <a href="#about">About</a><br>
-        <a href="#services">Services</a><br>
-        <a href="#projects">Projects</a><br>
-        <a href="#contacts">Contact</a>
-      </div>
-
-      <div>
-        <h4>Services</h4>
-        <a href="#services">3D Scanning</a><br>
-        <a href="#services">Post-Processing</a><br>
-        <a href="#services">3D Modeling</a><br>
-        <a href="#services">Custom Printing</a>
-      </div>
-
-      <div>
-   <h4>Newsletter</h4>
-<form id="newsletterForm">
-  <input type="email" placeholder="Email address" required 
-         style="width:100%;padding:8px;border-radius:6px;border:1px solid #333;margin-bottom:8px;">
-  <button class="btn" type="submit" style="width:100%;">Subscribe</button>
-</form>
-
-<!-- Newsletter Popup -->
-<div class="popup" id="newsletterPopup" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="box" role="document">
-    <h3>Subscription Successful ✔</h3>
-    <p>You have successfully subscribed to our newsletter.</p>
-    <div style="margin-top:14px;">
-      <button class="btn" onclick="closeNewsletterPopup()">OK</button>
+    <div class="field">
+      <label>البريد الإلكتروني</label>
+      <input type="email" name="email" required placeholder="example@mail.com">
     </div>
+    <div class="field">
+      <label>رسالتك</label>
+      <textarea name="message" required placeholder="اكتب رسالتك" rows="4"></textarea>
+    </div>
+    <button type="submit" class="submit-btn">إرسال</button>
+  </form>
+</section>
+
+<!-- Popup رسالة النجاح -->
+<div id="successPopup" class="success-popup">
+  <div class="paper">
+    <h4>✅ تم إرسال الرسالة بنجاح</h4>
+    <p id="sentEmail"></p>
+    <button id="okBtn">موافق</button>
   </div>
 </div>
+
+            <!-- TASKS -->
+           <section class="section" id="tasks">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+    <h3 style="margin:0;color:#f1efef">قائمة المهام</h3>
+    <button id="newTaskBtn" style="background:transparent;border:0;color:var(--accent1);font-weight:800;cursor:pointer">+ مهمة</button>
+  </div>
+  <div id="tasksList">
+
+    <div class="task">
+      <div class="icon" style="background:#5f66ff;">📘</div>
+      <div class="info">
+        <h4>انشاء اول واجهة لتطبيق او موقع </h4>
+        <small> الموعد: اليوم 4:00 مساءً</small>
       </div>
     </div>
 
-    <div class="footer-bottom">© 2025 Curve3D — All rights reserved.</div>
-  </footer>
+    <div class="task">
+      <div class="icon" style="background:#ff6b6b;">💻</div>
+      <div class="info">
+        <h4>مراجعة التطبيق جيدا</h4>
+        <small>الموعد: غداً 10:00 صباحاً</small>
+      </div>
+    </div>
 
-  <script>
-      function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("show");
-  }
-    function toggleMenu() {
-  document.getElementById("navbar").classList.toggle("show");
-}
-      const newsletterForm = document.getElementById("newsletterForm");
-  const newsletterPopup = document.getElementById("newsletterPopup");
+    <div class="task">
+      <div class="icon" style="background:#00c896;">📩</div>
+      <div class="info">
+        <h4>تعديل المشروع اذا كانل الخطاء </h4>
+        <small>موعد: بعد 1 يوم واحد من مراجعة التطبيق</small>
+      </div>
+    </div>
 
-  newsletterForm.addEventListener("submit", function(e){
-    e.preventDefault(); // يمنع إعادة تحميل الصفحة
-    newsletterPopup.style.display = "grid";
-    newsletterPopup.setAttribute("aria-hidden", "false");
-  });
+    <div class="task">
+      <div class="icon" style="background:#f59e0b;">📖</div>
+      <div class="info">
+        <h4>اكمال المشروع و تاكد انه جاهز </h4>
+        <small>الموعد: 4 ايام من اكمال المشروع كامل</small>
+      </div>
+    </div>
 
-  function closeNewsletterPopup(){
-    newsletterPopup.style.display = "none";
-    newsletterPopup.setAttribute("aria-hidden", "true");
-  }
+    <div class="task">
+      <div class="icon" style="background:#10b981;">🏃</div>
+      <div class="info">
+        <h4>نشر المشروع على الانترنت و اعلان عنه </h4>
+        <small>الموعد:بعد 15 يوم من انهاء المشروع الكامل</small>
+      </div>
+    </div>
 
-  window.addEventListener("keydown", function(e){
-    if(e.key === "Escape") closeNewsletterPopup();
-  });
-    (function(){
-      const form = document.getElementById('contactForm');
-      const popup = document.getElementById('popup');
+  </div>
+</section>
 
-      form.addEventListener('submit', async function(e){
-        e.preventDefault();
-        const fd = new FormData(form);
-        try {
-          const res = await fetch(form.action, {
-            method: form.method,
-            body: fd,
-            headers: { 'Accept': 'application/json' }
-          });
-          if (res.ok) {
-            form.reset();
-            popup.style.display = 'grid';
-            popup.setAttribute('aria-hidden', 'false');
-            popup.querySelector('.box').focus();
-          } else {
-            const data = await res.json().catch(()=>{});
-            alert((data && data.error) ? data.error : 'Something went wrong — please try again later.');
+<!-- GOALS -->
+<section class="section" id="goals">
+  <h3 style="color:#fff; margin-bottom:14px;">🎯 الأهداف</h3>
+  <form id="goalForm" style="display:flex;flex-direction:column;gap:12px;">
+    <input type="text" name="goalName" placeholder="أدخل اسمك" required
+      style="padding:12px;border-radius:10px;border:1px solid #ccc;">
+    <input type="tel" name="goalPhone" placeholder="أدخل رقم هاتفك" required
+      style="padding:12px;border-radius:10px;border:1px solid #ccc;">
+    <textarea name="goalText" rows="5" placeholder="اكتب هدفك هنا..." required
+      style="padding:12px;border-radius:10px;border:1px solid #ccc;"></textarea>
+    <button type="submit" class="add-btn">🚀 إرسال الهدف</button>
+  </form>
+
+  <!-- إشعار النتيجة -->
+  <div id="goalResult" style="display:none;margin-top:12px;padding:12px;background:#e0ffe0;border-radius:10px;color:#111;font-weight:700;">
+    ✅ تم حفظ هدفك بنجاح!
+  </div>
+
+  <!-- زر عرض الأهداف -->
+  <button id="viewGoalsBtn" style="margin-top:15px;display:none;padding:10px 15px;border:none;border-radius:8px;background:#007bff;color:#fff;font-weight:600;cursor:pointer;">
+    👀 رؤية أهدافي
+  </button>
+</section>
+
+<!-- نافذة عرض الأهداف -->
+<div id="goalsModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;">
+  <div style="background:#fff;padding:20px;border-radius:12px;max-width:400px;width:90%;position:relative;">
+    <h3 style="margin-bottom:10px;">🎯 أهدافك</h3>
+    <div id="goalsList" style="max-height:300px;overflow-y:auto;"></div>
+    <button id="closeGoalsModal" style="margin-top:15px;padding:10px 15px;border:none;border-radius:8px;background:#dc3545;color:#fff;font-weight:600;cursor:pointer;">
+      ❌ إغلاق
+    </button>
+  </div>
+</div>
+
+            <!-- MESSAGES -->
+            <section class="section" id="messages">
+              <h3 style="color:#faf7f7">الرسائل</h3>
+              <div class="message company">
+  <div class="avatar" style="background:#111827;"><h3>W</h3></div>
+  <div class="content">
+    <h4>WorkSpace<small>قبل 30 يوم</small></h4>
+    <p>
+      لديك إشعار مهم من WorkSpace بشأن حسابك.
+    </p>
+    <button class="see-btn" onclick="openModal()">اضغط للرؤية</button>
+  </div>
+</div>
+
+<!-- المودال -->
+<div id="msgModal" class="modal">
+  <div class="modal-content">
+    <h3>📩 رسالة من شركة WorkSpace</h3>
+    <p>
+      عزيزي العميل،  
+لدينا ان من دخل الموقع الان ظن انه هو مكان العمل ولكن صح انه مكان للعمل فقط نريد الاعلان ان هذا الحسابات التي تسجلون منها ستكون محتاجة الينا و ضروري نحتاجها 
+وشكرا
+      <br><br>
+      💙 شكرًا لاختيارك <strong>شركة WorkSpace</strong>.
+    </p>
+    <button onclick="closeModal()" class="ok-btn">OK</button>
+  </div>
+</div>
+
+            </section>
+
+            <!-- ACCOUNT -->
+            <section class="section" id="account">
+              <h3 style="color:#fcf9f9">الحساب</h3>
+              <div class="account-inline" style="margin-top:12px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+                  <img id="accImgInline" src="https://i.pravatar.cc/100?img=56" alt="avatar" style="width:64px;height:64px;border-radius:50%;">
+                  <div>
+                    <div id="accInlineName" style="font-weight:800;font-size:16px"></div>
+                    <div id="accInlineEmail" style="opacity:0.6;font-size:13px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;justify-content:space-between"><div>تاريخ الدخول</div><div id="accInlineLogin"></div></div>
+                  <div style="display:flex;justify-content:space-between"><div>تاريخ الانتهاء</div><div id="accInlineExpire"></div></div>
+                </div>
+
+                <div style="margin-top:12px;display:flex;gap:8px">
+                  <button id="logoutBtn" style="flex:1;padding:10px;border-radius:10px;border:0;background:var(--danger);color:white;font-weight:800;cursor:pointer">تسجيل خروج</button>
+                  <button id="closeAccInline" style="flex:1;padding:10px;border-radius:10px;border:0;background:#eef2ff;color:var(--accent1);font-weight:800;cursor:pointer">إغلاق</button>
+                </div>
+              </div>
+            </section>
+
+          </div><!-- end sections -->
+        </div><!-- end main-card -->
+      </div><!-- end appRoot -->
+
+      <!-- AUTH SCREEN (visible first) -->
+      <div id="authScreen" role="dialog" aria-modal="true">
+        
+        <div class="auth-card" id="authCard">
+          
+          <h3>تسجيل الدخول</h3>
+          <div id="errorBox" class="error" role="alert" style="display:none;"></div>
+
+          <div class="field">
+            <label>الاسم (مطلوب)</label>
+            <input id="nameInput" type="text" placeholder="الاسم الكامل" autocomplete="name">
+          </div>
+          <div class="field">
+            <label>البريد الإلكتروني</label>
+            <input id="emailInput" type="email" placeholder="name@example.com" autocomplete="email">
+          </div>
+          <div class="field">
+            <label>كلمة المرور</label>
+            <input id="passInput" type="password" placeholder="كلمة المرور" autocomplete="current-password">
+          </div>
+
+          <!-- important: type="button" to avoid default form submit -->
+          <button id="submitAuth" class="submit-btn" type="button">دخول</button>
+          <div class="note">إذا لم يكن لديك حساب سيتم إنشاؤه تلقائياً باستخدام الاسم المدخل</div>
+        </div>
+      </div>
+
+    </div><!-- end screen -->
+  </div><!-- end frame -->
+
+  <!-- account modal -->
+  <div id="accountModal" class="account-modal" aria-hidden="true">
+    <div class="account-card" role="dialog" aria-modal="true" aria-label="صفحة الحساب">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <img id="accImg" src="https://i.pravatar.cc/100?img=56" alt="avatar" style="width:64px;height:64px;border-radius:50%;border:3px solid rgba(0,0,0,0.04)">
+        <div>
+          <div id="accName" style="font-weight:800;font-size:18px;color:#111"></div>
+          <div id="accEmail" style="opacity:0.6;font-size:13px;color:#111"></div>
+        </div>
+      </div>
+
+      <div class="account-row"><div>تاريخ الدخول</div><div id="accLoginDate"></div></div>
+      <div class="account-row"><div>تاريخ انتهاء الحساب</div><div id="accExpireDate"></div></div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;">
+        <button id="logoutBtnModal" style="flex:1;padding:10px;border-radius:10px;border:0;background:var(--danger);color:white;font-weight:800;cursor:pointer;">تسجيل خروج</button>
+        <button id="closeAcc" style="flex:1;padding:10px;border-radius:10px;border:0;background:#eef2ff;color:var(--accent1);font-weight:800;cursor:pointer;">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- loading overlay -->
+  <div id="loading" class="loading-overlay" aria-hidden="true"><div class="spinner" role="status" aria-label="جارٍ التحميل"></div></div>
+
+  <!-- file:// warning -->
+  <div id="fileWarning" class="file-warning">انتبه: لعمل تسجيل الدخول عبر Firebase، شغّل الملف عبر سيرفر محلي (مثال: في مجلد الملف شغّل <code>python -m http.server 8000</code> ثم افتح <kbd>http://localhost:8000</kbd>).</div>
+
+  <!-- Firebase modular SDK (type=module) -->
+  <script type="module">
+    
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      updateProfile,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+    // CONFIG (كما طلبت)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAGq9x3zOZXfqEZ3tMFRuUUTHnuHKNTRgI",
+      authDomain: "pixelbuilder2-auth.firebaseapp.com",
+      databaseURL: "https://pixelbuilder2-auth-default-rtdb.firebaseio.com",
+      projectId: "pixelbuilder2-auth",
+      storageBucket: "pixelbuilder2-auth.firebasestorage.app",
+      messagingSenderId: "296299154171",
+      appId: "1:296299154171:web:a4a68db29625b2d902fe5e",
+      measurementId: "G-GGPBBJ2FYP"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // DOM refs
+    const authScreen = document.getElementById('authScreen');
+    const nameInput = document.getElementById('nameInput');
+    const emailInput = document.getElementById('emailInput');
+    const passInput = document.getElementById('passInput');
+    const submitAuth = document.getElementById('submitAuth');
+    const errorBox = document.getElementById('errorBox');
+
+    const appRoot = document.getElementById('appRoot');
+    const welcomeTitle = document.getElementById('welcomeTitle');
+    const profileBtn = document.getElementById('profileBtn');
+    const profileImg = document.getElementById('profileImg');
+    const profileNameSmall = document.getElementById('profileNameSmall');
+
+    const sections = document.querySelectorAll('.section');
+    const navBtns = document.querySelectorAll('.nav-btn');
+
+    const statTasks = document.getElementById('statTasks');
+    const statMsgs = document.getElementById('statMsgs');
+    const statProjects = document.getElementById('statProjects');
+    const statPerf = document.getElementById('statPerf');
+
+    const accountModal = document.getElementById('accountModal');
+    const accName = document.getElementById('accName');
+    const accEmail = document.getElementById('accEmail');
+    const accLoginDate = document.getElementById('accLoginDate');
+    const accExpireDate = document.getElementById('accExpireDate');
+    const accImg = document.getElementById('accImg');
+
+    const accInlineName = document.getElementById('accInlineName');
+    const accInlineEmail = document.getElementById('accInlineEmail');
+    const accInlineLogin = document.getElementById('accInlineLogin');
+    const accInlineExpire = document.getElementById('accInlineExpire');
+    const accImgInline = document.getElementById('accImgInline');
+
+    const loadingOverlay = document.getElementById('loading');
+    const fileWarning = document.getElementById('fileWarning');
+
+    // show file:// warning if running from file
+    if(location.protocol === 'file:'){
+      fileWarning.style.display = 'block';
+      console.warn('Firebase Auth needs http/https. Run via local server (e.g. python -m http.server).');
+    }
+
+    function showLoading(on = true){
+      loadingOverlay.style.display = on ? 'flex' : 'none';
+    }
+    function showError(msg){
+      errorBox.innerText = msg;
+      errorBox.style.display = 'block';
+    }
+    function hideError(){ errorBox.style.display = 'none'; }
+
+    function formatDate(d){
+      const dd = String(d.getDate()).padStart(2,'0');
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const yy = d.getFullYear();
+      const hh = String(d.getHours()).padStart(2,'0');
+      const min = String(d.getMinutes()).padStart(2,'0');
+      return `${dd}/${mm}/${yy} ${hh}:${min}`;
+    }
+
+    function translateFirebaseError(err){
+      if(!err || !err.code) return 'معذرة هناك خطأ في ملء بيانات.';
+      switch(err.code){
+        case 'auth/invalid-email': return 'البريد الإلكتروني غير صالح';
+        case 'auth/user-disabled': return 'تم تعطيل هذا الحساب';
+        case 'auth/user-not-found': return 'لم يتم العثور على حساب بهذا البريد';
+        case 'auth/wrong-password': return 'كلمة المرور خاطئة';
+        case 'auth/weak-password': return 'كلمة المرور ضعيفة (6 أحرف على الأقل)';
+        case 'auth/email-already-in-use': return 'البريد مستخدم مسبقاً. سيتم محاولة تسجيل الدخول بدلاً من الإنشاء';
+        default: return 'معذرة هناك خطأ: ' + (err.message || err.code);
+      }
+    }
+
+    // SPA navigation
+    function showSection(id){
+      sections.forEach(s => s.classList.remove('active'));
+      const el = document.getElementById(id);
+      if(el) el.classList.add('active');
+      navBtns.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+    }
+    navBtns.forEach(btn => btn.addEventListener('click', ()=> showSection(btn.dataset.target)));
+
+    // Auth submit handler
+    submitAuth.addEventListener('click', async () => {
+      hideError();
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const pass = passInput.value;
+
+      if(!name || !email || !pass){
+        showError('معذرة هناك خطأ في ملء بيانات. الرجاء ملء الاسم والبريد وكلمة المرور.');
+        return;
+      }
+
+      // show loading
+      showLoading(true);
+
+      try{
+        console.log('حاول إنشاء مستخدم جديد...');
+        const userCred = await createUserWithEmailAndPassword(auth, email, pass);
+        // set displayName
+        await updateProfile(userCred.user, { displayName: name });
+        handleSuccessfulLogin(userCred.user, true);
+      }catch(err){
+        console.warn('createUser error:', err);
+        if(err.code === 'auth/email-already-in-use'){
+          // try sign in
+          try{
+            console.log('البريد مستخدم، نحاول تسجيل الدخول...');
+            const signed = await signInWithEmailAndPassword(auth, email, pass);
+            // ensure displayName present
+            if(!signed.user.displayName && name){
+              await updateProfile(signed.user, { displayName: name });
+            }
+            handleSuccessfulLogin(signed.user, false);
+          }catch(err2){
+            console.error('signIn error:', err2);
+            showLoading(false);
+            showError(translateFirebaseError(err2));
           }
-        } catch(err) {
-          alert('Submission failed — please check your internet connection.');
+        } else {
+          showLoading(false);
+          showError(translateFirebaseError(err));
         }
-      });
+      }
+    });
 
-      window.closePopup = function(){
-        popup.style.display = 'none';
-        popup.setAttribute('aria-hidden','true');
-      };
+    async function handleSuccessfulLogin(user, createdNew){
+      console.log('نجح تسجيل/دخول: ', user.uid);
+      const loginTime = new Date();
+      const expireTime = new Date(loginTime.getTime() + 30*24*60*60*1000);
+      localStorage.setItem('ws_login_at', loginTime.toISOString());
+      localStorage.setItem('ws_expire_at', expireTime.toISOString());
 
-      window.addEventListener('keydown', function(e){
-        if(e.key === 'Escape') closePopup();
-      });
-    })();
+      const displayName = user.displayName || nameInput.value || 'مستخدم';
+      welcomeTitle.innerText = `مرحباً، ${displayName}`;
+      profileNameSmall.innerText = displayName;
+      const avatar = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=5f66ff&color=fff&rounded=true`;
+      profileImg.src = avatar;
+
+      accName.innerText = displayName; accEmail.innerText = user.email || '';
+      accLoginDate.innerText = formatDate(loginTime); accExpireDate.innerText = formatDate(expireTime);
+      accImg.src = avatar;
+
+      accInlineName.innerText = displayName; accInlineEmail.innerText = user.email || '';
+      accInlineLogin.innerText = formatDate(loginTime); accInlineExpire.innerText = formatDate(expireTime);
+      accImgInline.src = avatar;
+
+      statTasks.innerText = 8; statMsgs.innerText = 12; statProjects.innerText = 5; statPerf.innerText = "76%";
+
+      // show app
+      setTimeout(()=>{
+        showLoading(false);
+        document.getElementById('authScreen').style.display = 'none';
+        appRoot.style.display = 'block';
+        appRoot.setAttribute('aria-hidden','false');
+        showSection('home');
+      }, 700);
+
+      // clear inputs
+      nameInput.value=''; emailInput.value=''; passInput.value='';
+    }
+
+    // restore session
+    onAuthStateChanged(auth, (user) => {
+      if(user){
+        console.log('onAuthStateChanged: user active', user.uid);
+        let loginISO = localStorage.getItem('ws_login_at') || new Date().toISOString();
+        let expireISO = localStorage.getItem('ws_expire_at') || new Date(new Date().getTime() + 30*24*60*60*1000).toISOString();
+        localStorage.setItem('ws_login_at', loginISO);
+        localStorage.setItem('ws_expire_at', expireISO);
+
+        const displayName = user.displayName || 'مستخدم';
+        welcomeTitle.innerText = `مرحباً، ${displayName}`;
+        profileNameSmall.innerText = displayName;
+        const avatar = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=5f66ff&color=fff&rounded=true`;
+        profileImg.src = avatar;
+
+        accName.innerText = displayName; accEmail.innerText = user.email || '';
+        accLoginDate.innerText = formatDate(new Date(loginISO)); accExpireDate.innerText = formatDate(new Date(expireISO));
+        accInlineName.innerText = displayName; accInlineEmail.innerText = user.email || '';
+        accInlineLogin.innerText = formatDate(new Date(loginISO)); accInlineExpire.innerText = formatDate(new Date(expireISO));
+        accImg.src = avatar; accImgInline.src = avatar;
+
+        // show app
+        document.getElementById('authScreen').style.display = 'none';
+        appRoot.style.display = 'block';
+        appRoot.setAttribute('aria-hidden','false');
+        showSection('home');
+      } else {
+        console.log('onAuthStateChanged: no user');
+        document.getElementById('authScreen').style.display = 'flex';
+        appRoot.style.display = 'none';
+        appRoot.setAttribute('aria-hidden','true');
+      }
+    });
+
+    // profile modal open (keeps app accessible)
+    profileBtn.addEventListener('click', ()=>{
+      if(!auth.currentUser){
+        document.getElementById('authScreen').style.display = 'flex';
+        return;
+      }
+      accountModal.style.display = 'flex';
+      accountModal.setAttribute('aria-hidden','false');
+    });
+
+    document.getElementById('closeAcc').addEventListener('click', ()=>{
+      accountModal.style.display = 'none';
+      accountModal.setAttribute('aria-hidden','true');
+    });
+    accountModal.addEventListener('click', (e)=>{ if(e.target === accountModal) accountModal.style.display = 'none'; });
+
+    // logout
+    document.getElementById('logoutBtn').addEventListener('click', async ()=>{
+      await signOut(auth);
+      localStorage.removeItem('ws_login_at'); localStorage.removeItem('ws_expire_at');
+      welcomeTitle.innerText = 'مرحبا، آمنة'; profileNameSmall.innerText = 'مرحباً.'; profileImg.src = 'https://i.pravatar.cc/100?img=56';
+      document.getElementById('authScreen').style.display = 'flex'; appRoot.style.display = 'none';
+      accountModal.style.display = 'none';
+    });
+    document.getElementById('logoutBtnModal').addEventListener('click', async ()=>{
+      await signOut(auth);
+      localStorage.removeItem('ws_login_at'); localStorage.removeItem('ws_expire_at');
+      welcomeTitle.innerText = 'مرحبا، آمنة'; profileNameSmall.innerText = 'مرحباً.'; profileImg.src = 'https://i.pravatar.cc/100?img=56';
+      document.getElementById('authScreen').style.display = 'flex'; appRoot.style.display = 'none';
+      accountModal.style.display = 'none';
+    });
+
+    // allow Enter to submit
+    passInput.addEventListener('keyup', (e)=>{ if(e.key === 'Enter') submitAuth.click(); });
+
+    // new task demo
+    document.getElementById('newTaskBtn').addEventListener('click', ()=>{
+      const list = document.getElementById('tasksList');
+      const el = document.createElement('div');
+      el.style.cssText = 'background:var(--card);padding:12px;border-radius:12px;margin-bottom:10px;color:#111;box-shadow:0 8px 20px rgba(0,0,0,0.04)';
+      el.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center"><div>مهمة جديدة</div><div style="opacity:0.6">غداً</div></div><small style="color:#6b7280">مسؤول: أنت</small>';
+      list.prepend(el);
+      statTasks.innerText = parseInt(statTasks.innerText || '0') + 1;
+      showSection('tasks');
+    });
+
+    // debug helper
+    window._ws_debug = { auth, showSection };
   </script>
+  <script>
+  function openModal() {
+    document.getElementById("msgModal").style.display = "flex";
+  }
+  function closeModal() {
+    document.getElementById("msgModal").style.display = "none";
+  }
+
+  // إغلاق عند الضغط على الخلفية
+  window.onclick = function(e) {
+    if (e.target === document.getElementById("msgModal")) {
+      closeModal();
+    }
+  }
+  auth.onAuthStateChanged((user) => {
+  if (user) {
+    // جلب الاسم من حساب المستخدم
+    const name = user.displayName || "مستخدم";
+    document.getElementById("welcomeMsg").textContent = `مرحبا ${name} 👋`;
+  } else {
+    document.getElementById("welcomeMsg").textContent = "مرحبا 👋";
+  }
+});
+
+</script>
+<script>
+  const contactForm = document.getElementById("contactForm");
+  const successPopup = document.getElementById("successPopup");
+  const sentEmail = document.getElementById("sentEmail");
+  const okBtn = document.getElementById("okBtn");
+
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const email = formData.get("email");
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        sentEmail.textContent = "📧 بريدك: " + email;
+        successPopup.style.display = "flex";
+        contactForm.reset(); // مسح البيانات بعد الإرسال
+      } else {
+        alert("❌ حدث خطأ أثناء الإرسال، حاول مرة أخرى");
+      }
+    } catch (err) {
+      alert("⚠️ لا يوجد اتصال بالشبكة");
+    }
+  });
+
+  okBtn.addEventListener("click", () => {
+    successPopup.style.display = "none";
+  });
+</script>
+<script>
+  const goalForm = document.getElementById("goalForm");
+  const goalResult = document.getElementById("goalResult");
+  const viewGoalsBtn = document.getElementById("viewGoalsBtn");
+  const goalsModal = document.getElementById("goalsModal");
+  const goalsList = document.getElementById("goalsList");
+  const closeGoalsModal = document.getElementById("closeGoalsModal");
+
+  let goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+  function hasGoalToday(name) {
+    const today = new Date().toISOString().split("T")[0];
+    return goals.some(g => g.name === name && g.date === today);
+  }
+
+  function saveGoals() {
+    localStorage.setItem("goals", JSON.stringify(goals));
+  }
+
+  // 🚀 تعديل عرض الأهداف: الهدف + التاريخ فقط
+  function renderGoals() {
+    goalsList.innerHTML = "";
+    if (goals.length === 0) {
+      goalsList.innerHTML = "<p>لا توجد أهداف بعد.</p>";
+    } else {
+      goals.forEach(g => {
+        const div = document.createElement("div");
+        div.style.padding = "10px";
+        div.style.marginBottom = "8px";
+        div.style.borderRadius = "8px";
+        div.style.background = "#f1f1f1";
+        div.innerHTML = `📌 ${g.text} <br><small>🗓️ ${g.date}</small>`;
+        goalsList.appendChild(div);
+      });
+    }
+  }
+
+  if (goalForm) {
+    goalForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = goalForm.goalName.value.trim();
+      const phone = goalForm.goalPhone.value.trim();
+      const text = goalForm.goalText.value.trim();
+      const today = new Date().toISOString().split("T")[0];
+
+      if (hasGoalToday(name)) {
+        alert("⚠️ لقد أضفت هدفًا اليوم بالفعل. جرب غدًا.");
+        return;
+      }
+
+      const newGoal = { name, phone, text, date: today };
+      goals.push(newGoal);
+      saveGoals();
+
+      goalResult.style.display = "block";
+      viewGoalsBtn.style.display = "inline-block";
+
+      goalForm.reset();
+      setTimeout(() => { goalResult.style.display = "none"; }, 4000);
+    });
+  }
+
+  viewGoalsBtn.addEventListener("click", () => {
+    renderGoals();
+    goalsModal.style.display = "flex";
+  });
+
+  closeGoalsModal.addEventListener("click", () => {
+    goalsModal.style.display = "none";
+  });
+  // تعريف المتغيرات مرة واحدة فقط
+
+const welcomeMsg = document.getElementById('welcomeMsg'); // مرحبا اسمك
+
+// دالة التنقل بين الأقسام
+function showSection(index) {
+  sections.forEach(section => section.style.display = 'none');
+  sections[index].style.display = 'block';
+
+  // مرحبا اسمك يظهر فقط في الرئيسية
+  if (sections[index].id === 'home') {
+    welcomeMsg.style.display = 'block';
+  } else {
+    welcomeMsg.style.display = 'none';
+  }
+}
+
+// ربط الأزرار بالدالة
+navBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => showSection(index));
+});
+
+</script>
+
 </body>
+
 </html>
